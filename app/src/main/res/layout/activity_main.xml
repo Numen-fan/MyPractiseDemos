@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_recyc_fzxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="recyc分组悬停"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/btn_recyc_decoration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decoration"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_start_wheel"
+            android:text="Start"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_train"
+            android:text="train"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+</LinearLayout> 
