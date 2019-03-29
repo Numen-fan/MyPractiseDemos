@@ -19,6 +19,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_start_wheel;
     @BindView(R.id.btn_train)
     Button btn_train;
+    @BindView(R.id.btn_city)
+    Button btn_citychange;
+    @BindView(R.id.btn_picturescale)
+    Button btn_picturescale;
+    @BindView(R.id.btn_mvp)
+    Button btn_mvp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_recyc_fzxt.setOnClickListener(this);
         btn_start_wheel.setOnClickListener(this);
         btn_train.setOnClickListener(this);
+        btn_citychange.setOnClickListener(this);
+        btn_picturescale.setOnClickListener(this);
+        btn_mvp.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +55,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_train:
                 activity = "com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview";
+                break;
+            case R.id.btn_city:
+                activity = "com.jiajia.mypractisedemos.module.citychange.CityChangeActivity";
+                break;
+            case R.id.btn_picturescale:
+                activity = "com.jiajia.mypractisedemos.module.picturescale.PictureScaleActivity";
+                break;
+            case R.id.btn_mvp:
+                activity = "com.jiajia.mypractisedemos.module.mvpdemo.LoginMvpActivity";
             default:
                 break;
         }

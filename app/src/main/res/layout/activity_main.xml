@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
 
         <Button
             android:id="@+id/btn_recyc_fzxt"
@@ -22,6 +21,7 @@
             android:id="@+id/btn_recyc_decoration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btn_recyc_fzxt"
             android:text="Decoration"
             android:layout_marginStart="5dp"
             android:background="@drawable/btn_shape"
@@ -30,6 +30,7 @@
         <Button
             android:id="@+id/btn_start_wheel"
             android:text="Start"
+            android:layout_toRightOf="@id/btn_recyc_decoration"
             android:textAllCaps="false"
             android:layout_marginStart="5dp"
             android:background="@drawable/btn_shape"
@@ -39,6 +40,42 @@
         <Button
             android:id="@+id/btn_train"
             android:text="train"
+            android:layout_toRightOf="@id/btn_start_wheel"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_city"
+            android:text="cityChange"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_recyc_fzxt"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_picturescale"
+            android:text="pictureScale"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_recyc_decoration"
+            android:layout_toRightOf="@id/btn_city"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_mvp"
+            android:text="mvp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_recyc_decoration"
+            android:layout_toRightOf="@id/btn_picturescale"
             android:textAllCaps="false"
             android:layout_marginStart="5dp"
             android:background="@drawable/btn_shape"
@@ -46,6 +83,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout> 

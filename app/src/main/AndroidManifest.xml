@@ -20,7 +20,10 @@
         <activity android:name=".module.recycgroup2.RecycGroup2Activity" />
         <activity android:name=".module.decoration.DecorationActivity" />
         <activity android:name=".module.wheeldialog.WheelActivity" />
-        <activity android:name=".module.trainrecyclerview.Trainrecyclerview"></activity>
+        <activity android:name=".module.trainrecyclerview.Trainrecyclerview" />
+        <activity android:name=".module.citychange.CityChangeActivity" />
+        <activity android:name=".module.picturescale.PictureScaleActivity" />
+        <activity android:name=".module.mvpdemo.LoginMvpActivity"></activity>
     </application>
 
 </manifest>
