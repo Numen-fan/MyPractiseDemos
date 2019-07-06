@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jiajia.mypractisedemos.module.citychange.CityChangeActivity">
+
+    <RelativeLayout
+        android:id="@+id/linear_citychange_view"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/tv_citychange_front"
+            android:text="重庆"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tv_citychange_middle"
+            android:layout_width="100dp"
+            android:text="= ="
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tv_citychange_below"
+            android:text="武汉"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="30dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

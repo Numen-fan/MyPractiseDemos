@@ -6,7 +6,7 @@ package com.jiajia.mypractisedemos.module.mvpdemo;
  *  desc:
  */
 
-public interface iCallBack<ResultBean>{
+public interface MyCallBack<ResultBean>{
 
     void callError(ResultBean bean);
 

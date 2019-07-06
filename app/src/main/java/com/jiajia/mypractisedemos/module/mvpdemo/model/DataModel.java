@@ -1,4 +1,7 @@
-package com.jiajia.mypractisedemos.module.mvpdemo;
+package com.jiajia.mypractisedemos.module.mvpdemo.model;
+
+import com.jiajia.mypractisedemos.module.mvpdemo.MyCallBack;
+import com.jiajia.mypractisedemos.module.mvpdemo.ResultBean;
 
 /**
  * <pre>
@@ -10,7 +13,7 @@ public class DataModel {
 
 
 
-    public void login(String userName, String Password, iCallBack<ResultBean> callBack) {
+    public void login(String userName, String Password, MyCallBack<ResultBean> callBack) {
 
         ResultBean bean; // 封装返回的bean
 

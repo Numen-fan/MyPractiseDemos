@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="user" type="com.jiajia.mypractisedemos.module.jetpack.User"/>
+        <variable
+            name="prople"
+            type="com.jiajia.mypractisedemos.module.jetpack.People"/>
+        <variable
+            name="listKey"
+            type="int"/>
+        <variable
+            name="presenter"
+            type="com.jiajia.mypractisedemos.module.jetpack.JetpackActivity.Presenter"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.jiajia.mypractisedemos.module.jetpack.JetpackActivity">
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{user.userName}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="更换User"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@{prople.name}"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="@{prople.list[listKey]}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:text="click"
+            android:textAllCaps="false"
+            android:onClick="@{presenter::onClick}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

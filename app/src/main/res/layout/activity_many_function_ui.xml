@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jiajia.mypractisedemos.module.manfunctionsui.ManyFunctionUIActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_zflhp"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_zflhp"
+                    android:src="@drawable/icon_zhifanglihuopiao"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_zflhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@color/color_text_black"
+                    android:text="直放理货票"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_zflhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_zflhp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginStart="85dp"
+                android:background="#b4b1b1"
+                android:layout_height="0.5dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_xhlhp"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_xhlhp"
+                    android:src="@drawable/icon_xiehuolihuopiao"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_xhlhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="卸货理货票"
+                    android:textColor="@color/color_text_black"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_xhlhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_xhlhp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginStart="85dp"
+                android:background="#b4b1b1"
+                android:layout_height="0.5dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_zhlhp"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_zhlhp"
+                    android:src="@drawable/icon_zhuanghuolihuopiao"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_zhlhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@color/color_text_black"
+                    android:text="装货理货票"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_zhlhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_zhlhp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginStart="85dp"
+                android:background="#b4b1b1"
+                android:layout_height="0.5dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_zdlhp"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_zdlhp"
+                    android:src="@drawable/icon_zhuanduilihuop"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_zdlhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/color_text_black"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="转堆理货票"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_zdlhp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_zdlhp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_marginStart="85dp"-->
+                <!--android:background="#b4b1b1"-->
+                <!--android:layout_height="0.5dp"/>-->
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/rl_zxzylr"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_zxzylr"
+                    android:src="@drawable/icon_zhaxiangzuoyeluru"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_zxzylr"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="杂项作业录入"
+                    android:textColor="@color/color_text_black"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_zxzylr"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_zxzylr"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_dcjhlr"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_dcjhlr"
+                    android:src="@drawable/icon_duicunjihualuru"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_dcjhlr"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="堆存计划录入"
+                    android:textColor="@color/color_text_black"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_dcjhlr"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_dcjhlr"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_marginStart="85dp"-->
+            <!--android:background="#b4b1b1"-->
+            <!--android:layout_height="0.5dp"/>-->
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/rl_tlzljssh"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_tlzljssh"
+                    android:src="@drawable/icon_tieluzhilingjieshoushenhe"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_tlzljssh"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="铁路指令接受与审核"
+                    android:textColor="@color/color_text_black"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_dsh"
+                    android:layout_toLeftOf="@id/img_chevron_tlzljssh"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_tlzljssh"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginStart="85dp"
+                android:background="#b4b1b1"
+                android:layout_height="0.5dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_zcclzyzl"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_zcclzyzl"
+                    android:src="@drawable/icon_zhanchangcheliangzhiling"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_zcclzyzl"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="站场车辆作业指令"
+                    android:textColor="@color/color_text_black"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_zcclzyzl"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_zcclzyzl"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_marginStart="85dp"-->
+                <!--android:background="#b4b1b1"-->
+                <!--android:layout_height="0.5dp"/>-->
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/rl_dbxxcx"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/img_dbxxcx"
+                    android:src="@drawable/icon_dibangxinxichaxun"
+                    android:scaleType="centerInside"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:layout_toRightOf="@id/img_dbxxcx"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="地磅信息查询"
+                    android:textColor="@color/color_text_black"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/img_chevron_dbxxcx"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_height="30dp" />
+
+                <ImageView
+                    android:id="@+id/img_chevron_dbxxcx"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

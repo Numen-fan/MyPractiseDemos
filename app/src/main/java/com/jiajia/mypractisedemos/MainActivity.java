@@ -25,6 +25,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_picturescale;
     @BindView(R.id.btn_mvp)
     Button btn_mvp;
+    @BindView(R.id.btn_expendable)
+    Button btn_expendable;
+    @BindView(R.id.btn_manyFunction)
+    Button btn_manyFunction;
+    @BindView(R.id.btn_popWindow)
+    Button btn_popWindow;
+    @BindView(R.id.btn_dialog)
+    Button btn_dialog;
+    @BindView(R.id.btn_jetpack)
+    Button btn_jetpack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_citychange.setOnClickListener(this);
         btn_picturescale.setOnClickListener(this);
         btn_mvp.setOnClickListener(this);
+        btn_expendable.setOnClickListener(this);
+        btn_manyFunction.setOnClickListener(this);
+        btn_popWindow.setOnClickListener(this);
+        btn_dialog.setOnClickListener(this);
+        btn_jetpack.setOnClickListener(this);
     }
 
     @Override
@@ -63,8 +79,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 activity = "com.jiajia.mypractisedemos.module.picturescale.PictureScaleActivity";
                 break;
             case R.id.btn_mvp:
-                activity = "com.jiajia.mypractisedemos.module.mvpdemo.LoginMvpActivity";
+                activity = "com.jiajia.mypractisedemos.module.mvpdemo.view.LoginMvpActivity";
+                break;
+            case R.id.btn_expendable:
+                activity = "com.jiajia.mypractisedemos.module.expendablelayout.ExpendableLayoutActivity";
+                break;
+            case R.id.btn_manyFunction:
+                activity = "com.jiajia.mypractisedemos.module.manfunctionsui.ManyFunctionUIActivity";
+                break;
+            case R.id.btn_popWindow:
+                activity = "com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity";
+                break;
+            case R.id.btn_dialog:
+                activity = "com.jiajia.mypractisedemos.module.dialog.DialogActivity";
+                break;
+            case R.id.btn_jetpack:
+                activity = "com.jiajia.mypractisedemos.module.jetpack.JetpackActivity";
+                break;
             default:
+
                 break;
         }
         Intent intent1 = null;

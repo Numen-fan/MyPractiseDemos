@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jiajia.mypractisedemos.module.expendablelayout.ExpendableLayoutActivity">
+    
+    <com.chaychan.library.ExpandableLinearLayout
+        android:id="@+id/ell_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:useDefaultBottom="true"
+        app:defaultItemCount="2"
+        app:expandText="点击展开"
+        app:hideText="点击收起">
+    </com.chaychan.library.ExpandableLinearLayout>
+
+</LinearLayout>

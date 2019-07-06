@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.jiajia.mypractisedemos.module.dialog.DialogActivity">
+
+    <Button
+        android:id="@+id/btn_dialog_style1"
+        android:layout_width="match_parent"
+        android:text="style1"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_shape"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_dialog_style2"
+        android:layout_width="match_parent"
+        android:text="style2"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_shape"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_dialog_style3"
+        android:layout_width="match_parent"
+        android:text="style3"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_shape"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_dialog_style4"
+        android:layout_width="match_parent"
+        android:text="style4"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_shape"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

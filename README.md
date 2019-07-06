@@ -1,2 +1,2 @@
 # MyPractiseDemos
-第一次提交，一些自己的练习demo
+- 主要是自己平时训练的一些demo，在module下面的每个包都代表一个demo。

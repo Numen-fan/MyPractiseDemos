@@ -83,5 +83,67 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/btn_expendable"
+            android:text="expandable"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_recyc_decoration"
+            android:layout_toRightOf="@id/btn_mvp"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_manyFunction"
+            android:text="manyFunction"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_city"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_popWindow"
+            android:text="popupWindow"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_city"
+            android:layout_toEndOf="@id/btn_manyFunction"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_dialog"
+            android:text="Dialog"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_city"
+            android:layout_toEndOf="@id/btn_popWindow"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_jetpack"
+            android:text="Jetpack"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/btn_city"
+            android:layout_toEndOf="@id/btn_dialog"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/btn_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 </LinearLayout> 

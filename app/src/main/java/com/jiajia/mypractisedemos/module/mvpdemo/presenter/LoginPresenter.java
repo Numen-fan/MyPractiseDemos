@@ -1,4 +1,10 @@
-package com.jiajia.mypractisedemos.module.mvpdemo;
+package com.jiajia.mypractisedemos.module.mvpdemo.presenter;
+
+import com.jiajia.mypractisedemos.module.mvpdemo.MyCallBack;
+import com.jiajia.mypractisedemos.module.mvpdemo.ResultBean;
+import com.jiajia.mypractisedemos.module.mvpdemo.base.BasePresenter;
+import com.jiajia.mypractisedemos.module.mvpdemo.model.DataModel;
+import com.jiajia.mypractisedemos.module.mvpdemo.view.ILoginView;
 
 /**
  * <pre>
@@ -6,14 +12,13 @@ package com.jiajia.mypractisedemos.module.mvpdemo;
  *  desc:
  */
 
-public class DataPresenter {
+public class LoginPresenter extends BasePresenter<ILoginView> {
 
-    private iView mView;
 
     private DataModel mModel;
 
-    public DataPresenter(iView view) {
-        this.mView = view;
+    public LoginPresenter() {
+
         this.mModel = new DataModel();
     }
 
@@ -23,7 +28,7 @@ public class DataPresenter {
 
     public void login(String userName, String password) {
 
-        mModel.login(userName, password, new iCallBack<ResultBean>() {
+        mModel.login(userName, password, new MyCallBack<ResultBean>() {
             @Override
             public void callError(ResultBean resultBean) {
 
@@ -31,12 +36,12 @@ public class DataPresenter {
 
             @Override
             public void callSuccess(ResultBean resultBean) {
-                mView.loginSuccess(resultBean.getMsg());
+                view.loginSuccess(resultBean.getMsg());
             }
 
             @Override
             public void callFailure(ResultBean resultBean) {
-                mView.loginFailure(resultBean.getMsg());
+                view.loginFailure(resultBean.getMsg());
             }
 
             @Override
@@ -46,5 +51,4 @@ public class DataPresenter {
         });
 
     }
-
 }
