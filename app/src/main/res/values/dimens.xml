@@ -8,4 +8,26 @@
     <dimen name="header_divider_height">2dp</dimen>
     <dimen name="header_height">24dp</dimen>
     <dimen name="header_textsize">22sp</dimen>
+
+    <dimen name="textsize14">14sp</dimen>
+    <dimen name="textsize16">16sp</dimen>
+    <dimen name="textsize18">18sp</dimen>
+
+    <dimen name="itv_conrtol_image_item_above">75dp</dimen>
+    <dimen name="itv_conrtol_image_item_below">60dp</dimen>
+
+    <dimen name="f_0">20dp</dimen>
+
+    <!--黑白-->
+    <color name="D_1">#121214</color>
+    <color name="D_2">#1C1C1F</color>
+    <color name="D_3">#262629</color>
+    <color name="L_3">#4E4F52</color>
+    <color name="L_5">#9EA0A3</color>
+    <color name="L_6">#B4B5B8</color>
+    <color name="L_9">#E8E9EB</color>
+    <color name="L_10">#F2F3F5</color>
+    <color name="L_11">#FFFFFF</color>
+    <dimen name="fab_margin">16dp</dimen>
+
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><!-- ChenJianLi Code: View: Seekbar
+        滑动时的背景效果 -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  背景  -->
+    <item
+        android:id="@android:id/background"
+        >
+        <shape>
+            <solid android:color="@color/L_5"/>
+        </shape>
+    </item>
+    <!--  第一进度条  -->
+    <item
+        android:id="@android:id/progress"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp">
+        <clip>
+            <shape>
+                <solid android:color="@color/L_3"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

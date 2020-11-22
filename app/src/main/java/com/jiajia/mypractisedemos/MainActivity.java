@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_dialog;
     @BindView(R.id.btn_jetpack)
     Button btn_jetpack;
+    @BindView(R.id.btn_mylinearlayout)
+    Button btn_mylinearlayout;
+    @BindView(R.id.btn_demo)
+    Button btn_demo;
+    @BindView(R.id.btn_seekbar)
+    Button btn_seekbar;
+    @BindView(R.id.btn_audio)
+    Button btn_audio;
 
 
     @Override
@@ -54,6 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_popWindow.setOnClickListener(this);
         btn_dialog.setOnClickListener(this);
         btn_jetpack.setOnClickListener(this);
+        btn_mylinearlayout.setOnClickListener(this);
+        btn_demo.setOnClickListener(this);
+        btn_seekbar.setOnClickListener(this);
+        btn_audio.setOnClickListener(this);
     }
 
     @Override
@@ -96,8 +108,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_jetpack:
                 activity = "com.jiajia.mypractisedemos.module.jetpack.JetpackActivity";
                 break;
+            case R.id.btn_mylinearlayout:
+                activity = "com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayoutActivity";
+                break;
+            case R.id.btn_demo:
+                activity = "com.jiajia.mypractisedemos.module.demo.DemoActivity";
+                break;
+            case R.id.btn_seekbar:
+                activity = "com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity";
+                break;
+            case R.id.btn_audio:
+                activity = "com.jiajia.mypractisedemos.module.audio.AudioActivity";
+                break;
             default:
-
                 break;
         }
         Intent intent1 = null;

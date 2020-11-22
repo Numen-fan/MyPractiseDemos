@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="f_0_L_11">
+        <item name="android:textSize">@dimen/f_0</item>
+        <item name="android:textColor">@color/L_11</item>
+    </style>
+</resources>

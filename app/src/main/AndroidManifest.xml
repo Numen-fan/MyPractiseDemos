@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <activity android:name=".module.audio.AudioActivity"></activity>
+        <!-- MainActivity -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,6 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".module.demo.DemoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensor"></activity>
+        <activity
+            android:name=".module.seekbar.SeekBarActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".module.mylinearlayout.MyLinearLayoutActivity" />
         <activity android:name=".module.recycgroup1.RecycGroup1Activity" />
         <activity android:name=".module.recycgroup2.RecycGroup2Activity" />
         <activity android:name=".module.decoration.DecorationActivity" />
@@ -30,7 +40,7 @@
         <activity android:name=".module.manfunctionsui.ManyFunctionUIActivity" />
         <activity android:name=".module.popwindow.PopwindowActivity" />
         <activity android:name=".module.dialog.DialogActivity" />
-        <activity android:name=".module.jetpack.JetpackActivity"></activity>
+        <activity android:name=".module.jetpack.JetpackActivity" />
     </application>
 
 </manifest>
