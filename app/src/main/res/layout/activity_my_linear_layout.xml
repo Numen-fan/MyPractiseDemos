@@ -16,7 +16,12 @@
     <com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayout
         android:id="@+id/mylinear_test2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp">
     </com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayout>
+
+    <com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayout
+        android:id="@+id/mylinear_test3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
 </LinearLayout>

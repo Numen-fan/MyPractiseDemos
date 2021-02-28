@@ -1,10 +1,18 @@
 package com.jiajia.mypractisedemos;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.jiajia.mypractisedemos.module.floatwindow.FloatView;
+import com.jiajia.mypractisedemos.utils.PermissionUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_seekbar;
     @BindView(R.id.btn_audio)
     Button btn_audio;
+    @BindView(R.id.btn_float_window)
+    Button btn_float_window;
+    @BindView(R.id.btn_live_replay)
+    Button btn_live_replay;
 
 
     @Override
@@ -66,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_demo.setOnClickListener(this);
         btn_seekbar.setOnClickListener(this);
         btn_audio.setOnClickListener(this);
+        btn_float_window.setOnClickListener(this);
+        btn_live_replay.setOnClickListener(this);
     }
 
     @Override
@@ -120,6 +134,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_audio:
                 activity = "com.jiajia.mypractisedemos.module.audio.AudioActivity";
                 break;
+            case R.id.btn_float_window:
+                handleClickEvent(R.id.btn_float_window);
+                break;
+            case R.id.btn_live_replay:
+                activity = "com.jiajia.videorender.view.MainRenderctivity";
+                break;
             default:
                 break;
         }
@@ -132,4 +152,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * 在主界面处理不需要启动相关Activity的点击事件
+     * @param resId
+     */
+    private void handleClickEvent(final int resId) {
+        switch (resId) {
+            case R.id.btn_float_window:
+                launchFloatWindow();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 悬浮窗
+     */
+    private void launchFloatWindow() {
+        if (PermissionUtil.canDrawOverlays(this)) {
+//            FloatWindow.getInstance().show();
+            FloatView floatView = new FloatView(this); // 创建窗体
+            floatView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            }); // 设置事件，你需要实现FloatView里的onclick接口
+            floatView.show(); // 显示该窗体
+        } else {
+            PermissionUtil.requestOverlayPermission(this);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PermissionUtil.REQUEST_OVERLAY) {
+            if (resultCode == Activity.RESULT_OK) {
+                launchFloatWindow();
+            } else {
+                Toast.makeText(this, "没有权限，无法使用！", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

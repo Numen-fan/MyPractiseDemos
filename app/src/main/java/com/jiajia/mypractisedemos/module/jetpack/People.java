@@ -1,14 +1,13 @@
 package com.jiajia.mypractisedemos.module.jetpack;
 
-import android.databinding.BaseObservable;
-import android.databinding.Observable;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
-import android.databinding.ObservableList;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Observable;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
+import androidx.databinding.ObservableList;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <pre>

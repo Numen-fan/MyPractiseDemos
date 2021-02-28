@@ -1,7 +1,7 @@
 package com.jiajia.mypractisedemos.module.jetpack;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
 import com.jiajia.mypractisedemos.BR;
 

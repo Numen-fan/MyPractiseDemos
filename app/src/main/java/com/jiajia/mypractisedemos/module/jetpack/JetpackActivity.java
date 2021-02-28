@@ -1,18 +1,13 @@
 package com.jiajia.mypractisedemos.module.jetpack;
 
-import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiajia.mypractisedemos.R;
 import com.jiajia.mypractisedemos.databinding.ActivityJetpackBinding;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class JetpackActivity extends AppCompatActivity {
 

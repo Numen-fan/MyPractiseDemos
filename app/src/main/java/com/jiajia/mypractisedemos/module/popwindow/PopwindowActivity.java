@@ -1,7 +1,7 @@
 package com.jiajia.mypractisedemos.module.popwindow;
 
 import android.graphics.drawable.AnimationDrawable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;

@@ -1,11 +1,10 @@
 package com.jiajia.mypractisedemos.module.expendablelayout;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.chaychan.library.ExpandableLinearLayout;
 import com.jiajia.mypractisedemos.R;

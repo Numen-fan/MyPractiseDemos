@@ -1,0 +1,11 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:duration="1000"
+        android:drawable="@mipmap/ic_launcher"/>
+    <item
+        android:drawable="@drawable/icon_duicunjihualuru"
+        android:duration="1000"/>
+    <item
+        android:drawable="@drawable/icon_dibangxinxichaxun"
+        android:duration="1000"/>
+</animation-list>

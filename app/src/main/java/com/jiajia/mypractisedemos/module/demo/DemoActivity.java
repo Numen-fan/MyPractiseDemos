@@ -5,12 +5,14 @@ import com.jiajia.mypractisedemos.R;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +24,9 @@ public class DemoActivity extends AppCompatActivity {
     ImageView img;
     Button btn;
     RelativeLayout rlparent;
+    ImageView imageView1;
+    ImageView imageView2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +56,15 @@ public class DemoActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn_change_margin);
         rlparent = findViewById(R.id.rl_parent);
 
+
+        imageView1 = findViewById(R.id.img_view1);
+        imageView2 = findViewById(R.id.img_view2);
+
         btn.setOnClickListener(v -> {
-            rlparent.setVisibility(View.VISIBLE);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) img.getLayoutParams();
-            params.bottomMargin = dp2px(900);
-            img.setLayoutParams(params);
+//            rlparent.setVisibility(View.VISIBLE);
+//            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) img.getLayoutParams();
+//            params.bottomMargin = dp2px(900);
+//            img.setLayoutParams(params);
 
 
             String microName = "";
@@ -80,6 +89,14 @@ public class DemoActivity extends AppCompatActivity {
                     }
                 }
             }
+
+            AnimationDrawable animation=(AnimationDrawable) imageView1.getDrawable();
+            Log.d("fjj", animation + "");
+            animation.start();
+
+            AnimationDrawable animation2=(AnimationDrawable) imageView2.getDrawable();
+            Log.d("fjj", animation2 + "");
+            animation2.start();
 
 
         });
