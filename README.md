@@ -1,2 +1,3 @@
 # MyPractiseDemos
-- 主要是自己平时训练的一些demo，在module下面的每个包都代表一个demo。
+- 主要是自己平时训练的一些demo，包com.jiajia.mypractisedemos.module下面的每一个目录都代表一个demo。
+。
