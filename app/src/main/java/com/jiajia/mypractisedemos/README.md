@@ -1,1 +1,1 @@
-module下面的每一个目录都代表一个demo。
+包com.jiajia.mypractisedemos.module下面的每一个目录都代表一个demo。
