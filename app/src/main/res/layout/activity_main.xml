@@ -220,4 +220,17 @@
         android:text="liveReplay"
         android:textAllCaps="false"
         android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btn_self_wigdet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_mylinearlayout"
+        android:layout_toEndOf="@id/btn_live_replay"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_shape"
+        android:text="wigdet"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

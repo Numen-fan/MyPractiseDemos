@@ -4,11 +4,9 @@
     package="com.jiajia.mypractisedemos">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name = "android.permission.BLUETOOTH"/>
-    <!--启用应用启动设备发现或者操作蓝牙设备的超级管理员-->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- 启用应用启动设备发现或者操作蓝牙设备的超级管理员 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -24,9 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-
-        <activity android:name=".module.audio.AudioActivity"/>
-        <!-- MainActivity -->
+        <activity android:name=".module.widgetdemo.WidgetDemoActivity"/>
+        <activity android:name=".module.audio.AudioActivity" /> <!-- MainActivity -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,10 +34,10 @@
         <activity
             android:name=".module.demo.DemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensor"/>
+            android:screenOrientation="sensor" />
         <activity
             android:name=".module.seekbar.SeekBarActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".module.mylinearlayout.MyLinearLayoutActivity" />
         <activity android:name=".module.recycgroup1.RecycGroup1Activity" />
         <activity android:name=".module.recycgroup2.RecycGroup2Activity" />

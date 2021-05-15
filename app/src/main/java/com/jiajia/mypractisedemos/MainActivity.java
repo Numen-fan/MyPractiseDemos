@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,7 +18,9 @@ import com.jiajia.mypractisedemos.utils.PermissionUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.btn_recyc_decoration)
     Button btn_recyc_decoration;
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_float_window;
     @BindView(R.id.btn_live_replay)
     Button btn_live_replay;
+    @BindView(R.id.btn_self_wigdet)
+    Button btn_self_wigdet;
 
 
     @Override
@@ -80,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_audio.setOnClickListener(this);
         btn_float_window.setOnClickListener(this);
         btn_live_replay.setOnClickListener(this);
+        btn_self_wigdet.setOnClickListener(this);
     }
 
     @Override
@@ -137,23 +143,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_float_window:
                 handleClickEvent(R.id.btn_float_window);
                 break;
-            case R.id.btn_live_replay:
-                activity = "com.jiajia.videorender.view.MainRenderctivity";
-                break;
+            case R.id.btn_self_wigdet:
+                activity = "com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity";
             default:
                 break;
         }
-        Intent intent1 = null;
+        Intent intent1;
         try {
             intent1 = new Intent(MainActivity.this, Class.forName(activity));
             startActivity(intent1);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Log.e(TAG, "startActivity error,", e);
+            Toast.makeText(this, "start activity error!", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
      * 在主界面处理不需要启动相关Activity的点击事件
+     *
      * @param resId
      */
     private void handleClickEvent(final int resId) {

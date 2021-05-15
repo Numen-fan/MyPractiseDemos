@@ -18,7 +18,7 @@ public class MyTest {
 
     @Test
     public void test1() {
-        Context context = InstrumentationRegistry.getTargetContext();
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
         assertEquals("com.jiajia.mypractisedemos",context.getPackageName());
         Log.i("tag", "$$$$$$$$$$$$");
         assertEquals("result:", 123, 100 + 23);

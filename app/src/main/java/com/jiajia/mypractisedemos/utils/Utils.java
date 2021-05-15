@@ -49,9 +49,6 @@ public class Utils {
 
     /**
      * 获得状态栏的高度
-     * @param context
-     * @return
-     * by Hankkin at:2015-10-07 21:16:43
      */
     public static int getStatusHeight(Context context) {
         int statusHeight = -1;

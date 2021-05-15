@@ -1,1 +1,2 @@
+include ':KotlinSupportLib'
 include ':app'
