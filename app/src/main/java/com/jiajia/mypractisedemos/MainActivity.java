@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_live_replay;
     @BindView(R.id.btn_self_wigdet)
     Button btn_self_wigdet;
+    @BindView(R.id.btn_kotlin)
+    Button btn_kotlin;
 
 
     @Override
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_float_window.setOnClickListener(this);
         btn_live_replay.setOnClickListener(this);
         btn_self_wigdet.setOnClickListener(this);
+        btn_kotlin.setOnClickListener(this);
     }
 
     @Override
@@ -145,6 +148,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_self_wigdet:
                 activity = "com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity";
+                break;
+            case R.id.btn_kotlin:
+                activity = "com.jiajia.mypractisedemos.module.kotlin.activity.KotlinActivity";
+                break;
             default:
                 break;
         }

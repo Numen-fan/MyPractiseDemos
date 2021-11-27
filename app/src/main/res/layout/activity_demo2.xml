@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.demo.Demo2Activity">
+
+
+    <TextView
+        android:id="@+id/tv_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_age" />
+
+
+
+    <com.google.android.material.tabs.TabLayout
+        app:layout_constraintTop_toBottomOf="@id/edit_text"
+        android:id="@+id/smart_record_tab"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#FDFDFE"
+        app:tabBackground="@null"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#59A7FF"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="2dp"
+        app:tabMinWidth="0dp"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabPaddingEnd="13dp"
+        app:tabPaddingStart="13dp"
+        app:tabRippleColor="@null"
+        app:tabTextAppearance="@style/global_search_tab_layout"
+        app:tabSelectedTextColor="#59A7FF"
+        app:tabTextColor="#1C1D1F" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/smart_record_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FDFDFE"
+        app:layout_constraintTop_toBottomOf="@id/smart_record_tab"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

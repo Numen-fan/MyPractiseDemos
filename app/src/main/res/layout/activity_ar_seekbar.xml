@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1C1F"
+    tools:context=".module.seekbar.ARSeekbarActivity">
+
+
+    <!--  进度条上面跟随移动layout  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/progress_indicator_layout"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/ar_seekbar"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_seekbar_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:background="@drawable/ar_progress_tips_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/icon_indicator_seekbar_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_seekbar_progress"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <SeekBar
+        android:id="@+id/ar_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:maxHeight="4dp"
+        android:progress="0"
+        android:splitTrack="false"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:thumbOffset="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="30dp"
+        android:thumb="@drawable/ar_seekbar_thumb_shape"
+        android:progressDrawable="@drawable/ar_seekbar_progressbar_style"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--  seekbar刻度 默认在seekbar的30%处  -->
+    <ImageView
+        android:id="@+id/img_seekbar_track"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        app:layout_constraintHorizontal_bias="0.3"
+        android:background="@drawable/ar_seekbar_thumb_shape"
+        app:layout_constraintStart_toStartOf="@id/ar_seekbar"
+        app:layout_constraintTop_toTopOf="@id/ar_seekbar"
+        app:layout_constraintEnd_toEndOf="@id/ar_seekbar"
+        app:layout_constraintBottom_toBottomOf="@id/ar_seekbar" />
+
+    <com.jiajia.mypractisedemos.module.seekbar.TextThumbSeekBar
+        android:id="@+id/textSeekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="100dp"
+        android:splitTrack="false"
+        android:maxHeight="4dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:thumbOffset="0dp"
+        android:thumb="@drawable/ar_seekbar_thumb_shape"
+        android:progressDrawable="@drawable/ar_seekbar_progressbar_style"
+        app:layout_constraintTop_toBottomOf="@id/ar_seekbar"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.example.kotlinsupportlib.TaggedSeekBar
+        android:id="@+id/tag_seekar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="100dp"
+        app:thumbColor="@color/color_white"
+        app:thumbRadius="5dp"
+        app:thumbStrokeWidth="7dp"
+        app:progressWidth="4dp"
+        app:progressCorner="8dp"
+        app:progress="30"
+        app:primaryColor="#5A90FA"
+        app:tagTextColor="@color/color_white"
+        app:tagTextSize="18sp"
+        app:tagIndicatorHeight="5dp"
+        app:tagHeight="24dp"
+        app:tagWidth="44dp"
+        app:tagPadding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/textSeekbar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.jiajia.mypractisedemos.module.seekbar.IndicatorSeekBar
+        android:id="@+id/indicator_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="@id/tag_seekar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/indicator_seekbar_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="100dp"
+        android:textColor="@color/color_white"
+        app:layout_constraintTop_toBottomOf="@id/indicator_seekbar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

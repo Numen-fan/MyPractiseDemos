@@ -29,4 +29,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="global_search_tab_layout">
+        <item name="android:textSize">16dp</item>
+    </style>
+
 </resources>

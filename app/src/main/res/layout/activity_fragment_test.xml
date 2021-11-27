@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.demo.FragmentTestActivity">
+
+<!--    <fragment-->
+<!--        android:id="@+id/fragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:name="com.jiajia.mypractisedemos.module.demo.BlankFragment" />-->
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ViewStub
+        android:id="@+id/view_stub"
+        android:inflatedId="@+id/inflate_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/view_stub" />
+
+    <Button
+        android:id="@+id/btn_inflate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="inflate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

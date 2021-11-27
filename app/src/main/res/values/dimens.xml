@@ -17,6 +17,8 @@
     <dimen name="itv_conrtol_image_item_below">60dp</dimen>
 
     <dimen name="f_0">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
 
     <!--黑白-->
     <color name="D_1">#121214</color>
@@ -28,6 +30,9 @@
     <color name="L_9">#E8E9EB</color>
     <color name="L_10">#F2F3F5</color>
     <color name="L_11">#FFFFFF</color>
-    <dimen name="fab_margin">16dp</dimen>
+
+
+    <color name="C_7">#5A90FA</color>
+
 
 </resources>

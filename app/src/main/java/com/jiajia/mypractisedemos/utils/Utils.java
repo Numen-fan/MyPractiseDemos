@@ -1,12 +1,18 @@
 package com.jiajia.mypractisedemos.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
+import android.net.Uri;
+import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.jiajia.mypractisedemos.MyApplication;
 
 public class Utils {
+
+    private static final String TAG = "Utils";
 
     public static int dp2px(final float dp) {
         final float scale = MyApplication.context.getResources().getDisplayMetrics().density;
@@ -62,5 +68,17 @@ public class Utils {
             e.printStackTrace();
         }
         return statusHeight;
+    }
+
+    public static void openUrlWithSystemBrowser(final Context context, final String url) {
+        try {
+            final Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            intent.setData(Uri.parse(url));
+            context.startActivity(intent);
+        } catch (Exception exception) {
+            Log.e(TAG, "openUrlWithSystemBrowser error.", exception);
+            Toast.makeText(context, "打开失败", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -18,19 +18,45 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".module.widgetdemo.WidgetDemoActivity"/>
-        <activity android:name=".module.audio.AudioActivity" /> <!-- MainActivity -->
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".module.demo.FragmentTestActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".module.urldemo.UrlActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".module.kotlin.activity.HttpActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".module.kotlin.activity.NotificationActivity"
+            android:exported="true"></activity>
+        <activity android:name=".module.kotlin.activity.DatabaseActivity" />
+        <activity android:name=".module.kotlin.activity.SecondActivity" />
+        <activity android:name=".module.kotlin.activity.KotlinActivity" />
+        <activity android:name=".module.seekbar.ARSeekbarActivity" />
+        <activity
+            android:name=".module.demo.Demo2Activity"
+            android:launchMode="singleTask">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".module.widgetdemo.WidgetDemoActivity" />
+        <activity android:name=".module.audio.AudioActivity" /> <!-- MainActivity -->
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".module.demo.DemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

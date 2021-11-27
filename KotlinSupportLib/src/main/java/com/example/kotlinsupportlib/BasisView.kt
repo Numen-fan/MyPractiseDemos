@@ -11,13 +11,9 @@ import android.view.View
  * Created by fanjiajia02 on 2021-04-10
  * Desc:
  */
-class BasisView : View {
+class BasisView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
-    private val paint : Paint = Paint()
-
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-
-    }
+    private val paint: Paint = Paint()
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
