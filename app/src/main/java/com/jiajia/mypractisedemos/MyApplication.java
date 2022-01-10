@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.jiajia.mypractisedemos.module.flutter.FlutterTools;
+
 import java.util.Stack;
 
 public class MyApplication extends Application {
@@ -29,12 +31,16 @@ public class MyApplication extends Application {
         return instance;
     }
 
+    @Override
     public void onCreate() {
         super.onCreate();
 
         context = this;
 
         registerActivityLifecycle();
+
+        // flutter引擎初始化
+        FlutterTools.INSTANCE.initFlutterEngine(this);
     }
 
     public Activity getTopActivity() {

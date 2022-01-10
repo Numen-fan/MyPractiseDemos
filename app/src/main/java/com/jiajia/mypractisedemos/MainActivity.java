@@ -7,12 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.jiajia.mypractisedemos.module.floatwindow.FloatView;
+import com.jiajia.mypractisedemos.module.flutter.HybridActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
 
 import butterknife.BindView;
@@ -21,6 +23,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    private static final String BASE_PACKAGE = "com.jiajia.mypractisedemos.module";
 
     @BindView(R.id.btn_recyc_decoration)
     Button btn_recyc_decoration;
@@ -62,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_self_wigdet;
     @BindView(R.id.btn_kotlin)
     Button btn_kotlin;
+    @BindView(R.id.btn_flutter)
+    Button btn_flutter;
 
 
     @Override
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_live_replay.setOnClickListener(this);
         btn_self_wigdet.setOnClickListener(this);
         btn_kotlin.setOnClickListener(this);
+        btn_flutter.setOnClickListener(this);
     }
 
     @Override
@@ -152,8 +159,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_kotlin:
                 activity = "com.jiajia.mypractisedemos.module.kotlin.activity.KotlinActivity";
                 break;
+            case R.id.btn_flutter:
+                HybridActivity.Companion.startActivity(this, "params");
+                break;
             default:
                 break;
+        }
+        if (TextUtils.isEmpty(activity)) {
+            return;
         }
         Intent intent1;
         try {
@@ -185,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void launchFloatWindow() {
         if (PermissionUtil.canDrawOverlays(this)) {
-//            FloatWindow.getInstance().show();
             FloatView floatView = new FloatView(this); // 创建窗体
             floatView.setOnClickListener(new View.OnClickListener() {
                 @Override
