@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_kotlin;
     @BindView(R.id.btn_flutter)
     Button btn_flutter;
+    @BindView(R.id.btn_edit_textview)
+    Button btn_edit_textview;
 
 
     @Override
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_self_wigdet.setOnClickListener(this);
         btn_kotlin.setOnClickListener(this);
         btn_flutter.setOnClickListener(this);
+        btn_edit_textview.setOnClickListener(this);
     }
 
     @Override
@@ -160,7 +163,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 activity = "com.jiajia.mypractisedemos.module.kotlin.activity.KotlinActivity";
                 break;
             case R.id.btn_flutter:
-                HybridActivity.Companion.startActivity(this, "params");
+                HybridActivity.Companion.startActivity(this, "/");
+                break;
+            case R.id.btn_edit_textview:
+                activity = "com.jiajia.mypractisedemos.module.edittextview.EditTextActivity";
                 break;
             default:
                 break;

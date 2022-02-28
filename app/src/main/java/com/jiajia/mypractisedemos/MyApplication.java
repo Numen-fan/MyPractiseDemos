@@ -13,9 +13,13 @@ import com.jiajia.mypractisedemos.module.flutter.FlutterTools;
 
 import java.util.Stack;
 
+import io.flutter.embedding.engine.FlutterEngineGroup;
+
 public class MyApplication extends Application {
 
     public static Context context;
+
+    public static FlutterEngineGroup flutterEngineGroup;
 
     @SuppressLint("StaticFieldLeak")
     private static MyApplication instance = null;
@@ -37,10 +41,10 @@ public class MyApplication extends Application {
 
         context = this;
 
+        flutterEngineGroup = new FlutterEngineGroup(this);
+
         registerActivityLifecycle();
 
-        // flutter引擎初始化
-        FlutterTools.INSTANCE.initFlutterEngine(this);
     }
 
     public Activity getTopActivity() {

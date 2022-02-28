@@ -257,6 +257,19 @@
         android:layout_marginTop="5dp"
         android:textColor="@android:color/white"
         android:layout_below="@id/btn_float_window"
+        android:background="@drawable/btn_shape" />
+
+    <Button
+        android:id="@+id/btn_edit_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EditText"
+        android:textAllCaps="false"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/btn_float_window"
+        android:layout_toEndOf="@id/btn_flutter"
         android:background="@drawable/btn_shape"
         />
 </RelativeLayout>

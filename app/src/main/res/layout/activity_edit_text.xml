@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.flutter.HybridActivity">
+    tools:context=".module.edittextview.EditTextActivity">
+
+    <EditText
+        android:id="@+id/edt_textview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:imeOptions="flagNoExtractUi"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
