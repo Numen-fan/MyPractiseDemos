@@ -25,7 +25,7 @@
         tools:replace="android:icon">
         <activity
             android:name=".module.edittextview.EditTextActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:windowSoftInputMode="adjustUnspecified"
             android:exported="false" />
         <activity
             android:name=".module.flutter.HybridActivity"
@@ -37,7 +37,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".module.demo.FragmentTestActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".module.urldemo.UrlActivity"
             android:exported="true" />
@@ -84,6 +84,15 @@
         <activity android:name=".module.popwindow.PopwindowActivity" />
         <activity android:name=".module.dialog.DialogActivity" />
         <activity android:name=".module.jetpack.JetpackActivity" />
+        <activity android:name=".module.compose.ComposeMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_compose_main"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".module.demo.WidthTestActivity"
+            android:configChanges="orientation|screenSize|locale|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="sensor"/>
     </application>
 
 </manifest>

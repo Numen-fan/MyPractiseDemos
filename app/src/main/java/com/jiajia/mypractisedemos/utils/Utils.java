@@ -2,8 +2,10 @@ package com.jiajia.mypractisedemos.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Matrix;
 import android.graphics.Point;
 import android.net.Uri;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -51,6 +53,26 @@ public class Utils {
         } else {
             return 0;
         }
+    }
+
+    public static int getScreenWidthNew(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (wm != null) {
+            DisplayMetrics dm = new DisplayMetrics();
+            wm.getDefaultDisplay().getMetrics(dm);
+            return dm.widthPixels;
+        }
+        return 0;
+    }
+
+    public static int getScreenHeightNew(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (wm != null) {
+            DisplayMetrics dm = new DisplayMetrics();
+            wm.getDefaultDisplay().getMetrics(dm);
+            return dm.heightPixels;
+        }
+        return 0;
     }
 
     /**
