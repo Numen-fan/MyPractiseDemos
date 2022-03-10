@@ -1,8 +1,2 @@
 include ':KotlinSupportLib'
 include ':app'
-
-// flutter module引入
-setBinding(new Binding([gradle:this]))
-evaluate(new File(
-        settingsDir.parentFile,'./flutter_demo/.android/include_flutter.groovy'
-))

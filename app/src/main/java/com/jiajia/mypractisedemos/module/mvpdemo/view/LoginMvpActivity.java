@@ -12,7 +12,7 @@ import com.jiajia.mypractisedemos.module.mvpdemo.presenter.LoginPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginMvpActivity extends BaseMVPActivity<LoginPresenter> implements ILoginView{
+public class LoginMvpActivity extends BaseMVPActivity<LoginPresenter> implements ILoginView {
 
     @BindView(R.id.et_mvp_login_username)
     EditText et_username; // 用户名

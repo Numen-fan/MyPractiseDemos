@@ -28,14 +28,6 @@
             android:windowSoftInputMode="adjustUnspecified"
             android:exported="false" />
         <activity
-            android:name=".module.flutter.HybridActivity"
-            android:exported="false" />
-        <activity
-            android:name="io.flutter.embedding.android.FlutterActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-            android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".module.demo.FragmentTestActivity"
             android:exported="true"/>
         <activity

@@ -1,22 +1,28 @@
 package com.jiajia.mypractisedemos.module.edittextview;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.widget.EditText;
 
+import com.jiajia.mypractisedemos.BaseActivity;
 import com.jiajia.mypractisedemos.R;
 
-public class EditTextActivity extends AppCompatActivity {
+public class EditTextActivity extends BaseActivity {
 
     private static final String TAG = "EditTextActivity";
 
     private EditText editText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_text);
-        editText = findViewById(R.id.edt_textview);
+    public int getContentResId() {
+        return R.layout.activity_edit_text;
+    }
+
+    @Override
+    public void initUI() {
+
+    }
+
+    @Override
+    public void initListener() {
+
     }
 }
