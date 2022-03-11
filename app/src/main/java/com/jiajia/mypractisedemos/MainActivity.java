@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
+import com.jiajia.mypractisedemos.module.compose.ComposeMainActivity;
 import com.jiajia.mypractisedemos.module.decoration.DecorationActivity;
 import com.jiajia.mypractisedemos.module.demo.DemoActivity;
 import com.jiajia.mypractisedemos.module.dialog.DialogActivity;
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_kotlin;
     @BindView(R.id.btn_edit_textview)
     Button btn_edit_textview;
+    @BindView(R.id.btn_compose)
+    Button btn_compose;
 
 
     @Override
@@ -112,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_self_wigdet.setOnClickListener(this);
         btn_kotlin.setOnClickListener(this);
         btn_edit_textview.setOnClickListener(this);
+        btn_compose.setOnClickListener(this);
     }
 
     @Override
@@ -176,6 +180,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_edit_textview:
                 BaseActivity.startActivity(this, EditTextActivity.class);
+                break;
+            case R.id.btn_compose:
+                BaseActivity.startActivity(this, ComposeMainActivity.class);
                 break;
             default:
                 break;

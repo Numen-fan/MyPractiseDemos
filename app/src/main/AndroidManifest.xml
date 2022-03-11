@@ -47,7 +47,16 @@
             android:name=".module.demo.Demo2Activity"
             android:launchMode="singleTask" />
         <activity android:name=".module.widgetdemo.WidgetDemoActivity" />
-        <activity android:name=".module.audio.AudioActivity" /> <!-- MainActivity -->
+        <activity android:name=".module.audio.AudioActivity" />
+        <activity android:name=".module.compose.ComposeMainActivity"
+            android:label="@string/title_activity_compose_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- MainActivity -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,10 +85,6 @@
         <activity android:name=".module.popwindow.PopwindowActivity" />
         <activity android:name=".module.dialog.DialogActivity" />
         <activity android:name=".module.jetpack.JetpackActivity" />
-        <activity android:name=".module.compose.ComposeMainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_compose_main"
-            android:theme="@style/AppTheme" />
         <activity
             android:name=".module.demo.WidthTestActivity"
             android:configChanges="orientation|screenSize|locale|keyboardHidden"
