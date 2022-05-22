@@ -54,6 +54,10 @@ public class DialogActivity extends AppCompatActivity {
             }
         });
 
+        btn_dialog_style2.setOnClickListener(v -> {
+            CustomDialogActivity.startActivity(this);
+        });
+
 
     }
 }

@@ -24,12 +24,16 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
-            android:name=".module.edittextview.EditTextActivity"
-            android:windowSoftInputMode="adjustUnspecified"
+            android:name=".module.dialog.CustomDialogActivity"
+            android:theme="@style/transparent_activity"
             android:exported="false" />
         <activity
+            android:name=".module.edittextview.EditTextActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustUnspecified" />
+        <activity
             android:name=".module.demo.FragmentTestActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".module.urldemo.UrlActivity"
             android:exported="true" />
@@ -48,14 +52,9 @@
             android:launchMode="singleTask" />
         <activity android:name=".module.widgetdemo.WidgetDemoActivity" />
         <activity android:name=".module.audio.AudioActivity" />
-        <activity android:name=".module.compose.ComposeMainActivity"
-            android:label="@string/title_activity_compose_main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".module.compose.ComposeMainActivity"
+            android:label="@string/title_activity_compose_main"/>
         <!-- MainActivity -->
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -89,7 +88,7 @@
             android:name=".module.demo.WidthTestActivity"
             android:configChanges="orientation|screenSize|locale|keyboardHidden"
             android:exported="true"
-            android:screenOrientation="sensor"/>
+            android:screenOrientation="sensor" />
     </application>
 
 </manifest>

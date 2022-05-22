@@ -11,4 +11,7 @@
     <color name="color_bg_f0f0">#f0f0f0</color>
 
     <color name="color_text_black">#000000</color>
+
+    <color name="translucent_white">#00FFFFFF</color>
+    <color name="translucent99_white">#66FFFFFF</color>
 </resources>
