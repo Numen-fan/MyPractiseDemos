@@ -1,21 +1,30 @@
 package com.jiajia.mypractisedemos.module.demo;
 
 import com.jiajia.mypractisedemos.R;
+import com.jiajia.mypractisedemos.utils.Utils;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.VectorDrawable;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,6 +35,12 @@ public class DemoActivity extends AppCompatActivity {
     RelativeLayout rlparent;
     ImageView imageView1;
     ImageView imageView2;
+
+    ImageView imgNum;
+
+    LinearLayout llLayout;
+
+    VoipTipsView tipsView;
 
 
     @Override
@@ -56,9 +71,13 @@ public class DemoActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn_change_margin);
         rlparent = findViewById(R.id.rl_parent);
 
+        tipsView = findViewById(R.id.tips_view);
+
 
         imageView1 = findViewById(R.id.img_view1);
         imageView2 = findViewById(R.id.img_view2);
+        llLayout = findViewById(R.id.ll_layout);
+        imgNum = findViewById(R.id.img_num);
 
         btn.setOnClickListener(v -> {
 //            rlparent.setVisibility(View.VISIBLE);
@@ -100,6 +119,36 @@ public class DemoActivity extends AppCompatActivity {
 
 
         });
+
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setCornerRadius(Utils.dp2px(4));
+        drawable.setColors(new int[]{Color.parseColor("#665990FF"), Color.parseColor("#335990FF"), Color.parseColor("#665990FF")});
+        drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+        drawable.setOrientation(GradientDrawable.Orientation.LEFT_RIGHT);
+
+        llLayout.setBackground(drawable);
+
+
+        imageView2.setOnClickListener(v -> {
+
+            int blue = Color.parseColor("#5990FF");
+
+            VectorDrawable drawable1 = (VectorDrawable) AppCompatResources.getDrawable(this, R.drawable.ic_meeting_template_timer_num_4_g);
+
+            assert drawable1 != null;
+
+
+            imgNum.setImageDrawable(drawable1);
+
+        });
+
+        imageView1.setOnClickListener(v -> {
+            tipsView.setVisibility(View.VISIBLE);
+            tipsView.load(R.drawable.img_not_corp, R.string.tips_view);
+        });
+
+
     }
 
     @Override

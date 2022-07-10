@@ -24,9 +24,12 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
-            android:name=".module.dialog.CustomDialogActivity"
-            android:theme="@style/transparent_activity"
+            android:name=".module.TipsActivity"
             android:exported="false" />
+        <activity
+            android:name=".module.dialog.CustomDialogActivity"
+            android:exported="false"
+            android:theme="@style/transparent_activity" />
         <activity
             android:name=".module.edittextview.EditTextActivity"
             android:exported="false"
@@ -54,8 +57,7 @@
         <activity android:name=".module.audio.AudioActivity" />
         <activity
             android:name=".module.compose.ComposeMainActivity"
-            android:label="@string/title_activity_compose_main"/>
-        <!-- MainActivity -->
+            android:label="@string/title_activity_compose_main" /> <!-- MainActivity -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

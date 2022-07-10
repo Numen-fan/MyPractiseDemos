@@ -14,4 +14,7 @@
 
     <color name="translucent_white">#00FFFFFF</color>
     <color name="translucent99_white">#66FFFFFF</color>
+
+    <color name="main_bg_color">#88FF01f0</color>
+
 </resources>

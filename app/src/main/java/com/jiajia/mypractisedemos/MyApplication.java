@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.util.Stack;
 
 public class MyApplication extends Application {
@@ -36,6 +38,8 @@ public class MyApplication extends Application {
         context = this;
 
         registerActivityLifecycle();
+
+        Fresco.initialize(this);
 
     }
 

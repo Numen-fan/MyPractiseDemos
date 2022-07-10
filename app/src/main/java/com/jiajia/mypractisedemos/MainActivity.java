@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
 import com.jiajia.mypractisedemos.module.compose.ComposeMainActivity;
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_edit_textview;
     @BindView(R.id.btn_compose)
     Button btn_compose;
+    @BindView(R.id.btn_tips_view)
+    Button btnTipsView;
 
 
     @Override
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_kotlin.setOnClickListener(this);
         btn_edit_textview.setOnClickListener(this);
         btn_compose.setOnClickListener(this);
+        btnTipsView.setOnClickListener(this);
     }
 
     @Override
@@ -183,6 +187,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_compose:
                 BaseActivity.startActivity(this, ComposeMainActivity.class);
+                break;
+            case R.id.btn_tips_view:
+                BaseActivity.startActivity(this, TipsActivity.class);
                 break;
             default:
                 break;

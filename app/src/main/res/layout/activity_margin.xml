@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#000000"
     tools:context=".module.demo.DemoActivity">
 
 <!--    <include layout="@layout/content_margin" />-->
@@ -37,5 +38,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/animationlist" />
+
+    <LinearLayout
+        android:id="@+id/ll_layout"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="79dp"
+        android:layout_height="22dp">
+
+<!--        <TextView-->
+<!--            android:text="你好"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="@color/blue_btn_bg_color"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_temp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/ic_green_gradient_bg"
+        android:layout_width="79dp"
+        android:layout_height="22dp">
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_marginTop="30dp"
+        android:id="@+id/img_num"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_width="375dp"
+        android:background="@android:color/white"
+        android:layout_height="20dp"/>
+
+    <com.jiajia.mypractisedemos.module.demo.VoipTipsView
+        android:id="@+id/tips_view"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
