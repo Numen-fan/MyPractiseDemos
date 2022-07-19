@@ -24,5 +24,6 @@ public class TipsActivity extends AppCompatActivity {
             tipsView.setVisibility(View.VISIBLE);
         });
 
+
     }
 }
