@@ -161,6 +161,8 @@ public class DemoActivity extends AppCompatActivity {
 //                e.printStackTrace();
 //            }
 
+            Log.w(TAG, imageView1.hashCode() + "");
+
         });
 
 
