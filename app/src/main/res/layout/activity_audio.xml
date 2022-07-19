@@ -62,4 +62,12 @@
         android:textColor="@color/button_text_color"
         app:layout_constraintTop_toBottomOf="@id/btn_audio_stop_bluetooth" />
 
+    <View
+        app:layout_constraintTop_toBottomOf="@id/btn_audio_set_bluetoothOn"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue_btn_bg_color"
+        android:layout_width="375dp"
+        android:layout_height="20dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,18 +26,26 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
-    <ImageView
-        android:id="@+id/img_view1"
+    <LinearLayout
+        android:id="@+id/ll_two_img"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/animationlist" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_view1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/animationlist" />
 
-    <ImageView
-        android:id="@+id/img_view2"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/animationlist" />
+        <ImageView
+            android:id="@+id/img_view2"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/animationlist" />
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/ll_layout"
@@ -88,5 +96,40 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <View
+        android:background="@color/blue_btn_bg_color"
+        android:layout_width="360dp"
+        android:layout_height="20dp"/>
+
+    <View
+        android:layout_marginTop="20dp"
+        android:background="@color/blue_btn_bg_color"
+        android:layout_width="375dp"
+        android:layout_height="20dp"/>
+
+    <com.jiajia.mypractisedemos.module.demo.ColorTrackTextView
+        android:id="@+id/tv_color_text"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="ChangeColorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.jiajia.mypractisedemos.module.demo.CustomText
+        android:id="@+id/tv_custom_text"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="ChangeColorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/img_grab"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

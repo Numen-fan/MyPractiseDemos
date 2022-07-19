@@ -1,8 +1,8 @@
 package com.jiajia.mypractisedemos.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Matrix;
 import android.graphics.Point;
 import android.net.Uri;
 import android.util.DisplayMetrics;
@@ -102,5 +102,18 @@ public class Utils {
             Log.e(TAG, "openUrlWithSystemBrowser error.", exception);
             Toast.makeText(context, "打开失败", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static void setCustomDensity(Activity activity) {
+        final DisplayMetrics displayMetrics = MyApplication.getInstance().getResources().getDisplayMetrics();
+        final float targetDensity = displayMetrics.widthPixels / 375f;
+        final int targetDensityDpi = (int) (160 * targetDensity);
+
+//        displayMetrics.density = displayMetrics.scaledDensity = targetDensity;
+//        displayMetrics.densityDpi = targetDensityDpi;
+
+        final DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
+        activityDisplayMetrics.density = activityDisplayMetrics.scaledDensity = targetDensity;
+        activityDisplayMetrics.densityDpi = targetDensityDpi;
     }
 }

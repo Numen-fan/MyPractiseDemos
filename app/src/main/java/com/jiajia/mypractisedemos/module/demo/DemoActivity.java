@@ -4,12 +4,9 @@ import com.jiajia.mypractisedemos.R;
 import com.jiajia.mypractisedemos.utils.Utils;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.media.AudioDeviceInfo;
@@ -30,6 +27,8 @@ import android.widget.Toast;
 
 public class DemoActivity extends AppCompatActivity {
 
+    private static final String TAG = "DemoActivity";
+
     ImageView img;
     Button btn;
     RelativeLayout rlparent;
@@ -41,6 +40,9 @@ public class DemoActivity extends AppCompatActivity {
     LinearLayout llLayout;
 
     VoipTipsView tipsView;
+
+    View twoImg;
+    ImageView imgGrab;
 
 
     @Override
@@ -78,6 +80,9 @@ public class DemoActivity extends AppCompatActivity {
         imageView2 = findViewById(R.id.img_view2);
         llLayout = findViewById(R.id.ll_layout);
         imgNum = findViewById(R.id.img_num);
+        twoImg = findViewById(R.id.ll_two_img);
+        twoImg.setDrawingCacheEnabled(true);
+        imgGrab = findViewById(R.id.img_grab);
 
         btn.setOnClickListener(v -> {
 //            rlparent.setVisibility(View.VISIBLE);
@@ -144,8 +149,18 @@ public class DemoActivity extends AppCompatActivity {
         });
 
         imageView1.setOnClickListener(v -> {
-            tipsView.setVisibility(View.VISIBLE);
-            tipsView.load(R.drawable.img_not_corp, R.string.tips_view);
+//            tipsView.setVisibility(View.VISIBLE);
+//            tipsView.load(R.drawable.img_not_corp, R.string.tips_view);
+
+            imgGrab.setImageBitmap(twoImg.getDrawingCache(true));
+
+            // 主线程卡顿10s，会ANR
+//            try {
+//                Thread.sleep(10_1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
         });
 
 
