@@ -22,7 +22,6 @@ public class TipsActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_normal_tips).setOnClickListener(v -> {
             tipsView.setVisibility(View.VISIBLE);
-            tipsView.loadGif(R.drawable.web_loading, R.string.tips_view);
         });
 
     }
