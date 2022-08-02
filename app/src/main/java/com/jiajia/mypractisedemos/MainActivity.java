@@ -217,10 +217,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void launchFloatWindow() {
         if (PermissionUtil.canDrawOverlays(this)) {
             FloatView floatView = new FloatView(this); // 创建窗体
-            floatView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
+            floatView.setOnClickListener(v -> {
             }); // 设置事件，你需要实现FloatView里的onclick接口
             floatView.show(); // 显示该窗体
         } else {

@@ -2,7 +2,10 @@ package com.jiajia.mypractisedemos.module.floatwindow;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.hardware.display.DisplayManager;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,31 +14,31 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.jiajia.mypractisedemos.MyApplication;
 import com.jiajia.mypractisedemos.R;
+import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.utils.Utils;
 
 /**
  * Created by sharezer on 2017/5/20.
  */
 
-public class FloatView extends LinearLayout {
+public class FloatView extends LinearLayout implements DisplayManager.DisplayListener {
+
+    private static final String TAG = "FloatView";
 
     private float mTouchX;
     private float mTouchY;
     private float x;
     private float y;
-    private int startX;
-    private int startY;
     private Context mContext;
-    private int controlledSpace = 20;
     private int screenWidth;
     boolean isShow = false;
-    View downloadView;
     private View.OnClickListener mClickListener;
 
     private WindowManager windowManager;
 
-    private WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
+    private final WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
 
     public FloatView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -45,6 +48,9 @@ public class FloatView extends LinearLayout {
         super(context);
         mContext = context;
         initView(context);
+
+        DisplayManager mDisplayManager = (DisplayManager) MyApplication.getInstance().getSystemService(Context.DISPLAY_SERVICE);
+        mDisplayManager.registerDisplayListener(this, new Handler(Looper.getMainLooper()));
     }
 
     // 初始化窗体
@@ -56,15 +62,12 @@ public class FloatView extends LinearLayout {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             windowManagerParams.type =WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         }
-        else {
-            windowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        }
 
-            windowManagerParams.format = PixelFormat.RGBA_8888; // 背景透明
+        windowManagerParams.format = PixelFormat.RGBA_8888; // 背景透明
         windowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         // 调整悬浮窗口至左上角，便于调整坐标
-        windowManagerParams.gravity = Gravity.LEFT | Gravity.TOP;
+        windowManagerParams.gravity = Gravity.START | Gravity.TOP;
         // 以屏幕左上角为原点，设置x、y初始值
         windowManagerParams.x = screenWidth;
         windowManagerParams.y = 0;
@@ -83,6 +86,8 @@ public class FloatView extends LinearLayout {
         x = event.getRawX();
         y = event.getRawY() - statusBarHeight;
 
+        int startX = 0;
+        int startY = 0;
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
@@ -98,17 +103,17 @@ public class FloatView extends LinearLayout {
                 break;
             }
             case MotionEvent.ACTION_UP: {
-//                if (Math.abs(x - startX) < controlledSpace && Math.abs(y - startY + statusBarHeight) < controlledSpace) {
-//                    if (mClickListener != null) {
-//                        mClickListener.onClick(this);
-//                    }
-//                }
+                if (Math.abs(x - startX) < 8 && Math.abs(y - startY + statusBarHeight) < 8) {
+                    if (mClickListener != null) {
+                        mClickListener.onClick(this);
+                    }
+                }
                 if(inRangeOfView(this, event))
                 {
                     if(mClickListener != null) mClickListener.onClick(this);
                 }
 
-                if (x <= screenWidth / 2) {
+                if (x <= screenWidth >> 1) {
                     x = 0;
                 } else {
                     x = screenWidth;
@@ -163,5 +168,22 @@ public class FloatView extends LinearLayout {
         windowManagerParams.x = (int) (x - mTouchX);
         windowManagerParams.y = (int) (y - mTouchY);
         windowManager.updateViewLayout(this, windowManagerParams); // 刷新显示
+    }
+
+
+    @Override
+    public void onDisplayAdded(int displayId) {
+
+    }
+
+    @Override
+    public void onDisplayRemoved(int displayId) {
+
+    }
+
+    @Override
+    public void onDisplayChanged(int displayId) {
+        LogUtils.INSTANCE.warn(TAG, "height = " + Utils.getFullScreenHeight() + ", width = " + Utils.getFullScreenWidth());
+
     }
 }

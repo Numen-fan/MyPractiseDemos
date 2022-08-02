@@ -49,7 +49,7 @@ public class VoipTipsView extends FrameLayout {
     public void loadGif(int gifPath, int tipsResId) {
         Uri uri = new Uri.Builder()
                 .scheme(UriUtil.LOCAL_RESOURCE_SCHEME)
-                .path(String.valueOf(R.drawable.web_loading))
+                .path(String.valueOf(R.drawable.ic_cell))
                 .build();
 
         DraweeController draweeController = Fresco.newDraweeControllerBuilder()
