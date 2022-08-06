@@ -4,22 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_btn_bg_color"
     tools:context=".module.TipsActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_normal_tips"
+    <TextView
+        android:id="@+id/tv_open"
+        android:text="打开"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="切换"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"/>
 
-    <com.jiajia.mypractisedemos.module.demo.VoipTipsView
-        android:id="@+id/tips_view"
-        android:visibility="gone"
-        android:background="@color/white"
+
+    <ViewStub
+        android:layout_marginTop="100dp"
+        android:id="@+id/view_stub_setting"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="match_parent"
+        android:layout="@layout/setting_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

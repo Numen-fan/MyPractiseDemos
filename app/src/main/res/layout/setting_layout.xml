@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/D_2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/setting_root"
+    android:visibility="gone"
+    tools:ignore="MissingDefaultResource">
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radio_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_radio_item_backgroud_selector"
+            android:button="@null"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp"
+            android:text="关闭"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/radio_open"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_radio_item_backgroud_selector"
+            android:button="@null"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp"
+            android:text="开启"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/radio_auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_radio_item_backgroud_selector"
+            android:button="@null"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp"
+            android:text="超过6人自动开启"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
+
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
