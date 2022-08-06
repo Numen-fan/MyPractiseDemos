@@ -1,5 +1,8 @@
 package com.jiajia.mypractisedemos.module;
 
+import android.content.Context;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.animation.Animation;
@@ -38,6 +41,28 @@ public class TipsActivity extends BaseActivity {
 
         open = findViewById(R.id.tv_open);
 
+
+        initPhoneCallState();
+
+    }
+
+    private void initPhoneCallState() {
+
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+
+        PhoneStateListener listener = new PhoneStateListener() {
+
+            @Override
+            public void onCallStateChanged(int state, String phoneNumber) {
+
+                LogUtils.INSTANCE.error(TAG, "call state = " + state);
+
+                super.onCallStateChanged(state, phoneNumber);
+
+            }
+        };
+
+        tm.listen(listener ,PhoneStateListener.LISTEN_CALL_STATE);
     }
 
     @Override
