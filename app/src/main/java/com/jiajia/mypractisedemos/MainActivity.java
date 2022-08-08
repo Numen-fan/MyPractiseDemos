@@ -25,6 +25,7 @@ import com.jiajia.mypractisedemos.module.expendablelayout.ExpendableLayoutActivi
 import com.jiajia.mypractisedemos.module.floatwindow.FloatView;
 import com.jiajia.mypractisedemos.module.jetpack.JetpackActivity;
 import com.jiajia.mypractisedemos.module.kotlin.activity.KotlinActivity;
+import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.manfunctionsui.ManyFunctionUIActivity;
 import com.jiajia.mypractisedemos.module.mvpdemo.view.LoginMvpActivity;
 import com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayoutActivity;
@@ -235,5 +236,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "没有权限，无法使用！", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    /**
+     * Android 12 开始，主页面返回时，不再执行
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtils.INSTANCE.error(TAG, "onDestroy");
     }
 }

@@ -1,6 +1,7 @@
 package com.jiajia.mypractisedemos.module.demo;
 
 import com.jiajia.mypractisedemos.R;
+import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
 import com.jiajia.mypractisedemos.utils.Utils;
 
 import android.content.Context;
@@ -43,6 +44,8 @@ public class DemoActivity extends AppCompatActivity {
 
     View twoImg;
     ImageView imgGrab;
+
+    View bigView;
 
 
     @Override
@@ -163,6 +166,11 @@ public class DemoActivity extends AppCompatActivity {
 
             Log.w(TAG, imageView1.hashCode() + "");
 
+        });
+
+        bigView = findViewById(R.id.big_view);
+        bigView.setOnClickListener(v -> {
+            ToastUtils.INSTANCE.showToast("Click Big View");
         });
 
 
