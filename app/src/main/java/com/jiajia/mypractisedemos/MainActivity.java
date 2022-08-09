@@ -19,6 +19,7 @@ import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
 import com.jiajia.mypractisedemos.module.compose.ComposeMainActivity;
 import com.jiajia.mypractisedemos.module.decoration.DecorationActivity;
 import com.jiajia.mypractisedemos.module.demo.DemoActivity;
+import com.jiajia.mypractisedemos.module.demo.MotionLayoutActivity;
 import com.jiajia.mypractisedemos.module.dialog.DialogActivity;
 import com.jiajia.mypractisedemos.module.edittextview.EditTextActivity;
 import com.jiajia.mypractisedemos.module.expendablelayout.ExpendableLayoutActivity;
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_compose;
     @BindView(R.id.btn_tips_view)
     Button btnTipsView;
+    @BindView(R.id.btn_motion_layout)
+    View btnMotionLayout;
 
 
     @Override
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_edit_textview.setOnClickListener(this);
         btn_compose.setOnClickListener(this);
         btnTipsView.setOnClickListener(this);
+        btnMotionLayout.setOnClickListener(this);
     }
 
     @Override
@@ -191,6 +195,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_tips_view:
                 BaseActivity.startActivity(this, TipsActivity.class);
+                break;
+            case R.id.btn_motion_layout:
+                BaseActivity.startActivity(this, MotionLayoutActivity.class);
                 break;
             default:
                 break;

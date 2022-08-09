@@ -24,6 +24,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
+            android:name=".module.demo.MotionLayoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".module.TipsActivity"
             android:exported="false" />
         <activity

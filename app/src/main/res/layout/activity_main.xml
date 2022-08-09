@@ -282,4 +282,16 @@
         android:layout_below="@id/btn_float_window"
         android:layout_toEndOf="@id/btn_compose"
         android:background="@drawable/btn_shape" />
+
+    <Button
+        android:id="@+id/btn_motion_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Motion"
+        android:textAllCaps="false"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/btn_float_window"
+        android:layout_toEndOf="@id/btn_tips_view"
+        android:background="@drawable/btn_shape" />
 </RelativeLayout>
