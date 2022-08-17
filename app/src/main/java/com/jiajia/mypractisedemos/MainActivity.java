@@ -19,12 +19,14 @@ import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
 import com.jiajia.mypractisedemos.module.compose.ComposeMainActivity;
 import com.jiajia.mypractisedemos.module.decoration.DecorationActivity;
 import com.jiajia.mypractisedemos.module.demo.DemoActivity;
+import com.jiajia.mypractisedemos.module.demo.MotionLayoutActivity;
 import com.jiajia.mypractisedemos.module.dialog.DialogActivity;
 import com.jiajia.mypractisedemos.module.edittextview.EditTextActivity;
 import com.jiajia.mypractisedemos.module.expendablelayout.ExpendableLayoutActivity;
 import com.jiajia.mypractisedemos.module.floatwindow.FloatView;
 import com.jiajia.mypractisedemos.module.jetpack.JetpackActivity;
 import com.jiajia.mypractisedemos.module.kotlin.activity.KotlinActivity;
+import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.manfunctionsui.ManyFunctionUIActivity;
 import com.jiajia.mypractisedemos.module.mvpdemo.view.LoginMvpActivity;
 import com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayoutActivity;
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_compose;
     @BindView(R.id.btn_tips_view)
     Button btnTipsView;
+    @BindView(R.id.btn_motion_layout)
+    View btnMotionLayout;
 
 
     @Override
@@ -120,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_edit_textview.setOnClickListener(this);
         btn_compose.setOnClickListener(this);
         btnTipsView.setOnClickListener(this);
+        btnMotionLayout.setOnClickListener(this);
     }
 
     @Override
@@ -191,6 +196,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_tips_view:
                 BaseActivity.startActivity(this, TipsActivity.class);
                 break;
+            case R.id.btn_motion_layout:
+                BaseActivity.startActivity(this, MotionLayoutActivity.class);
+                break;
             default:
                 break;
         }
@@ -235,5 +243,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "没有权限，无法使用！", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    /**
+     * Android 12 开始，主页面返回时，不再执行
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtils.INSTANCE.error(TAG, "onDestroy");
     }
 }
