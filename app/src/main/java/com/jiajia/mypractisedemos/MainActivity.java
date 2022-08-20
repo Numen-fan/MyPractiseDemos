@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.jiajia.fluttermodule.FlutterPageActivity;
 import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnTipsView;
     @BindView(R.id.btn_motion_layout)
     View btnMotionLayout;
+    @BindView(R.id.btn_flutter)
+    View btnFlutter;
 
 
     @Override
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_compose.setOnClickListener(this);
         btnTipsView.setOnClickListener(this);
         btnMotionLayout.setOnClickListener(this);
+        btnFlutter.setOnClickListener(this);
     }
 
     @Override
@@ -198,6 +202,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_motion_layout:
                 BaseActivity.startActivity(this, MotionLayoutActivity.class);
+                break;
+            case R.id.btn_flutter:
+                BaseActivity.startActivity(this, FlutterPageActivity.class);
                 break;
             default:
                 break;

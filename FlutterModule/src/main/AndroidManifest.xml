@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jiajia.fluttermodule">
+
+    <application>
+        <activity
+            android:name=".FlutterPageActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

@@ -13,6 +13,9 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.Stack;
 
+import io.flutter.embedding.engine.loader.FlutterLoader;
+import io.flutter.view.FlutterMain;
+
 public class MyApplication extends Application {
 
     public static Context context;
@@ -20,11 +23,14 @@ public class MyApplication extends Application {
     @SuppressLint("StaticFieldLeak")
     private static MyApplication instance = null;
 
+    private FlutterLoader flutterLoader;
+
     protected static final Stack<Activity> activities = new Stack<>();
 
     public MyApplication() {
         super();
         instance = this;
+        flutterLoader = new FlutterLoader();
     }
 
     public static MyApplication getInstance() {
@@ -40,6 +46,9 @@ public class MyApplication extends Application {
         registerActivityLifecycle();
 
         Fresco.initialize(this);
+
+        // 加载flutter相关
+        flutterLoader.startInitialization(this);
 
     }
 
