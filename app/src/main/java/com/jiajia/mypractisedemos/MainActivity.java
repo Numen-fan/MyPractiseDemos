@@ -42,6 +42,10 @@ import com.jiajia.mypractisedemos.utils.PermissionUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.FlutterEngineCache;
+import io.flutter.embedding.engine.dart.DartExecutor;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -204,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 BaseActivity.startActivity(this, MotionLayoutActivity.class);
                 break;
             case R.id.btn_flutter:
-                BaseActivity.startActivity(this, FlutterPageActivity.class);
+                startActivity(FlutterActivity.withCachedEngine("main").build(this));
                 break;
             default:
                 break;
