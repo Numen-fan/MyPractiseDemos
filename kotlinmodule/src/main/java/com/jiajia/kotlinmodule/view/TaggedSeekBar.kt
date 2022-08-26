@@ -1,10 +1,11 @@
-package com.example.kotlinsupportlib
+package com.jiajia.kotlinmodule.view
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.example.kotlinmodule.R
 
 class TaggedSeekBar @JvmOverloads constructor(
     context: Context,

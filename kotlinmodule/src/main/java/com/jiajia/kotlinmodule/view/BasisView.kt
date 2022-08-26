@@ -1,4 +1,4 @@
-package com.example.kotlinsupportlib
+package com.jiajia.kotlinmodule.view
 
 import android.content.Context
 import android.graphics.Canvas
