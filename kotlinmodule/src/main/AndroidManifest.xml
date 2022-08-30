@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kotlinmodule">
+    package="com.jiajia.kotlinmodule">
+
+    <application
+        android:name=".KotlinModuleApplication" />
 
 </manifest>

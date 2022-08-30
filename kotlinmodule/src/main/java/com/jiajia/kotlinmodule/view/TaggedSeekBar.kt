@@ -5,8 +5,8 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.example.kotlinmodule.R
-
+import android.widget.Toast
+import com.jiajia.kotlinmodule.R
 class TaggedSeekBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null, defStyleAttr: Int = 0

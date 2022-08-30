@@ -3,13 +3,16 @@ package com.jiajia.mypractisedemos;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 
 import java.util.Stack;
 
@@ -22,6 +25,9 @@ import io.flutter.view.FlutterMain;
 
 public class MyApplication extends Application {
 
+    private static final String TAG = "MyApplication";
+
+    @SuppressLint("StaticFieldLeak")
     public static Context context;
 
     @SuppressLint("StaticFieldLeak")

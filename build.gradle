@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-// 里是gradle脚本执行所需依赖，分别是对应的maven库和插件
+// 这里是gradle脚本执行所需依赖，分别是对应的maven库和插件
 buildscript {
     
     ext {
@@ -22,7 +22,7 @@ buildscript {
     }
 }
 
-// 是项目本身需要的依赖，比如我现在要依赖我自己maven库
+// 这里是多项目本身需要的依赖，比如我现在要依赖我自己maven库
 allprojects {
     repositories {
         google()
