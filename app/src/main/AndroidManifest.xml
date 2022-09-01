@@ -25,6 +25,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:name">
         <activity
+            android:name=".module.ndk.NdkTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".module.demo.MotionLayoutActivity"
             android:exported="false" />
         <activity
@@ -62,7 +65,8 @@
         <activity
             android:name=".module.compose.ComposeMainActivity"
             android:label="@string/title_activity_compose_main" /> <!-- MainActivity -->
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,13 +100,11 @@
             android:configChanges="orientation|screenSize|locale|keyboardHidden"
             android:exported="true"
             android:screenOrientation="sensor" />
-
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize"
-            />
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

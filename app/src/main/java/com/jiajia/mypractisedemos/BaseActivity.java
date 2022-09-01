@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 启动该Activity
      * @param context 建议Activity
      */
-    public static void startActivity(Context context, Class cls) {
+    public static void startActivity(Context context, Class<?> cls) {
         Intent intent = new Intent(context, cls);
         if (!(context instanceof Activity)) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

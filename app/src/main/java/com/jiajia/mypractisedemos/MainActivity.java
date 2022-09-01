@@ -31,6 +31,7 @@ import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.manfunctionsui.ManyFunctionUIActivity;
 import com.jiajia.mypractisedemos.module.mvpdemo.view.LoginMvpActivity;
 import com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayoutActivity;
+import com.jiajia.mypractisedemos.module.ndk.NdkTestActivity;
 import com.jiajia.mypractisedemos.module.picturescale.PictureScaleActivity;
 import com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity;
 import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
@@ -101,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     View btnMotionLayout;
     @BindView(R.id.btn_flutter)
     View btnFlutter;
+    @BindView(R.id.btn_ndk)
+    View btnNDK;
 
 
     @Override
@@ -133,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnTipsView.setOnClickListener(this);
         btnMotionLayout.setOnClickListener(this);
         btnFlutter.setOnClickListener(this);
+        btnNDK.setOnClickListener(this);
     }
 
     @Override
@@ -209,6 +213,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_flutter:
                 startActivity(FlutterActivity.withCachedEngine("main").build(this));
+                break;
+            case R.id.btn_ndk:
+                BaseActivity.startActivity(this, NdkTestActivity.class);
                 break;
             default:
                 break;

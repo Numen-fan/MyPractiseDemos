@@ -305,4 +305,17 @@
         android:layout_marginTop="5dp"
         android:layout_below="@id/btn_motion_layout"
         android:background="@drawable/btn_shape" />
+
+    <Button
+        android:id="@+id/btn_ndk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NDK"
+        android:textAllCaps="false"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/btn_flutter"
+        android:layout_below="@id/btn_motion_layout"
+        android:background="@drawable/btn_shape" />
+
 </RelativeLayout>
