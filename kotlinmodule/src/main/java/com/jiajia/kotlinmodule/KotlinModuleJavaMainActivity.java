@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiajia.basemodule.config.RouteConfig;
 
-@Route(path = RouteConfig.KOTLIN_MAIN_ACTIVITY)
+@Route(path = RouteConfig.KOTLIN_JAVA_MAIN_ACTIVITY)
 public class KotlinModuleJavaMainActivity extends AppCompatActivity {
 
     @Override

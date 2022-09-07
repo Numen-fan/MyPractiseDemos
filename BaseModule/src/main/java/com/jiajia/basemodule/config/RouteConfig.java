@@ -18,7 +18,8 @@ public class RouteConfig {
     /**
      * KotlinModule下的路由配置
      */
-    public static final String KOTLIN_MAIN_ACTIVITY = BASE_KOTLIN_MODULE + "KotlinModuleJavaMainActivity";
+    public static final String KOTLIN_JAVA_MAIN_ACTIVITY = BASE_KOTLIN_MODULE + "KotlinModuleJavaMainActivity";
+    public static final String KOTLIN_MAIN_ACTIVITY = BASE_KOTLIN_MODULE + "KotlinMainActivity";
 
 
 }
