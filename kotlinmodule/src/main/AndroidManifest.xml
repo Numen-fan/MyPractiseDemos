@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jiajia.kotlinmodule">
 
-    <application
-        android:name=".KotlinModuleApplication" />
+    <application android:name=".KotlinModuleApplication">
+        <activity
+            android:name=".KotlinModuleJavaMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KotlinMainActivity"
+            android:exported="false" />
+    </application>
 
 </manifest>

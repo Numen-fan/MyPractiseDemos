@@ -7,13 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.jiajia.fluttermodule.FlutterPageActivity;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
@@ -44,9 +43,6 @@ import com.jiajia.mypractisedemos.utils.PermissionUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.flutter.embedding.android.FlutterActivity;
-import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.FlutterEngineCache;
-import io.flutter.embedding.engine.dart.DartExecutor;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -104,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     View btnFlutter;
     @BindView(R.id.btn_ndk)
     View btnNDK;
+    @BindView(R.id.btn_arouter)
+    View btnARouter;
 
 
     @Override
@@ -137,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMotionLayout.setOnClickListener(this);
         btnFlutter.setOnClickListener(this);
         btnNDK.setOnClickListener(this);
+        btnARouter.setOnClickListener(this);
     }
 
     @Override
@@ -216,6 +215,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_ndk:
                 BaseActivity.startActivity(this, NdkTestActivity.class);
+                break;
+            case R.id.btn_arouter:
+                ARouter.getInstance().build(RouteConfig.KOTLIN_MAIN_ACTIVITY).navigation();
                 break;
             default:
                 break;

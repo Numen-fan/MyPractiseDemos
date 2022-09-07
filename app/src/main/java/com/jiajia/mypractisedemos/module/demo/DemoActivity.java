@@ -1,5 +1,7 @@
 package com.jiajia.mypractisedemos.module.demo;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.R;
 import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
 import com.jiajia.mypractisedemos.utils.Utils;
@@ -26,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+@Route(path = RouteConfig.APP_DEMO_ACTIVITY)
 public class DemoActivity extends AppCompatActivity {
 
     private static final String TAG = "DemoActivity";

@@ -64,10 +64,13 @@
         <activity android:name=".module.audio.AudioActivity" />
         <activity
             android:name=".module.compose.ComposeMainActivity"
-            android:label="@string/title_activity_compose_main" /> <!-- MainActivity -->
+            android:label="@string/title_activity_compose_main" />
+        <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,3 +5,4 @@ evaluate(new File(settingsDir,
         '../flutter_demo/.android/include_flutter.groovy'))
 include ':FlutterModule'
 include ':KotlinModule'
+include ':BaseModule'

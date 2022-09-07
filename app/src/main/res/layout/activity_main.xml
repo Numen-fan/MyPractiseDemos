@@ -318,4 +318,17 @@
         android:layout_below="@id/btn_motion_layout"
         android:background="@drawable/btn_shape" />
 
+    <Button
+        android:id="@+id/btn_arouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ARouter"
+        android:textAllCaps="false"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/btn_ndk"
+        android:layout_below="@id/btn_motion_layout"
+        android:background="@drawable/btn_shape" />
+
+
 </RelativeLayout>

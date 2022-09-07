@@ -7,10 +7,12 @@ import android.content.ComponentCallbacks;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Debug;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.jiajia.kotlinmodule.KotlinModuleApplication;
 import com.jiajia.mypractisedemos.module.kotlin.entity.App;
@@ -64,6 +66,13 @@ public class MyApplication extends Application {
         if (kotlinModuleApplication != null) {
             kotlinModuleApplication.onCreate();
         }
+
+        // ARouter 配置
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog();
+            ARouter.openDebug();
+        }
+        ARouter.init(this);
     }
 
     @Override
