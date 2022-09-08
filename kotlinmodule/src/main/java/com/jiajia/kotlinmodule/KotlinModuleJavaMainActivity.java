@@ -17,7 +17,7 @@ public class KotlinModuleJavaMainActivity extends AppCompatActivity {
         setContentView(R.layout.kotlin_module_activity_java_main);
 
         findViewById(R.id.tv_tips).setOnClickListener(v -> {
-            ARouter.getInstance().build("/app/DemoActivity").navigation();
+            ARouter.getInstance().build(RouteConfig.APP_DEMO_ACTIVITY).navigation();
         });
     }
 }

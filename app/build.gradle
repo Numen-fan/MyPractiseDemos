@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'com.alibaba.arouter'
+apply plugin: 'com.alibaba.arouter'
 
 android {
     compileSdkVersion 31
@@ -94,6 +94,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation "com.jakewharton:butterknife:10.0.0"
+//    kapt "com.jakewharton:butterknife:10.0.0"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
 
@@ -131,7 +132,6 @@ dependencies {
     implementation project(path: ':FlutterModule')
     implementation project(path: ':KotlinModule')
 
-    implementation "com.alibaba:arouter-api:$arouter_version"
     annotationProcessor "com.alibaba:arouter-compiler:$arouter_version"
 
 }
