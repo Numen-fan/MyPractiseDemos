@@ -2,10 +2,13 @@ package com.jiajia.mypractisedemos.module.demo;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jiajia.basemodule.config.RouteConfig;
+import com.jiajia.mypractisedemos.MyApplication;
 import com.jiajia.mypractisedemos.R;
 import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
 import com.jiajia.mypractisedemos.utils.Utils;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -16,12 +19,18 @@ import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +38,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import io.flutter.embedding.android.FlutterView;
+import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.FlutterEngineCache;
+import io.flutter.embedding.engine.FlutterEngineGroup;
+import io.flutter.embedding.engine.dart.DartExecutor;
 
 @Route(path = RouteConfig.APP_DEMO_ACTIVITY)
 public class DemoActivity extends AppCompatActivity {
@@ -50,7 +63,9 @@ public class DemoActivity extends AppCompatActivity {
     View twoImg;
     ImageView imgGrab;
 
-    View bigView;
+    ViewGroup bigView;
+
+    FlutterEngine flutterEngine;
 
 
     @Override
@@ -175,16 +190,32 @@ public class DemoActivity extends AppCompatActivity {
 
         addFlutterView();
 
+        getLifecycle().addObserver(new DefaultLifecycleObserver() {
+            @Override
+            public void onStop(@NonNull LifecycleOwner owner) {
+                if (flutterEngine != null) {
+                    flutterEngine.destroy();
+                }
+            }
+        });
+
 
 
     }
 
     private void addFlutterView() {
 
-//        FlutterView flutterView = new FlutterView(this)
+        FlutterView flutterView = new FlutterView(this);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
 
+        // 走main方法，一般如果有多语言环境的话，可以指定不同
+        DartExecutor.DartEntrypoint dartEntrypoint = DartExecutor.DartEntrypoint.createDefault();
+        flutterEngine = MyApplication.getInstance().flutterEngineGroup.createAndRunEngine(this, dartEntrypoint);
+        flutterView.attachToFlutterEngine(flutterEngine);
+
+        bigView.addView(flutterView, params);
 
 
     }
-
 }

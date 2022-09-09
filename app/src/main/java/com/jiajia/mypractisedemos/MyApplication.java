@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.jiajia.fluttermodule.FlutterModuleApplication;
+import com.jiajia.fluttermodule.FlutterPageActivity;
 import com.jiajia.kotlinmodule.KotlinModuleApplication;
 import com.jiajia.mypractisedemos.module.kotlin.entity.App;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
@@ -23,6 +25,7 @@ import java.util.Stack;
 
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.embedding.engine.FlutterEngineCache;
+import io.flutter.embedding.engine.FlutterEngineGroup;
 import io.flutter.embedding.engine.dart.DartExecutor;
 
 public class MyApplication extends Application {
@@ -39,9 +42,14 @@ public class MyApplication extends Application {
 
     private Application kotlinModuleApplication;
 
+    private final FlutterModuleApplication flutterModuleApplication;
+
+    public FlutterEngineGroup flutterEngineGroup;
+
     public MyApplication() {
         super();
         instance = this;
+        flutterModuleApplication = new FlutterModuleApplication(this);
     }
 
     public static MyApplication getInstance() {
@@ -58,14 +66,10 @@ public class MyApplication extends Application {
 
         Fresco.initialize(this);
 
-        // 创建一个FlutterEngine
-        FlutterEngine flutterEngine = new FlutterEngine(this);
-        flutterEngine.getDartExecutor().executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault());
-        FlutterEngineCache.getInstance().put("main", flutterEngine);
-
         if (kotlinModuleApplication != null) {
             kotlinModuleApplication.onCreate();
         }
+        flutterModuleApplication.onCreate();
 
         // ARouter 配置
         if (BuildConfig.DEBUG) {
@@ -73,6 +77,8 @@ public class MyApplication extends Application {
             ARouter.openDebug();
         }
         ARouter.init(this);
+
+        flutterEngineGroup = new FlutterEngineGroup(this);
     }
 
     @Override

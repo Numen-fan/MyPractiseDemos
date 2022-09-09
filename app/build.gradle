@@ -127,7 +127,7 @@ dependencies {
     implementation 'com.facebook.fresco:animated-gif:2.6.0'
 
     // 源码引入flutter_module
-    implementation project(':flutter')
+//    implementation project(':flutter')
 
     implementation project(path: ':FlutterModule')
     implementation project(path: ':KotlinModule')

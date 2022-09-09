@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiajia.basemodule.config.RouteConfig;
+import com.jiajia.fluttermodule.FlutterPageActivity;
 import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
@@ -211,7 +212,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 BaseActivity.startActivity(this, MotionLayoutActivity.class);
                 break;
             case R.id.btn_flutter:
-                startActivity(FlutterActivity.withCachedEngine("main").build(this));
+                // 这个必须走FlutterEngineCache
+//                startActivity(FlutterActivity.withCachedEngine("main").build(this));
+                BaseActivity.startActivity(this, FlutterPageActivity.class);
                 break;
             case R.id.btn_ndk:
                 BaseActivity.startActivity(this, NdkTestActivity.class);

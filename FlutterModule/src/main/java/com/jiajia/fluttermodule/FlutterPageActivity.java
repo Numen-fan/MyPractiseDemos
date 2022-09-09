@@ -14,9 +14,19 @@ public class FlutterPageActivity extends FlutterActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-//        getIntent().putExtra("route", "FormTestPage"); // 这句话就可以指定跳到对应的路由页面
-
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Nullable
+    @Override
+    public FlutterEngine provideFlutterEngine(@NonNull Context context) {
+        return FlutterModuleApplication.getInstance().flutterEngine;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        FlutterModuleApplication.getInstance().flutterEngine.destroy();
     }
 }
