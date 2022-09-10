@@ -1,14 +1,20 @@
 package com.jiajia.mypractisedemos;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -41,185 +47,175 @@ import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.flutter.embedding.android.FlutterActivity;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity implements OnItemClickListener<String> {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    @BindView(R.id.btn_recyc_decoration)
-    Button btn_recyc_decoration;
-    @BindView(R.id.btn_recyc_fzxt)
-    Button btn_recyc_fzxt;
-    @BindView(R.id.btn_start_wheel)
-    Button btn_start_wheel;
-    @BindView(R.id.btn_train)
-    Button btn_train;
-    @BindView(R.id.btn_city)
-    Button btn_citychange;
-    @BindView(R.id.btn_picturescale)
-    Button btn_picturescale;
-    @BindView(R.id.btn_mvp)
-    Button btn_mvp;
-    @BindView(R.id.btn_expendable)
-    Button btn_expendable;
-    @BindView(R.id.btn_manyFunction)
-    Button btn_manyFunction;
-    @BindView(R.id.btn_popWindow)
-    Button btn_popWindow;
-    @BindView(R.id.btn_dialog)
-    Button btn_dialog;
-    @BindView(R.id.btn_jetpack)
-    Button btn_jetpack;
-    @BindView(R.id.btn_mylinearlayout)
-    Button btn_mylinearlayout;
-    @BindView(R.id.btn_demo)
-    Button btn_demo;
-    @BindView(R.id.btn_seekbar)
-    Button btn_seekbar;
-    @BindView(R.id.btn_audio)
-    Button btn_audio;
-    @BindView(R.id.btn_float_window)
-    Button btn_float_window;
-    @BindView(R.id.btn_live_replay)
-    Button btn_live_replay;
-    @BindView(R.id.btn_self_wigdet)
-    Button btn_self_wigdet;
-    @BindView(R.id.btn_kotlin)
-    Button btn_kotlin;
-    @BindView(R.id.btn_edit_textview)
-    Button btn_edit_textview;
-    @BindView(R.id.btn_compose)
-    Button btn_compose;
-    @BindView(R.id.btn_tips_view)
-    Button btnTipsView;
-    @BindView(R.id.btn_motion_layout)
-    View btnMotionLayout;
-    @BindView(R.id.btn_flutter)
-    View btnFlutter;
-    @BindView(R.id.btn_ndk)
-    View btnNDK;
-    @BindView(R.id.btn_arouter)
-    View btnARouter;
+    private final List<String> funcNames = new ArrayList<>();
+
+    private static final String FLOAT_GROUP = "floatGroup";
+    private static final String DECORATION = "decoration";
+    private static final String START = "start";
+    private static final String TRAIN = "train";
+    private static final String CITY_CHANGE = "cityChange";
+    private static final String PICTURE_SCALE = "pictureScale";
+    private static final String MVP = "mvp";
+    private static final String EXPANDABLE = "expandable";
+    private static final String MANY_FUNC = "manyFunc";
+    private static final String POPUP_WIND = "popupwind";
+    private static final String DIALOG = "dialog";
+    private static final String JETPACK = "jetpack";
+    private static final String LINEARLAYOUT = "linearlayout";
+    private static final String SEEKBAR = "seekbar";
+    private static final String DEMO = "Demo";
+    private static final String AUDIO = "Audio";
+    private static final String FLOAT_WIND = "FloatWind";
+    private static final String LIVE_REPLAY = "LiveReplay";
+    private static final String WIDGET = "Widget";
+    private static final String KOTLIN = "Kotlin";
+    private static final String EDITTEXT = "EditText";
+    private static final String COMPOSE = "Compose";
+    private static final String TIPS = "Tips";
+    private static final String MOTION = "Motion";
+    private static final String FLUTTER = "flutter";
+    private static final String NDK = "NDK";
+    private static final String AROUTER = "ARouter";
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        btn_recyc_decoration.setOnClickListener(this);
-        btn_recyc_fzxt.setOnClickListener(this);
-        btn_start_wheel.setOnClickListener(this);
-        btn_train.setOnClickListener(this);
-        btn_citychange.setOnClickListener(this);
-        btn_picturescale.setOnClickListener(this);
-        btn_mvp.setOnClickListener(this);
-        btn_expendable.setOnClickListener(this);
-        btn_manyFunction.setOnClickListener(this);
-        btn_popWindow.setOnClickListener(this);
-        btn_dialog.setOnClickListener(this);
-        btn_jetpack.setOnClickListener(this);
-        btn_mylinearlayout.setOnClickListener(this);
-        btn_demo.setOnClickListener(this);
-        btn_seekbar.setOnClickListener(this);
-        btn_audio.setOnClickListener(this);
-        btn_float_window.setOnClickListener(this);
-        btn_live_replay.setOnClickListener(this);
-        btn_self_wigdet.setOnClickListener(this);
-        btn_kotlin.setOnClickListener(this);
-        btn_edit_textview.setOnClickListener(this);
-        btn_compose.setOnClickListener(this);
-        btnTipsView.setOnClickListener(this);
-        btnMotionLayout.setOnClickListener(this);
-        btnFlutter.setOnClickListener(this);
-        btnNDK.setOnClickListener(this);
-        btnARouter.setOnClickListener(this);
+
+        RecyclerView funcList = findViewById(R.id.func_list);
+        FuncAdapter adapter = new FuncAdapter();
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 4);
+        funcList.setAdapter(adapter);
+        funcList.setLayoutManager(layoutManager);
+        adapter.setClickListener(this);
+        getFuncNames();
+        adapter.setData(funcNames);
+
+    }
+
+
+    public void getFuncNames() {
+        funcNames.add(FLOAT_GROUP);
+        funcNames.add(DECORATION);
+        funcNames.add(START);
+        funcNames.add(TRAIN);
+        funcNames.add(CITY_CHANGE);
+        funcNames.add(PICTURE_SCALE);
+        funcNames.add(MVP);
+        funcNames.add(MANY_FUNC);
+        funcNames.add(EXPANDABLE);
+        funcNames.add(POPUP_WIND);
+        funcNames.add(DIALOG);
+        funcNames.add(JETPACK);
+        funcNames.add(LINEARLAYOUT);
+        funcNames.add(SEEKBAR);
+        funcNames.add(DEMO);
+        funcNames.add(AUDIO);
+        funcNames.add(LIVE_REPLAY);
+        funcNames.add(WIDGET);
+        funcNames.add(KOTLIN);
+        funcNames.add(EDITTEXT);
+        funcNames.add(FLOAT_WIND);
+        funcNames.add(COMPOSE);
+        funcNames.add(TIPS);
+        funcNames.add(MOTION);
+        funcNames.add(FLUTTER);
+        funcNames.add(NDK);
+        funcNames.add(AROUTER);
+
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_recyc_fzxt:
+    public void onClick(String item) {
+        switch (item) {
+            case FLOAT_GROUP:
                 BaseActivity.startActivity(this, RecycGroup1Activity.class);
                 break;
-            case R.id.btn_recyc_decoration:
+            case DECORATION:
                 BaseActivity.startActivity(this, DecorationActivity.class);
                 break;
-            case R.id.btn_start_wheel:
+            case START:
                 BaseActivity.startActivity(this, WheelActivity.class);
                 break;
-            case R.id.btn_train:
+            case TRAIN:
                 BaseActivity.startActivity(this, Trainrecyclerview.class);
                 break;
-            case R.id.btn_city:
+            case CITY_CHANGE:
                 BaseActivity.startActivity(this, CityChangeActivity.class);
                 break;
-            case R.id.btn_picturescale:
+            case PICTURE_SCALE:
                 BaseActivity.startActivity(this, PictureScaleActivity.class);
                 break;
-            case R.id.btn_mvp:
+            case MVP:
                 BaseActivity.startActivity(this, LoginMvpActivity.class);
                 break;
-            case R.id.btn_expendable:
+            case EXPANDABLE:
                 BaseActivity.startActivity(this, ExpendableLayoutActivity.class);
                 break;
-            case R.id.btn_manyFunction:
+            case MANY_FUNC:
                 BaseActivity.startActivity(this, ManyFunctionUIActivity.class);
                 break;
-            case R.id.btn_popWindow:
+            case POPUP_WIND:
                 BaseActivity.startActivity(this, PopwindowActivity.class);
                 break;
-            case R.id.btn_dialog:
+            case DIALOG:
                 BaseActivity.startActivity(this, DialogActivity.class);
                 break;
-            case R.id.btn_jetpack:
+            case JETPACK:
                 BaseActivity.startActivity(this, JetpackActivity.class);
                 break;
-            case R.id.btn_mylinearlayout:
+            case LINEARLAYOUT:
                 BaseActivity.startActivity(this, MyLinearLayoutActivity.class);
                 break;
-            case R.id.btn_demo:
+            case DEMO:
                 BaseActivity.startActivity(this, DemoActivity.class);
                 break;
-            case R.id.btn_seekbar:
+            case SEEKBAR:
                 BaseActivity.startActivity(this, SeekBarActivity.class);
                 break;
-            case R.id.btn_audio:
+            case AUDIO:
                 BaseActivity.startActivity(this, AudioActivity.class);
                 break;
-            case R.id.btn_float_window:
-                handleClickEvent(R.id.btn_float_window);
+            case FLOAT_WIND:
+                handleClickEvent(FLOAT_WIND);
                 break;
-            case R.id.btn_self_wigdet:
+            case WIDGET:
                 BaseActivity.startActivity(this, WidgetDemoActivity.class);
                 break;
-            case R.id.btn_kotlin:
+            case KOTLIN:
                 BaseActivity.startActivity(this, KotlinActivity.class);
                 break;
-            case R.id.btn_edit_textview:
+            case EDITTEXT:
                 BaseActivity.startActivity(this, EditTextActivity.class);
                 break;
-            case R.id.btn_compose:
+            case COMPOSE:
                 BaseActivity.startActivity(this, ComposeMainActivity.class);
                 break;
-            case R.id.btn_tips_view:
+            case TIPS:
                 BaseActivity.startActivity(this, TipsActivity.class);
                 break;
-            case R.id.btn_motion_layout:
+            case MOTION:
                 BaseActivity.startActivity(this, MotionLayoutActivity.class);
                 break;
-            case R.id.btn_flutter:
+            case FLUTTER:
                 // 这个必须走FlutterEngineCache
 //                startActivity(FlutterActivity.withCachedEngine("main").build(this));
                 BaseActivity.startActivity(this, FlutterPageActivity.class);
                 break;
-            case R.id.btn_ndk:
+            case NDK:
                 BaseActivity.startActivity(this, NdkTestActivity.class);
                 break;
-            case R.id.btn_arouter:
+            case AROUTER:
                 ARouter.getInstance().build(RouteConfig.KOTLIN_MAIN_ACTIVITY).navigation();
                 break;
             default:
@@ -230,11 +226,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 在主界面处理不需要启动相关Activity的点击事件
      *
-     * @param resId
      */
-    private void handleClickEvent(final int resId) {
-        switch (resId) {
-            case R.id.btn_float_window:
+    private void handleClickEvent(String func) {
+        switch (func) {
+            case FLOAT_WIND:
                 launchFloatWindow();
                 break;
             default:
@@ -276,4 +271,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         LogUtils.INSTANCE.error(TAG, "onDestroy");
     }
+
+    static class FuncAdapter extends RecyclerView.Adapter<FuncAdapter.FuncHolder> {
+
+        private final List<String> data = new ArrayList<>();
+
+        private OnItemClickListener<String> clickListener;
+
+        public void setClickListener(OnItemClickListener<String> listener) {
+            this.clickListener = listener;
+        }
+
+        private final View.OnClickListener viewClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView itemNameView = (TextView) v;
+                if (clickListener != null) {
+                    clickListener.onClick(itemNameView.getText().toString());
+                }
+            }
+        };
+
+        @NonNull
+        @Override
+        public FuncHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new FuncHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_func_layout, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull FuncHolder holder, int position) {
+            holder.itemName.setText(data.get(position));
+            holder.itemName.setOnClickListener(viewClickListener);
+        }
+
+        @Override
+        public int getItemCount() {
+            return data.size();
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        public void setData(List<String> newData) {
+            this.data.clear();
+            this.data.addAll(newData);
+            notifyDataSetChanged();
+        }
+
+        static class FuncHolder extends RecyclerView.ViewHolder {
+
+            final TextView itemName;
+
+            public FuncHolder(@NonNull View itemView) {
+                super(itemView);
+                itemName = itemView.findViewById(R.id.func_item_name);
+            }
+        }
+
+
+    }
+
 }
