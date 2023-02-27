@@ -22,6 +22,11 @@ public class EditTextActivity extends BaseActivity {
     }
 
     @Override
+    public void initParam() {
+
+    }
+
+    @Override
     public void initListener() {
 
     }

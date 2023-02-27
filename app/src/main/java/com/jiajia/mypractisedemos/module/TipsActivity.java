@@ -46,6 +46,11 @@ public class TipsActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void initParam() {
+
+    }
+
     private void initPhoneCallState() {
 
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
