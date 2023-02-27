@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.fluttermodule.FlutterPageActivity;
 import com.jiajia.mypractisedemos.module.TipsActivity;
+import com.jiajia.mypractisedemos.module.aidl.AIDLActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
 import com.jiajia.mypractisedemos.module.compose.ComposeMainActivity;
@@ -34,9 +36,11 @@ import com.jiajia.mypractisedemos.module.floatwindow.FloatView;
 import com.jiajia.mypractisedemos.module.jetpack.JetpackActivity;
 import com.jiajia.mypractisedemos.module.kotlin.activity.KotlinActivity;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
+import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
 import com.jiajia.mypractisedemos.module.manfunctionsui.ManyFunctionUIActivity;
 import com.jiajia.mypractisedemos.module.mvpdemo.view.LoginMvpActivity;
 import com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayoutActivity;
+import com.jiajia.mypractisedemos.module.navigation.NavigationActivity;
 import com.jiajia.mypractisedemos.module.ndk.NdkTestActivity;
 import com.jiajia.mypractisedemos.module.picturescale.PictureScaleActivity;
 import com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity;
@@ -47,6 +51,8 @@ import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private static final String START = "start";
     private static final String TRAIN = "train";
     private static final String CITY_CHANGE = "cityChange";
-    private static final String PICTURE_SCALE = "pictureScale";
+    private static final String PICTURE_SCALE = "picScale";
     private static final String MVP = "mvp";
     private static final String EXPANDABLE = "expandable";
     private static final String MANY_FUNC = "manyFunc";
@@ -84,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private static final String FLUTTER = "flutter";
     private static final String NDK = "NDK";
     private static final String AROUTER = "ARouter";
+    private static final String NAVIGATION = "navigation";
+    private static final String HOOK_AT = "Hook";
+
+    private static final String AIDL = "AIDL";
 
 
 
@@ -132,6 +142,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         funcNames.add(FLUTTER);
         funcNames.add(NDK);
         funcNames.add(AROUTER);
+        funcNames.add(NAVIGATION);
+        funcNames.add(HOOK_AT);
+        funcNames.add(AIDL);
 
     }
 
@@ -218,9 +231,38 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             case AROUTER:
                 ARouter.getInstance().build(RouteConfig.KOTLIN_MAIN_ACTIVITY).navigation();
                 break;
+            case NAVIGATION:
+                BaseActivity.startActivity(this, NavigationActivity.class);
+                break;
+            case HOOK_AT:
+                hookStartActivity();
+                break;
+            case AIDL:
+                BaseActivity.startActivity(this, AIDLActivity.class);
+                break;
             default:
+                ToastUtils.INSTANCE.showToast("丫的，没实现方法");
                 break;
         }
+    }
+
+    private void hookStartActivity() {
+        try {
+
+            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+//            Field field = activityThreadClass.getDeclaredField("sCurrentActivityThread");
+//            Object activityThread = field.get(null);
+
+//            @SuppressLint("BlockedPrivateApi")
+            Method method = activityThreadClass.getMethod("getLaunchingActivity", IBinder.class);
+
+            LogUtils.INSTANCE.warn(TAG, method.getName());
+
+        } catch (Exception e) {
+            LogUtils.INSTANCE.error(TAG, "hookStartActivity error", e);
+        }
+
+
     }
 
     /**

@@ -62,7 +62,7 @@ public class TipsActivity extends BaseActivity {
             }
         };
 
-        tm.listen(listener ,PhoneStateListener.LISTEN_CALL_STATE);
+        tm.listen(listener, PhoneStateListener.LISTEN_CALL_STATE);
     }
 
     @Override

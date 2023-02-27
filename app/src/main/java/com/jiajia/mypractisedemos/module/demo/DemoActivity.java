@@ -4,13 +4,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.MyApplication;
 import com.jiajia.mypractisedemos.R;
-import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
 import com.jiajia.mypractisedemos.utils.Utils;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.GradientDrawable;
@@ -21,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -39,8 +34,6 @@ import android.widget.Toast;
 
 import io.flutter.embedding.android.FlutterView;
 import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.FlutterEngineCache;
-import io.flutter.embedding.engine.FlutterEngineGroup;
 import io.flutter.embedding.engine.dart.DartExecutor;
 
 @Route(path = RouteConfig.APP_DEMO_ACTIVITY)

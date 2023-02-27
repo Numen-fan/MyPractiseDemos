@@ -25,6 +25,19 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:name">
         <activity
+            android:name=".module.aidl.AIDLActivity"
+            android:exported="true" />
+
+        <service
+            android:name=".module.aidl.MyAIDLService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+
+        <activity
+            android:name=".module.navigation.NavigationActivity"
+            android:exported="false" />
+        <activity
             android:name=".module.ndk.NdkTestActivity"
             android:exported="false" />
         <activity
@@ -64,8 +77,7 @@
         <activity android:name=".module.audio.AudioActivity" />
         <activity
             android:name=".module.compose.ComposeMainActivity"
-            android:label="@string/title_activity_compose_main" />
-        <!-- MainActivity -->
+            android:label="@string/title_activity_compose_main" /> <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"

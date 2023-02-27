@@ -26,11 +26,25 @@ object LogUtils {
     }
 
     fun error(tag: String, msg: String, e: Exception) {
-        Log.e(tag, msg + "\n\t" + e.message)
+        val sb = StringBuilder()
+        if (e.message != null) {
+            sb.append(e.message)
+        }
+        for (element:StackTraceElement in e.stackTrace) {
+            sb.append(element.toString()).append("\n")
+        }
+        Log.e(tag, msg + "\n" + sb.toString())
     }
 
-    fun error(tag: String, msg: String, t: Throwable) {
-        Log.e(tag, msg + "\n\t" + t.message)
+    fun error(tag: String, msg: String, e: Throwable) {
+        val sb = StringBuilder()
+        if (e.message != null) {
+            sb.append(e.message)
+        }
+        for (element:StackTraceElement in e.stackTrace) {
+            sb.append(element.toString()).append("\n")
+        }
+        Log.e(tag, msg + "\n" + e.message)
     }
 
 }

@@ -3,30 +3,22 @@ package com.jiajia.mypractisedemos;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
-import android.content.ComponentCallbacks;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Debug;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.jiajia.basemodule.BuildConfig;
 import com.jiajia.fluttermodule.FlutterModuleApplication;
-import com.jiajia.fluttermodule.FlutterPageActivity;
-import com.jiajia.kotlinmodule.KotlinModuleApplication;
-import com.jiajia.mypractisedemos.module.kotlin.entity.App;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 
 import java.lang.reflect.Method;
 import java.util.Stack;
 
-import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.FlutterEngineCache;
 import io.flutter.embedding.engine.FlutterEngineGroup;
-import io.flutter.embedding.engine.dart.DartExecutor;
 
 public class MyApplication extends Application {
 
