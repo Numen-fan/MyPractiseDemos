@@ -41,6 +41,7 @@ import com.jiajia.mypractisedemos.module.mvpdemo.view.LoginMvpActivity;
 import com.jiajia.mypractisedemos.module.mylinearlayout.MyLinearLayoutActivity;
 import com.jiajia.mypractisedemos.module.navigation.NavigationActivity;
 import com.jiajia.mypractisedemos.module.ndk.NdkTestActivity;
+import com.jiajia.mypractisedemos.module.orientation.OrientationActivity;
 import com.jiajia.mypractisedemos.module.picturescale.PictureScaleActivity;
 import com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity;
 import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private static final String FLUTTER = "flutter";
     private static final String NDK = "NDK";
     private static final String AROUTER = "ARouter";
+    private static final String ORIENTATION = "Orientation";
     private static final String NAVIGATION = "navigation";
     private static final String HOOK_AT = "Hook";
 
@@ -141,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         funcNames.add(FLUTTER);
         funcNames.add(NDK);
         funcNames.add(AROUTER);
+        funcNames.add(ORIENTATION);
         funcNames.add(NAVIGATION);
         funcNames.add(HOOK_AT);
         funcNames.add(AIDL);
@@ -229,6 +232,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 break;
             case AROUTER:
                 ARouter.getInstance().build(RouteConfig.KOTLIN_MAIN_ACTIVITY).navigation();
+                break;
+            case ORIENTATION:
+                BaseActivity.startActivity(this, OrientationActivity.class);
                 break;
             case NAVIGATION:
                 BaseActivity.startActivity(this, NavigationActivity.class);

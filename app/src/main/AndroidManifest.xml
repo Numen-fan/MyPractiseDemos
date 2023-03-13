@@ -38,6 +38,13 @@
             android:name=".module.navigation.NavigationActivity"
             android:exported="false" />
         <activity
+            android:name=".module.orientation.OrientationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_orientation"
+            android:configChanges="orientation|screenSize|keyboard"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".module.ndk.NdkTestActivity"
             android:exported="false" />
         <activity

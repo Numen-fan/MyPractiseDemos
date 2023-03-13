@@ -21,12 +21,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         initUI();
 
+        initParam();
+
         initListener();
     }
 
     public abstract int getContentResId();
 
     public abstract void initUI();
+
+    public abstract void initParam();
 
     public abstract void initListener();
 

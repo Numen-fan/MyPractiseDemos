@@ -47,7 +47,8 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        compose true // 打开Compose的开关
+        compose true
+        viewBinding true// 打开Compose的开关
     }
     composeOptions {
         // 设置kotlin编译器插件版本
@@ -89,6 +90,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.activity:activity-compose:1.3.1'
     implementation project(path: ':BaseModule')
+    implementation 'androidx.navigation:navigation-fragment:2.4.1'
+    implementation 'androidx.navigation:navigation-ui:2.4.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
