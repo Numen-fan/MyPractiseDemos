@@ -32,10 +32,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import io.flutter.embedding.android.FlutterView;
-import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.dart.DartExecutor;
-
 @Route(path = RouteConfig.APP_DEMO_ACTIVITY)
 public class DemoActivity extends AppCompatActivity {
 
@@ -57,8 +53,6 @@ public class DemoActivity extends AppCompatActivity {
     ImageView imgGrab;
 
     ViewGroup bigView;
-
-    FlutterEngine flutterEngine;
 
 
     @Override
@@ -180,34 +174,6 @@ public class DemoActivity extends AppCompatActivity {
         });
 
         bigView = findViewById(R.id.big_view);
-
-        addFlutterView();
-
-        getLifecycle().addObserver(new DefaultLifecycleObserver() {
-            @Override
-            public void onStop(@NonNull LifecycleOwner owner) {
-                if (flutterEngine != null) {
-                    flutterEngine.destroy();
-                }
-            }
-        });
-
-
-
-    }
-
-    private void addFlutterView() {
-
-        FlutterView flutterView = new FlutterView(this);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-
-        // 走main方法，一般如果有多语言环境的话，可以指定不同
-        DartExecutor.DartEntrypoint dartEntrypoint = DartExecutor.DartEntrypoint.createDefault();
-        flutterEngine = MyApplication.getInstance().flutterEngineGroup.createAndRunEngine(this, dartEntrypoint);
-        flutterView.attachToFlutterEngine(flutterEngine);
-
-        bigView.addView(flutterView, params);
 
 
     }

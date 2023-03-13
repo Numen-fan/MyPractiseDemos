@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiajia.basemodule.config.RouteConfig;
-import com.jiajia.fluttermodule.FlutterPageActivity;
 import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.aidl.AIDLActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
@@ -223,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             case FLUTTER:
                 // 这个必须走FlutterEngineCache
 //                startActivity(FlutterActivity.withCachedEngine("main").build(this));
-                BaseActivity.startActivity(this, FlutterPageActivity.class);
+//                BaseActivity.startActivity(this, FlutterPageActivity.class);
                 break;
             case NDK:
                 BaseActivity.startActivity(this, NdkTestActivity.class);

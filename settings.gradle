@@ -1,8 +1,5 @@
 include ':app'
 
-setBinding(new Binding([gradle: this]))
-evaluate(new File(settingsDir,
-        '../flutter_demo/.android/include_flutter.groovy'))
-include ':FlutterModule'
+//include ':FlutterModule'
 include ':KotlinModule'
 include ':BaseModule'

@@ -12,13 +12,10 @@ import androidx.annotation.Nullable;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.jiajia.basemodule.BuildConfig;
-import com.jiajia.fluttermodule.FlutterModuleApplication;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 
 import java.lang.reflect.Method;
 import java.util.Stack;
-
-import io.flutter.embedding.engine.FlutterEngineGroup;
 
 public class MyApplication extends Application {
 
@@ -34,14 +31,10 @@ public class MyApplication extends Application {
 
     private Application kotlinModuleApplication;
 
-    private final FlutterModuleApplication flutterModuleApplication;
-
-    public FlutterEngineGroup flutterEngineGroup;
 
     public MyApplication() {
         super();
         instance = this;
-        flutterModuleApplication = new FlutterModuleApplication(this);
     }
 
     public static MyApplication getInstance() {
@@ -61,7 +54,6 @@ public class MyApplication extends Application {
         if (kotlinModuleApplication != null) {
             kotlinModuleApplication.onCreate();
         }
-        flutterModuleApplication.onCreate();
 
         // ARouter 配置
         if (BuildConfig.DEBUG) {
@@ -70,7 +62,6 @@ public class MyApplication extends Application {
         }
         ARouter.init(this);
 
-        flutterEngineGroup = new FlutterEngineGroup(this);
     }
 
     @Override
