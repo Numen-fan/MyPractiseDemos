@@ -1,24 +1,36 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'com.alipay.apollo.optimize'// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 // 这里是gradle脚本执行所需依赖，分别是对应的maven库和插件
 buildscript {
-    
+    ext.mpaas_artifact = "mpaas-baseline"
+    ext.mpaas_baseline = "10.2.3-21"
     ext {
         kotlin_version = '1.5.21'
         compose_version = '1.0.1'
         gradle_version = '7.0.4'
         arouter_version = '1.5.2'
         nav_version = '2.5.2'
+        easyconfig_version = '2.7.5'
     }
     repositories {
         google()
         jcenter()
+        maven {
+            url 'http://mvn.cloud.alipay.com/nexus/content/repositories/releases/'
+            name 'alipay'
+            credentials {
+                username 'mvn_read_ws'
+                password 'mrk8929'
+            }
+            allowInsecureProtocol = true
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath "com.alibaba:arouter-register:1.0.2"
+        classpath "com.android.boost.easyconfig:easyconfig:$easyconfig_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -31,6 +43,15 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven {
+            url 'http://mvn.cloud.alipay.com/nexus/content/repositories/releases/'
+            name 'alipay'
+            credentials {
+                username 'mvn_read_ws'
+                password 'mrk8929'
+            }
+            allowInsecureProtocol = true
+        }
     }
 }
 

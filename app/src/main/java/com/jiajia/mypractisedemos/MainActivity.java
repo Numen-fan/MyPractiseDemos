@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.alipay.mobile.framework.quinoxless.QuinoxlessPrivacyUtil;
+import com.alipay.mobile.nebulacore.ui.H5Activity;
 import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.aidl.AIDLActivity;
@@ -47,9 +49,11 @@ import com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity;
 import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
 import com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity;
 import com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview;
+import com.jiajia.mypractisedemos.module.webview.WebViewActivity;
 import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
+import com.mpaas.nebula.adapter.api.MPNebula;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -93,8 +97,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private static final String ORIENTATION = "Orientation";
     private static final String NAVIGATION = "navigation";
     private static final String HOOK_AT = "Hook";
-
     private static final String AIDL = "AIDL";
+    private static final String WEBVIEW = "webview";
 
 
 
@@ -111,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         adapter.setClickListener(this);
         getFuncNames();
         adapter.setData(funcNames);
+
+//        QuinoxlessPrivacyUtil.sendPrivacyAgreedBroadcast(getApplicationContext());
 
     }
 
@@ -147,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         funcNames.add(NAVIGATION);
         funcNames.add(HOOK_AT);
         funcNames.add(AIDL);
+        funcNames.add(WEBVIEW);
 
     }
 
@@ -245,6 +252,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             case AIDL:
                 BaseActivity.startActivity(this, AIDLActivity.class);
                 break;
+            case WEBVIEW:
+                BaseActivity.startActivity(this, WebViewActivity.class);
+                break;
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");
                 break;
@@ -277,7 +287,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private void handleClickEvent(String func) {
         switch (func) {
             case FLOAT_WIND:
-                launchFloatWindow();
+//                launchFloatWindow();
+//                MPNebula.startApp("2023060520230605");
+                MPNebula.startUrl("file:///android_asset/javascript.html");
                 break;
             default:
                 break;
@@ -319,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         LogUtils.INSTANCE.error(TAG, "onDestroy");
     }
 
-    static class FuncAdapter extends RecyclerView.Adapter<FuncAdapter.FuncHolder> {
+    private static class FuncAdapter extends RecyclerView.Adapter<FuncAdapter.FuncHolder> {
 
         private final List<String> data = new ArrayList<>();
 

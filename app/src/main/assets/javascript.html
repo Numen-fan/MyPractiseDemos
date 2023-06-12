@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+    <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+    <script>
+         function callAndroid(){
+            ap.call('tinyToNative', {
+                param1: 'p1aaa',
+                param2: 'p2bbb'
+            }, (result) => {
+            console.log(result);
+            ap.showToast({
+            type: 'none',
+            content: result.message,
+            duration: 3000,
+            });
+           })
+         }
+    </script>
+</head>
+<body>
+<!--    //点击按钮则调用callAndroid函数-->
+<button type="button" id="button1" onclick="callAndroid()">调用Android端代码</button>
+<iframe src="javascript2.html">
+
+</iframe>
+</body>
+</html>

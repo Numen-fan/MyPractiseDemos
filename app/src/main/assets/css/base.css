@@ -1,0 +1,52 @@
+/* 处理一些基础的样式 */
+
+* {
+    /* 清除浏览器默认的边距 */
+    margin: 0;
+    padding: 0;
+    /* 移动端适配核心点
+        1. 不允许页面出现横向滚动条
+        2. 页面充满屏幕，盒子宽度和屏幕一致，100%
+        3. 让盒子的内容宽高width/height包含margin/padding与border,避免出现横向滚动条
+     */
+    box-sizing: border-box;
+}
+
+body {
+    /* 移动端默认字体大小是12px */
+    font-size: 12px;
+}
+
+li {
+    list-style: none;
+}
+
+image {
+    /* 图片垂直居中 */
+    vertical-align: middle;
+}
+
+a {
+    color: #000000;
+    /* 取消a标签默认下划线 */
+    text-decoration: none;
+    /* 取消移动端点击标签蓝色高亮样式 */
+    -webkit-tap-highlight-color: none;
+}
+
+input {
+    border: 0 none;
+    /* 取消外边框 */
+    outline-style: none;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    zoom: 1;
+}
