@@ -19,7 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.alipay.mobile.framework.LauncherApplicationAgent;
 import com.alipay.mobile.framework.quinoxless.QuinoxlessPrivacyUtil;
+import com.alipay.mobile.h5container.service.H5Service;
 import com.alipay.mobile.nebulacore.ui.H5Activity;
 import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.module.TipsActivity;
@@ -289,7 +291,13 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             case FLOAT_WIND:
 //                launchFloatWindow();
 //                MPNebula.startApp("2023060520230605");
-                MPNebula.startUrl("file:///android_asset/javascript.html");
+                MPNebula.startUrl("file:///android_asset/javascript2.html");
+
+                getWindow().getDecorView().postDelayed(()-> {
+                    H5Service h5Service = LauncherApplicationAgent.getInstance().getMicroApplicationContext().findServiceByInterface(H5Service.class.getName());
+                    h5Service.getTopH5Page().getBridge().sendDataWarpToWeb("h5NetworkChange", null, null);
+                }, 5_000);
+
                 break;
             default:
                 break;

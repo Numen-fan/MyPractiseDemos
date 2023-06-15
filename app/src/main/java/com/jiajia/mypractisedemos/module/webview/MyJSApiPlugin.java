@@ -5,8 +5,11 @@ import com.alipay.mobile.h5container.api.H5BridgeContext;
 import com.alipay.mobile.h5container.api.H5Event;
 import com.alipay.mobile.h5container.api.H5EventFilter;
 import com.alipay.mobile.h5container.api.H5SimplePlugin;
+import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 
 public class MyJSApiPlugin extends H5SimplePlugin {
+
+    private static final String TAG = "MyJSApiPlugin";
 
     /**
      * 自定义 API
@@ -22,6 +25,7 @@ public class MyJSApiPlugin extends H5SimplePlugin {
 
     @Override
     public boolean handleEvent(H5Event event, H5BridgeContext context) {
+        LogUtils.INSTANCE.warn(TAG, "get event = " + event.getAction());
         String action = event.getAction();
         if (TINY_TO_NATIVE.equalsIgnoreCase(action)) {
             JSONObject params = event.getParam();

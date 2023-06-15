@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.mobile.framework.quinoxless.IInitCallback;
 import com.alipay.mobile.framework.quinoxless.QuinoxlessApplication;
 import com.alipay.mobile.framework.quinoxless.QuinoxlessFramework;
+import com.alipay.mobile.h5container.api.H5Plugin;
 import com.alipay.mobile.nebula.provider.H5AppCenterPresetProvider;
 import com.alipay.mobile.nebula.provider.H5NebulaFileProvider;
 import com.alipay.mobile.nebula.util.H5Utils;
