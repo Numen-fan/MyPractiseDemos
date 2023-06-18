@@ -29,9 +29,6 @@ import com.mpaas.nebula.adapter.api.MPNebula;
 import java.lang.reflect.Method;
 import java.util.Stack;
 
-/**
- * 测试
- */
 public class MyApplication extends Application {
 
     private static final String TAG = "MyApplication";
