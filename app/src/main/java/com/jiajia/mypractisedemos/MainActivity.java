@@ -1,5 +1,6 @@
 package com.jiajia.mypractisedemos;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,9 +8,13 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -56,9 +61,11 @@ import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
 import com.mpaas.nebula.adapter.api.MPNebula;
+import com.ta.utdid2.android.utils.SystemProperties;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -289,19 +296,41 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private void handleClickEvent(String func) {
         switch (func) {
             case FLOAT_WIND:
+                // 权限测试
+//                LogUtils.INSTANCE.warn(TAG, "shouldShowRequestPermissionRationale "
+//                        + this.shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
+//                        + ", ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)"
+//                        + ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA));
+//                if ( ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 10086);
+//                } else {
+//                    LogUtils.INSTANCE.warn(TAG, "无权限");
+//                }
+                // 悬浮窗
 //                launchFloatWindow();
+                // webview
 //                MPNebula.startApp("2023060520230605");
-                MPNebula.startUrl("file:///android_asset/javascript2.html");
+//                MPNebula.startUrl("http://192.168.232.61:8080/test.html");
+//                MPNebula.startUrl("file:///android_asset/javascript2.html");
+//
+//                getWindow().getDecorView().postDelayed(()-> {
+//                    H5Service h5Service = LauncherApplicationAgent.getInstance().getMicroApplicationContext().findServiceByInterface(H5Service.class.getName());
+//                    h5Service.getTopH5Page().getBridge().sendDataWarpToWeb("h5NetworkChange", null, null);
+//                }, 5_000);
 
-                getWindow().getDecorView().postDelayed(()-> {
-                    H5Service h5Service = LauncherApplicationAgent.getInstance().getMicroApplicationContext().findServiceByInterface(H5Service.class.getName());
-                    h5Service.getTopH5Page().getBridge().sendDataWarpToWeb("h5NetworkChange", null, null);
-                }, 5_000);
+                // SDK_INT
+                LogUtils.INSTANCE.warn(TAG, "SDK_INT" + SystemProperties.get("ro.build.version.sdk"));
 
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        LogUtils.INSTANCE.warn(TAG, "result is " + grantResults[0]);
     }
 
     /**

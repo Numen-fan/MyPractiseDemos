@@ -8,11 +8,13 @@ import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.view.WindowManager;
 
 
 import androidx.annotation.NonNull;
 
 import com.jiajia.mypractisedemos.BaseActivity;
+import com.jiajia.mypractisedemos.MyApplication;
 import com.jiajia.mypractisedemos.R;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 
@@ -35,7 +37,15 @@ public class OrientationActivity extends BaseActivity implements ScreenRotationS
 
     @Override
     public void initUI() {
+        LogUtils.INSTANCE.warn(TAG, "AndroidID is " + getAndroidID());
+    }
 
+    @SuppressLint("HardwareIds")
+    public static String getAndroidID() {
+        return Settings.Secure.getString(
+                MyApplication.getInstance().getContentResolver(),
+                Settings.Secure.ANDROID_ID
+        );
     }
 
     @Override

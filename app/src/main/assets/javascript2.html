@@ -5,14 +5,18 @@
     <title>demo</title>
     <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
     <script>
-        document.addEventListener('h5NetworkChange',
-        function(e) {
-            alert("网络环境发生变化，可调用 getNetworkType 接口获取详细信息");
-        }, false);
+        function ready(callback) {
+            if(window.AlipayJSBridge) {
+                callback && callback()
+            } else {
+                document.addEventListener('AlipayJSBridgeReady', callback, false);
+            }
+        }
 
-         function callAndroid(){
+        function callAndroid(){
             console.log("发起调用");
-            ap.call('tinyToNative', {
+            ready(function() {
+              AlipayJSBridge.call('tinyToNative', {
                 param1: 'p1aaa',
                 param2: 'p2bbb'
             }, (result) => {
@@ -22,6 +26,7 @@
             content: result.message,
             duration: 3000,
             });
+            })
            })
          }
     </script>
@@ -30,6 +35,6 @@
 <!--    //点击按钮则调用callAndroid函数-->
 <button type="button" id="button1" onclick="callAndroid()">iframe内调用Android端代码</button>
 </br>
-<iframe src="www.baidu.com"></iframe>
+<!--<iframe src="https://www.baidu.com"></iframe>-->
 </body>
 </html>

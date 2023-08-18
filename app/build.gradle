@@ -5,11 +5,11 @@ apply plugin: 'com.alibaba.arouter'
 apply plugin: 'com.alipay.apollo.baseline.config'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.jiajia.mypractisedemos"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
