@@ -330,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        LogUtils.INSTANCE.warn(TAG, "result is " + grantResults[0]);
+        LogUtils.INSTANCE.warn(TAG, "result is a " + grantResults[0]);
     }
 
     /**
