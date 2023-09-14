@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -317,6 +318,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //                    H5Service h5Service = LauncherApplicationAgent.getInstance().getMicroApplicationContext().findServiceByInterface(H5Service.class.getName());
 //                    h5Service.getTopH5Page().getBridge().sendDataWarpToWeb("h5NetworkChange", null, null);
 //                }, 5_000);
+
+                String androidId = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                ToastUtils.INSTANCE.showToast(androidId);
 
                 // SDK_INT
                 LogUtils.INSTANCE.warn(TAG, "SDK_INT" + SystemProperties.get("ro.build.version.sdk"));
