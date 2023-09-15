@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.fastjson.JSONObject;
 import com.alipay.mobile.framework.LauncherApplicationAgent;
 import com.alipay.mobile.framework.quinoxless.QuinoxlessPrivacyUtil;
 import com.alipay.mobile.h5container.service.H5Service;
@@ -61,13 +63,18 @@ import com.jiajia.mypractisedemos.module.webview.WebViewActivity;
 import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
+import com.mpaas.mas.adapter.api.MPLogger;
 import com.mpaas.nebula.adapter.api.MPNebula;
 import com.ta.utdid2.android.utils.SystemProperties;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.security.Permission;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 
@@ -319,16 +326,44 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //                    h5Service.getTopH5Page().getBridge().sendDataWarpToWeb("h5NetworkChange", null, null);
 //                }, 5_000);
 
-                String androidId = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
                 ToastUtils.INSTANCE.showToast(androidId);
 
                 // SDK_INT
                 LogUtils.INSTANCE.warn(TAG, "SDK_INT" + SystemProperties.get("ro.build.version.sdk"));
 
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("key1", null);
+                jsonObject.put("key2", "key2");
+                LogUtils.INSTANCE.warn(TAG, jsonObject.toString());
+
+                getIp();
+
                 break;
             default:
                 break;
         }
+    }
+
+    public String getIp() {
+        String ip = "";
+        if (TextUtils.isEmpty(ip)) {
+            try {
+                for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+                    NetworkInterface intf = en.nextElement();
+                    for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                        InetAddress inetAddress = enumIpAddr.nextElement();
+                        if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                            ip = inetAddress.getHostAddress();
+                            MPLogger.warn("FJJJ", ip);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return ip;
     }
 
     @Override

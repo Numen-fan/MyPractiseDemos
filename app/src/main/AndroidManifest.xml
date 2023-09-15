@@ -17,6 +17,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- Allows an app to access precise location 精准定位权限，api1，如：GPS定位-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--  读取传感器步数信息  -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <meta-data
         android:name="privacy_switcher"
@@ -157,6 +159,15 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize" />
+
+        <receiver android:name=".module.broadcastreceiver.MyBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+            </intent-filter>
+        </receiver>
+        
     </application>
 
 </manifest>
