@@ -111,8 +111,8 @@
 #----------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------
 #---------------------------------实体类---------------------------------
-修改成你对应的包名
--keep class [your_pkg].** { *; }
+#修改成你对应的包名
+-keep class [com.jiajia.mypractisedemos].** { *; }
 
 #---------------------------------第三方包-------------------------------
 
@@ -254,8 +254,8 @@
 
 -keep class im.yixin.sdk.api.YXMessage {*;}
 -keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
-下面中括号的地方需要要填你的包名
--keep public class [your_pkg].R$*{
+#下面中括号的地方需要要填你的包名
+-keep public class [com.jiajia.mypractisedemos].R$*{
     public static final int *;
 }
 -keepclassmembers class * {
@@ -367,7 +367,7 @@ public void xxxxxx(**);
 }
 
 # for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 # #  ######## greenDao混淆  ##########
 # # -------------------------------------------
@@ -438,16 +438,16 @@ public void xxxxxx(**);
 -keep class com.autonavi.**  {*;}
 -keep class com.a.a.**  {*;}
 #---------------------------------反射相关的类和方法-----------------------
-在这下面写反射相关的类和方法，没有就不用写！
+#在这下面写反射相关的类和方法，没有就不用写！
 
 
 
 
 #---------------------------------与js互相调用的类------------------------
-在这下面写与js互相调用的类，没有就去掉这句话！
+#在这下面写与js互相调用的类，没有就去掉这句话！
 
 #---------------------------------自定义View的类------------------------
-在这下面写自定义View的类的类，没有就去掉这句话！
+#在这下面写自定义View的类的类，没有就去掉这句话！
 
 #SuperID
 #由*郭宇翔*贡献混淆代码
@@ -485,13 +485,13 @@ public void xxxxxx(**);
 }
 
 #litepal
--dontwarn org.litepal.
--keep class org.litepal.* { ; }
--keep enum org.litepal.*
--keep interface org.litepal. { ; }
--keep public class  extends org.litepal.
--keepattributes Annotation
--keepclassmembers class * extends org.litepal.crud.DataSupport{*;}
+#-dontwarn org.litepal.
+#-keep class org.litepal.*
+#-keep enum org.litepal.*
+#-keep interface org.litepal.*
+#-keep public class  extends org.litepal.
+#-keepattributes Annotation
+#-keepclassmembers class * extends org.litepal.crud.DataSupport{*;}
 
 #fastJson
 -dontwarn com.alibaba.fastjson.**

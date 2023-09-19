@@ -29,14 +29,36 @@ android {
             }
         }
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('key_store.jks')
+            storePassword '12345678'
+            keyAlias 'key_store'
+            keyPassword '12345678'
+        }
+        release {
+            storeFile file('key_store.jks')
+            storePassword '12345678'
+            keyAlias 'key_store'
+            keyPassword '12345678'
+        }
+    }
     buildTypes {
         release {
             // 代码混淆配置
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
         }
     }
 
+//    环境配置
     flavorDimensions 'env'
     productFlavors {
         dev {
