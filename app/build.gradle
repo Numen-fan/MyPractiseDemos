@@ -37,6 +37,18 @@ android {
         }
     }
 
+    flavorDimensions 'env'
+    productFlavors {
+        dev {
+            dimension 'env'
+            applicationId 'com.jiajia.mypractisedemos.debug'
+        }
+        prob {
+            dimension 'env'
+            applicationId 'com.jiajia.mypractisedemos'
+        }
+    }
+
     dataBinding {
         enabled = true
     }
