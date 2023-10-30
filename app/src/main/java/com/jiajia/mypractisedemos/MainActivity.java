@@ -63,6 +63,7 @@ import com.jiajia.mypractisedemos.module.webview.WebViewActivity;
 import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
+import com.jiajia.mypractisedemos.utils.Utils;
 import com.mpaas.mas.adapter.api.MPLogger;
 import com.mpaas.nebula.adapter.api.MPNebula;
 import com.ta.utdid2.android.utils.SystemProperties;
@@ -327,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //                }, 5_000);
 
                 String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-                ToastUtils.INSTANCE.showToast(androidId);
+//                ToastUtils.INSTANCE.showToast(androidId);
 
                 // SDK_INT
                 LogUtils.INSTANCE.warn(TAG, "SDK_INT" + SystemProperties.get("ro.build.version.sdk"));
@@ -338,6 +339,12 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 LogUtils.INSTANCE.warn(TAG, jsonObject.toString());
 
                 getIp();
+
+                if (Utils.isHook(this)) {
+                    ToastUtils.INSTANCE.showToast("存在hook");
+                } else {
+                    ToastUtils.INSTANCE.showToast("不存在hook");
+                }
 
                 break;
             default:
