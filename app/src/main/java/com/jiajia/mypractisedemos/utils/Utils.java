@@ -1,18 +1,23 @@
 package com.jiajia.mypractisedemos.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.BatteryManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.jiajia.mypractisedemos.MyApplication;
+import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -216,5 +221,23 @@ public class Utils {
             return true;
         }
         return false;
+    }
+
+    public static boolean checkVPN(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        @SuppressLint("MissingPermission") NetworkInfo networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_VPN);
+        if (networkInfo == null) {
+            LogUtils.INSTANCE.warn(TAG, "networkInfo == null");
+        } else {
+            LogUtils.INSTANCE.warn(TAG, "is Vpn " + networkInfo.isConnected());
+        }
+        boolean isVpnConn = networkInfo == null ? false : networkInfo.isConnected();
+        return isVpnConn;
+    }
+
+    public static void getBatteryState() {
+        BatteryManager manager = (BatteryManager) MyApplication.getInstance().getSystemService(Context.BATTERY_SERVICE);
+        int batteryState = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_STATUS);
+        LogUtils.INSTANCE.warn(TAG, "battery state is " + batteryState);
     }
 }
