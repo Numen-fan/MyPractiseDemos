@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 if (Utils.isHook(this)) {
                     ToastUtils.INSTANCE.showToast("存在hook");
                 } else {
-                    ToastUtils.INSTANCE.showToast("不存在hook");
+                    ToastUtils.INSTANCE.showToast("不存在hook  ");
                 }
 
                 Utils.checkVPN(this);
