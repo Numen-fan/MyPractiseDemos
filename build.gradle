@@ -15,6 +15,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
         maven {
             url 'http://mvn.cloud.alipay.com/nexus/content/repositories/releases/'
             name 'alipay'
@@ -42,6 +43,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
         maven { url "https://jitpack.io" }
         maven {
             url 'http://mvn.cloud.alipay.com/nexus/content/repositories/releases/'

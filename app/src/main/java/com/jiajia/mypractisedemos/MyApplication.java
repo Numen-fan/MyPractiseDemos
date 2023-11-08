@@ -2,6 +2,7 @@ package com.jiajia.mypractisedemos;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.jiajia.mypractisedemos.module.webview.MyJSApiPlugin;
 import com.mpaas.nebula.adapter.api.MPNebula;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Stack;
 
 public class MyApplication extends Application {
@@ -75,6 +77,8 @@ public class MyApplication extends Application {
         ARouter.init(this);
         // 是否需要考虑进程问题呢？？？
         QuinoxlessFramework.init();
+
+        getCurrentProcess();
     }
 
     @Override
@@ -168,5 +172,20 @@ public class MyApplication extends Application {
                 activities.pop();
             }
         });
+    }
+
+    private void getCurrentProcess() {
+        try {
+            ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> infos = am.getRunningAppProcesses();
+            int pid = android.os.Process.myPid();
+            for (ActivityManager.RunningAppProcessInfo info : infos) {
+                if (pid == info.pid) {
+                    LogUtils.INSTANCE.warn(TAG, "找到了进程：" + pid);
+                }
+            }
+        } catch (Exception e) {
+
+        }
     }
 }

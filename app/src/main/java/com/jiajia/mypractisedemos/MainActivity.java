@@ -346,6 +346,10 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                     ToastUtils.INSTANCE.showToast("不存在hook");
                 }
 
+                Utils.checkVPN(this);
+
+                Utils.getBatteryState();
+
                 break;
             default:
                 break;
