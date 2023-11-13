@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 
 public class DialogActivity extends AppCompatActivity {
 
+    private static final String TAG = "DialogActivity";
     @BindView(R.id.btn_dialog_style1)
     Button btn_dialog_style1;
     @BindView(R.id.btn_dialog_style2)
