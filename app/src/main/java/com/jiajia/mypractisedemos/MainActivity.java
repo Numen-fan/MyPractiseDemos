@@ -329,6 +329,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
                 String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 //                ToastUtils.INSTANCE.showToast(androidId);
+                // 修改文件 commit->1
 
                 // SDK_INT
                 LogUtils.INSTANCE.warn(TAG, "SDK_INT" + SystemProperties.get("ro.build.version.sdk"));
