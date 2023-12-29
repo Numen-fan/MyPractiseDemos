@@ -1,6 +1,5 @@
 package com.jiajia.mypractisedemos;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,16 +7,11 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.alibaba.fastjson.JSONObject;
-import com.alipay.mobile.framework.LauncherApplicationAgent;
-import com.alipay.mobile.framework.quinoxless.QuinoxlessPrivacyUtil;
-import com.alipay.mobile.h5container.service.H5Service;
-import com.alipay.mobile.nebulacore.ui.H5Activity;
 import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.aidl.AIDLActivity;
@@ -64,16 +53,13 @@ import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
 import com.jiajia.mypractisedemos.utils.Utils;
+import com.jiajia.playermodule.PlayerActivity;
 import com.mpaas.mas.adapter.api.MPLogger;
-import com.mpaas.nebula.adapter.api.MPNebula;
-import com.ta.utdid2.android.utils.SystemProperties;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.security.Permission;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -310,8 +296,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //                        + this.shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
 //                        + ", ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)"
 //                        + ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA));
-//                if ( ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 10086);
+//                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 10086);
 //                } else {
 //                    LogUtils.INSTANCE.warn(TAG, "无权限");
 //                }
@@ -327,29 +313,31 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //                    h5Service.getTopH5Page().getBridge().sendDataWarpToWeb("h5NetworkChange", null, null);
 //                }, 5_000);
 
-                String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+//                String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 //                ToastUtils.INSTANCE.showToast(androidId);
                 // 修改文件 commit->1
 
                 // SDK_INT
-                LogUtils.INSTANCE.warn(TAG, "SDK_INT" + SystemProperties.get("ro.build.version.sdk"));
-
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("key1", null);
-                jsonObject.put("key2", "key2");
-                LogUtils.INSTANCE.warn(TAG, jsonObject.toString());
-
-                getIp();
-
+//                LogUtils.INSTANCE.warn(TAG, "SDK_INT" + SystemProperties.get("ro.build.version.sdk"));
+//
+//                JSONObject jsonObject = new JSONObject();
+//                jsonObject.put("key1", null);
+//                jsonObject.put("key2", "key2");
+//                LogUtils.INSTANCE.warn(TAG, jsonObject.toString());
+//
+//                getIp();
+//
                 if (Utils.isHook(this)) {
                     ToastUtils.INSTANCE.showToast("存在hook");
                 } else {
                     ToastUtils.INSTANCE.showToast("不存在hook  ");
                 }
 
-                Utils.checkVPN(this);
+//                Utils.checkVPN(this);
 
-                Utils.getBatteryState();
+//                Utils.getBatteryState();
+
+                PlayerActivity.startActivity(this);
 
                 break;
             default:
