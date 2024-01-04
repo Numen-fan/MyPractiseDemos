@@ -186,6 +186,8 @@ dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
+    implementation "android.arch.lifecycle:livedata:1.1.1"
+
     // UC内核
 //    implementation('com.alipay.android.phone.wallet:nebulaucsdk-build:999.3.22.2.51.220908200129@aar') {
 //        force = true

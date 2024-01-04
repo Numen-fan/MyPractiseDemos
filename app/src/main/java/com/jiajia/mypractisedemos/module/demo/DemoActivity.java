@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.MyApplication;
 import com.jiajia.mypractisedemos.R;
+import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
 import com.jiajia.mypractisedemos.utils.Utils;
 
 import android.content.Context;
@@ -17,10 +18,13 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -174,6 +178,10 @@ public class DemoActivity extends AppCompatActivity {
         });
 
         bigView = findViewById(R.id.big_view);
+
+        final MutableLiveData<String> simpleLiveData = new MutableLiveData<>();
+        Observer<String> observer = text -> ToastUtils.INSTANCE.showToast("来了");
+        simpleLiveData.observe(this, observer);
 
 
     }
