@@ -20,6 +20,7 @@
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:text="http://154.17.18.53/api/v1/client/subscribe?token=f4debff197a64da322e83d6cc39ffb9e"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_age" />
 

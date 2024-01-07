@@ -108,6 +108,13 @@
         android:layout_width="375dp"
         android:layout_height="20dp"/>
 
+    <EditText
+        android:textColor="@color/au_button_text_for_main2"
+        android:text="https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8
+"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.jiajia.mypractisedemos.module.demo.ColorTrackTextView
         android:id="@+id/tv_color_text"
         android:layout_marginTop="20dp"
