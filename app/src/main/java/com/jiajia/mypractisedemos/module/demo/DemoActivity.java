@@ -39,6 +39,11 @@ import android.widget.Toast;
 @Route(path = RouteConfig.APP_DEMO_ACTIVITY)
 public class DemoActivity extends AppCompatActivity {
 
+    /**
+     * http://live.us.sinaimg.cn/000e0QuGjx07r9yBsV3N070d01000fh50k01.m3u8
+     * https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8
+     */
+
     private static final String TAG = "DemoActivity";
 
     ImageView img;

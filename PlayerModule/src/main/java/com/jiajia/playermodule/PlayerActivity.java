@@ -22,9 +22,9 @@ public class PlayerActivity extends AppCompatActivity {
 
     private static final String TAG = "PlayerActivity";
 
-    String movieUrl = "http://tv.nousiptv.com:8080/series/223871/Fabian871/1187727.mkv";
+    String movieUrl = "http://vjs.zencdn.net/v/oceans.mp4";
 
-    String liveUrl = "http://tv.nousiptv.com:8080/live/223871/Fabian871/1155816.ts";
+    String liveUrl = "https://www.twitch.tv/topnewsal";
 
     String vodUrl = "";
 
@@ -44,6 +44,8 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
 
         player = new IjkMediaPlayer();
+
+        player.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "user_agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0) Gecko/20100101 Firefox/78.0");
 
         mSurfaceView = findViewById(R.id.surface_view);
         mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
