@@ -48,6 +48,7 @@ import com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity;
 import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
 import com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity;
 import com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview;
+import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordActivity;
 import com.jiajia.mypractisedemos.module.webview.WebViewActivity;
 import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private static final String AIDL = "AIDL";
     private static final String WEBVIEW = "webview";
 
+    private static final String VIDEO_COMPRESSOR = "VIDEO_COMPRESSOR";
+
 
 
     @Override
@@ -158,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         funcNames.add(HOOK_AT);
         funcNames.add(AIDL);
         funcNames.add(WEBVIEW);
+        funcNames.add(VIDEO_COMPRESSOR);
 
     }
 
@@ -258,6 +262,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 break;
             case WEBVIEW:
                 BaseActivity.startActivity(this, WebViewActivity.class);
+                break;
+            case VIDEO_COMPRESSOR:
+                BaseActivity.startActivity(this, VideoRecordActivity.class);
                 break;
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");

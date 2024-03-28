@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jiajia.mypractisedemos">
 
+<!--    <uses-feature-->
+<!--        android:name="android.hardware.camera"-->
+<!--        android:required="false" />-->
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- 启用应用启动设备发现或者操作蓝牙设备的超级管理员 -->
@@ -12,20 +16,23 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- Allows an app to access approximate location.  近似定位权限，api1，如：网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- Allows an app to access precise location 精准定位权限，api1，如：GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--  读取传感器步数信息  -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Allows an app to access approximate location.  近似定位权限，api1，如：网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Allows an app to access precise location 精准定位权限，api1，如：GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 读取传感器步数信息 -->
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <meta-data
         android:name="privacy_switcher"
+        android:value="true" /> <!-- SHA1: 0E:F0:67:0D:58:37:67:E1:2F:65:45:2F:35:23:2A:C4:16:7C:E3:D7 -->
+    <meta-data
+        android:name="nebula.android.meta.enable"
         android:value="true" />
-    <!--SHA1: 0E:F0:67:0D:58:37:67:E1:2F:65:45:2F:35:23:2A:C4:16:7C:E3:D7-->
-    <meta-data android:name="nebula.android.meta.enable" android:value="true"/>
-    <meta-data android:name="UCSDKAppKey" android:value="0E:F0:67:0D:58:37:67:E1:2F:65:45:2F:35:23:2A:C4:16:7C:E3:D7"/>
+    <meta-data
+        android:name="UCSDKAppKey"
+        android:value="0E:F0:67:0D:58:37:67:E1:2F:65:45:2F:35:23:2A:C4:16:7C:E3:D7" />
 
     <application
         android:name=".MyApplication"
@@ -38,6 +45,14 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:name">
         <activity
+            android:name=".module.videocompressor.VideoRecordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".module.videocompressor.VideoCompressorActivity"
+            android:exported="false"
+            android:label="@string/title_activity_video_compressor"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".module.webview.WebViewActivity"
             android:exported="false">
             <meta-data
@@ -47,11 +62,13 @@
         <activity
             android:name=".module.butterknife.ButterKnifeMainActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -160,14 +177,14 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize" />
 
-        <receiver android:name=".module.broadcastreceiver.MyBroadcastReceiver"
+        <receiver
+            android:name=".module.broadcastreceiver.MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
             </intent-filter>
         </receiver>
-        
     </application>
 
 </manifest>

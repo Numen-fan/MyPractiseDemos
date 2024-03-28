@@ -58,18 +58,18 @@ android {
         }
     }
 
-//    环境配置
-    flavorDimensions 'env'
-    productFlavors {
-        dev {
-            dimension 'env'
-            applicationId 'com.jiajia.mypractisedemos.debug'
-        }
-        prob {
-            dimension 'env'
-            applicationId 'com.jiajia.mypractisedemos'
-        }
-    }
+////    环境配置
+//    flavorDimensions 'env'
+//    productFlavors {
+//        dev {
+//            dimension 'env'
+////            applicationId 'com.jiajia.mypractisedemos.debug'
+//        }
+//        prob {
+//            dimension 'env'
+////            applicationId 'com.jiajia.mypractisedemos'
+//        }
+//    }
 
     dataBinding {
         enabled = true
@@ -108,6 +108,10 @@ android {
     }
 
     ndkVersion "25.1.8937393"
+
+    viewBinding {
+        enabled = true
+    }
 
 }
 
