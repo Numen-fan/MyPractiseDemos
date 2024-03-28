@@ -24,7 +24,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     String movieUrl = "http://vjs.zencdn.net/v/oceans.mp4";
 
-    String liveUrl = "https://www.twitch.tv/topnewsal";
+    String liveUrl = "https://5d00db0e0fcd5.streamlock.net/7236/7236/playlist.m3u8";
 
     String vodUrl = "";
 
@@ -54,7 +54,7 @@ public class PlayerActivity extends AppCompatActivity {
                 surface = holder.getSurface();
 //                player.setSurface(surface);
 //                player.setDisplay(holder);
-                Log.d(TAG, "surfaceCreated: ");
+                Log.d(TAG, "surfaceCreated: surface = " + surface);
             }
 
             @Override
@@ -103,6 +103,8 @@ public class PlayerActivity extends AppCompatActivity {
         findViewById(R.id.btn_movie).setOnClickListener(v -> changePlayerCast(movieUrl));
 
 //        findViewById(R.id.btn_vod).setOnClickListener(v->changePlayerCast());
+
+        changePlayerCast(liveUrl);
 
     }
 
