@@ -9,22 +9,27 @@ import java.lang.Exception
  */
 object LogUtils {
 
+    @JvmStatic
     fun debug(tag: String, msg: String) {
         Log.d(tag, msg)
     }
 
+    @JvmStatic
     fun info(tag: String, msg: String) {
         Log.i(tag, msg)
     }
 
+    @JvmStatic
     fun warn(tag: String, msg: String) {
         Log.w(tag, msg)
     }
 
+    @JvmStatic
     fun error(tag: String, msg: String) {
         Log.e(tag, msg)
     }
 
+    @JvmStatic
     fun error(tag: String, msg: String, e: Exception) {
         val sb = StringBuilder()
         if (e.message != null) {
@@ -36,6 +41,7 @@ object LogUtils {
         Log.e(tag, msg + "\n" + sb.toString())
     }
 
+    @JvmStatic
     fun error(tag: String, msg: String, e: Throwable) {
         val sb = StringBuilder()
         if (e.message != null) {

@@ -135,6 +135,7 @@ dependencies {
     implementation project(path: ':ButterKnifeAnnotationLib')
     implementation project(path: ':ButterKnife')
     implementation 'com.mpaas.android:nebula'
+    implementation project(path: ':videocompressor')
     annotationProcessor project(path: ':ButterKniftCompilerLib')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

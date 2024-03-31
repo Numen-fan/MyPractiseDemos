@@ -8,9 +8,11 @@
 
     <SurfaceView
         android:id="@+id/surface"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -19,13 +21,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start"
-        app:layout_constraintBottom_toTopOf="@id/btn_stop" />
+        app:layout_constraintBottom_toTopOf="@id/btn_compress" />
 
     <Button
-        android:id="@+id/btn_stop"
+        android:id="@+id/btn_compress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="Compress"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="40sp"
+        android:layout_margin="13dp"
+        android:textColor="@color/AU_COLOR_APP_RED"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_start"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
