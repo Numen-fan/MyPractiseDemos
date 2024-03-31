@@ -61,7 +61,9 @@ import java.lang.reflect.Method;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -333,6 +335,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //                LogUtils.INSTANCE.warn(TAG, jsonObject.toString());
 //
 //                getIp();
+
+                LogUtils.INSTANCE.warn(TAG, getMacAddress());
 //
                 if (Utils.isHook(this)) {
                     ToastUtils.INSTANCE.showToast("存在hook");
@@ -371,6 +375,31 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             }
         }
         return ip;
+    }
+
+    public static String getMacAddress() {
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                if (intf.getName().equalsIgnoreCase("wlan0")) {
+                    byte[] mac = intf.getHardwareAddress();
+                    if (mac == null) {
+                        return "";
+                    }
+                    StringBuilder buf = new StringBuilder();
+                    for (byte aMac : mac) {
+                        buf.append(String.format("%02X:", aMac));
+                    }
+                    if (buf.length() > 0) {
+                        buf.deleteCharAt(buf.length() - 1);
+                    }
+                    return buf.toString();
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override

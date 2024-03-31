@@ -8,9 +8,9 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -71,9 +71,14 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         // 编码器 注意，如果使用AMR_NB将会导致IOS无法播放
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        mRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.VP9);
-
-        mRecorder.setVideoSize(640, 480); //输出视频的分辨率
+        mRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.HEVC);
+        CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_VGA);
+        }
+        LogUtils.INSTANCE.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight);
+//        mRecorder.setVideoSize(1080, 720); //输出视频的分辨率
+//        mRecorder.setVideoSize(640, 480);
         mRecorder.setVideoFrameRate(30); //帧率
         mRecorder.setVideoEncodingBitRate(3 * 1024 * 1024); //编码比特率
         mRecorder.setOrientationHint(90);
