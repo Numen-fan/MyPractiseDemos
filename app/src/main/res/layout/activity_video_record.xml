@@ -42,4 +42,16 @@
         app:layout_constraintBottom_toTopOf="@id/btn_start"
         />
 
+    <TextView
+        android:id="@+id/process"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="40sp"
+        android:layout_margin="13dp"
+        android:textColor="@color/AU_COLOR_APP_GREEN"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_start"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

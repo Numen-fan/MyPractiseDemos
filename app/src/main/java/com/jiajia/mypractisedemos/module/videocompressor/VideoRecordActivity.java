@@ -1,6 +1,7 @@
 package com.jiajia.mypractisedemos.module.videocompressor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -11,7 +12,9 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
@@ -22,6 +25,10 @@ import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
 import com.vincent.videocompressor.VideoCompress;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -41,7 +48,8 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
 
     private Timer timer;
 
-    String path = "/data/data/com.jiajia.mypractisedemos/cache/video/1711901573034_640_480.mp4";
+    // /data/user/0/com.jiajia.mypractisedemos/cache
+    String path = "/data/data/com.jiajia.mypractisedemos/cache/video/1711954219560_1280_720.mp4";
 
 
     @Override
@@ -62,7 +70,8 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         });
         surfaceView.getHolder().addCallback(this);
         binding.btnCompress.setOnClickListener((v) -> {
-            startCompress();
+//            startCompress();
+            transBase64();
         });
     }
 
@@ -75,6 +84,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void startRecord() {
         mRecorder = new MediaRecorder();
         mRecorder.reset();
@@ -86,46 +96,51 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         // 编码器 注意，如果使用AMR_NB将会导致IOS无法播放
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        mRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.MPEG_4_SP);
+        mRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.HEVC);
         CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_480P);
 //        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_VGA)) {
-//            LogUtils.INSTANCE.error(TAG, "CamcorderProfile.QUALITY_VGA");
+//            LogUtils.error(TAG, "CamcorderProfile.QUALITY_VGA");
 //        }
         if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_1080P)) {
-            LogUtils.INSTANCE.error(TAG, "CamcorderProfile.QUALITY_1080P");
+            LogUtils.error(TAG, "CamcorderProfile.QUALITY_1080P");
         }
         if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_720P)) {
-            LogUtils.INSTANCE.error(TAG, "CamcorderProfile.QUALITY_VGA");
+            LogUtils.error(TAG, "CamcorderProfile.QUALITY_VGA");
         }
         if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_480P)) {
-            LogUtils.INSTANCE.error(TAG, "CamcorderProfile.QUALITY_480P");
+            LogUtils.error(TAG, "CamcorderProfile.QUALITY_480P");
         }
-        LogUtils.INSTANCE.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight);
+        LogUtils.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight + ",videoBitRate = " + mProfile.videoBitRate);
         mRecorder.setVideoSize(mProfile.videoFrameWidth, mProfile.videoFrameHeight);
-        mRecorder.setVideoFrameRate(30); //帧率
-        mRecorder.setVideoEncodingBitRate(3 * 1024 * 1024); //编码比特率
+        LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate);
+        mRecorder.setVideoFrameRate(20); //帧率
+//        mRecorder.setVideoEncodingBitRate(5 * 1024 * 1024); //编码比特率
         mRecorder.setOrientationHint(90);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            mRecorder.setVideoEncodingProfileLevel(MediaCodecInfo.CodecProfileLevel.HEVCProfileMain, MediaCodecInfo.CodecProfileLevel.HEVCHighTierLevel1);
+//        }
         // 设置记录会话的最大持续时间（毫秒）
-        int duration = 3 * 60 * 1000;
+        int duration = 1 * 30 * 1000;
         setSurfaceViewLayoutParams(mProfile.videoFrameHeight, mProfile.videoFrameWidth);
         mRecorder.setMaxDuration(duration);
 
         mRecorder.setPreviewDisplay(surfaceHolder.getSurface());
-        path = getCacheDir() + File.separator + "video";
+        camera.autoFocus(null);
+        path = getCacheDir().getAbsolutePath() + File.separator + "video";
         File dir = new File(path);
         if (!dir.exists()) {
             boolean res = dir.mkdir();
-            LogUtils.INSTANCE.error(TAG, res + "");
+            LogUtils.error(TAG, res + "");
         }
         path += File.separator + System.currentTimeMillis() + "_" + mProfile.videoFrameWidth + "_" + mProfile.videoFrameHeight + ".mp4";
-        LogUtils.INSTANCE.error(TAG, path);
+        LogUtils.error(TAG, path);
         mRecorder.setOutputFile(path);
         try {
             mRecorder.prepare();
             mRecorder.start();
             startTimer(duration);
         } catch (Exception e) {
-            LogUtils.INSTANCE.error(TAG, e.getMessage());
+            LogUtils.error(TAG, e.getMessage());
         }
     }
 
@@ -151,9 +166,35 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
 
             @Override
             public void onProgress(float percent) {
-
+                binding.process.setText(String.format(Locale.getDefault(), "%.2f", percent) + "%");
             }
         });
+    }
+
+    private void transBase64() {
+        String base64 = null;
+        InputStream in = null;
+        File file = new File(path);
+        try {
+            in = new FileInputStream(file);
+            byte[] bytes = new byte[in.available()];
+            int length = in.read(bytes);
+            base64 = Base64.encodeToString(bytes, 0, length, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (base64 == null) {
+            return;
+        }
+        LogUtils.error(TAG, "origin size = " + file.length() / 1024 / 1024 + ", base64 size = " + base64.getBytes().length / 1024 / 1024);
     }
 
 
