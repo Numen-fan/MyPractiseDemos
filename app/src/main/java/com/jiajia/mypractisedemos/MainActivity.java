@@ -1,5 +1,6 @@
 package com.jiajia.mypractisedemos;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,9 +8,12 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
@@ -266,7 +270,28 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 BaseActivity.startActivity(this, WebViewActivity.class);
                 break;
             case VIDEO_COMPRESSOR:
-                BaseActivity.startActivity(this, VideoRecordActivity.class);
+                List<String> permissionList = new ArrayList<>();
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
+                        PackageManager.PERMISSION_GRANTED) {
+                    permissionList.add(Manifest.permission.CAMERA);
+                }
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                        PackageManager.PERMISSION_GRANTED) {
+                    permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                }
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                        PackageManager.PERMISSION_GRANTED) {
+                    permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+                }
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) !=
+                        PackageManager.PERMISSION_GRANTED) {
+                    permissionList.add(Manifest.permission.RECORD_AUDIO);
+                }
+                if (permissionList.isEmpty()) {
+                    BaseActivity.startActivity(this, VideoRecordActivity.class);
+                } else {
+                    ActivityCompat.requestPermissions(this, permissionList.toArray(new String[0]), 50);
+                }
                 break;
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");
@@ -406,6 +431,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         LogUtils.INSTANCE.warn(TAG, "result is b " + grantResults[0]);
+        if (requestCode == 50) {
+            BaseActivity.startActivity(this, VideoRecordActivity.class);
+        }
     }
 
     /**

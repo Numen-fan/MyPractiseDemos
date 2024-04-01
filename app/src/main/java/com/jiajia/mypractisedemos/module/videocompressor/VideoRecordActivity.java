@@ -14,6 +14,7 @@ import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -28,7 +29,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -48,8 +52,10 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
 
     private Timer timer;
 
+    private int fps = 0;
+
     // /data/user/0/com.jiajia.mypractisedemos/cache
-    String path = "/data/data/com.jiajia.mypractisedemos/cache/video/1711954219560_1280_720.mp4";
+    String path = "/data/data/com.jiajia.mypractisedemos/cache/video/1711985445784_720_480.mp4";
 
 
     @Override
@@ -60,18 +66,12 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         surfaceView = binding.surface;
         camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
         binding.btnStart.setOnClickListener((v) -> {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
-                    PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
-                        50);
-            } else {
-                startRecord();
-            }
+            startRecord();
         });
         surfaceView.getHolder().addCallback(this);
         binding.btnCompress.setOnClickListener((v) -> {
-//            startCompress();
-            transBase64();
+            startCompress();
+//            transBase64();
         });
     }
 
@@ -79,12 +79,11 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 50 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == 50) {
             startRecord();
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void startRecord() {
         mRecorder = new MediaRecorder();
         mRecorder.reset();
@@ -92,15 +91,16 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         // 视频音频源
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+//        mRecorder.setAudioChannels(1);
+//        mRecorder.setAudioSamplingRate(44); // 设置音频采样率为44
+//        mRecorder.setAudioEncodingBitRate(64); // 设置音频比特率为64
         // 输出文件格式
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         // 编码器 注意，如果使用AMR_NB将会导致IOS无法播放
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         mRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.HEVC);
         CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_480P);
-//        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_VGA)) {
-//            LogUtils.error(TAG, "CamcorderProfile.QUALITY_VGA");
-//        }
+
         if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_1080P)) {
             LogUtils.error(TAG, "CamcorderProfile.QUALITY_1080P");
         }
@@ -112,20 +112,15 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         }
         LogUtils.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight + ",videoBitRate = " + mProfile.videoBitRate);
         mRecorder.setVideoSize(mProfile.videoFrameWidth, mProfile.videoFrameHeight);
-        LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate);
-        mRecorder.setVideoFrameRate(20); //帧率
-//        mRecorder.setVideoEncodingBitRate(5 * 1024 * 1024); //编码比特率
+        LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate + ", min fps = " + fps);
+        mRecorder.setVideoFrameRate(30); //帧率
+        mRecorder.setVideoEncodingBitRate(1024 * 1024); //编码比特率
         mRecorder.setOrientationHint(90);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            mRecorder.setVideoEncodingProfileLevel(MediaCodecInfo.CodecProfileLevel.HEVCProfileMain, MediaCodecInfo.CodecProfileLevel.HEVCHighTierLevel1);
-//        }
         // 设置记录会话的最大持续时间（毫秒）
         int duration = 1 * 30 * 1000;
         setSurfaceViewLayoutParams(mProfile.videoFrameHeight, mProfile.videoFrameWidth);
         mRecorder.setMaxDuration(duration);
-
         mRecorder.setPreviewDisplay(surfaceHolder.getSurface());
-        camera.autoFocus(null);
         path = getCacheDir().getAbsolutePath() + File.separator + "video";
         File dir = new File(path);
         if (!dir.exists()) {
@@ -148,7 +143,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         int index = path.lastIndexOf(".mp4");
         String dest = path.substring(0, index) + "_compress" + ".mp4";
         LogUtils.error(TAG, "dest = " + dest);
-        VideoCompress.compressVideoLow(path, dest, new VideoCompress.CompressListener() {
+        VideoCompress.compressVideoMedium(path, dest, new VideoCompress.CompressListener() {
             @Override
             public void onStart() {
                 ToastUtils.showToast("开始压缩");
@@ -226,6 +221,8 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
                 runOnUiThread(() -> {
                     if (time.get() > duration / 1000) {
                         timer.cancel();
+                        mRecorder.stop();
+                        camera.stopPreview();
                     }
                     time.getAndIncrement();
                     binding.time.setText(time + "");
@@ -239,6 +236,17 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         surfaceHolder = holder;
         camera.setDisplayOrientation(90);
         camera.startPreview();
+        try {
+            camera.setPreviewDisplay(surfaceHolder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if (canAutoFocus(camera)) {
+            camera.autoFocus(null);
+        } else {
+            LogUtils.error(TAG, "不支持自动聚焦");
+        }
+        fps = getMinFps(camera);
         camera.unlock();
     }
 
@@ -263,5 +271,26 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
             timer = null;
         }
         surfaceView = null;
+    }
+
+    private boolean canAutoFocus(Camera camera) {
+        if (camera == null) {
+            return false;
+        }
+        Camera.Parameters params = camera.getParameters();
+        if (params == null) {
+            return false;
+        }
+        String focusMode = params.getFocusMode();
+        return focusMode != null && focusMode.contains(Camera.Parameters.FOCUS_MODE_AUTO);
+    }
+
+    private int getMinFps(Camera camera) {
+        List<int[]> fdps = camera.getParameters().getSupportedPreviewFpsRange();
+        int res = Integer.MAX_VALUE;
+        for (int[] fps : fdps) {
+            res = Math.min(fps[0], res);
+        }
+        return res / 1000;
     }
 }
