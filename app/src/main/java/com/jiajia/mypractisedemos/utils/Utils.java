@@ -20,6 +20,7 @@ import com.jiajia.mypractisedemos.MyApplication;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.HashSet;
 import java.util.List;
@@ -239,5 +240,11 @@ public class Utils {
         BatteryManager manager = (BatteryManager) MyApplication.getInstance().getSystemService(Context.BATTERY_SERVICE);
         int batteryState = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_STATUS);
         LogUtils.INSTANCE.warn(TAG, "battery state is " + batteryState);
+    }
+
+    public static String getAppRootPath() {
+        File externalPrivateRootFilesDir = MyApplication.context.getExternalFilesDir(null);
+        return  (externalPrivateRootFilesDir != null ? externalPrivateRootFilesDir.getPath()
+                : MyApplication.context.getFilesDir().getPath()) + "/primary";
     }
 }

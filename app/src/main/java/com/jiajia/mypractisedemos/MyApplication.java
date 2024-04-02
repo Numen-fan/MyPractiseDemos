@@ -11,19 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.alipay.mobile.framework.quinoxless.IInitCallback;
-import com.alipay.mobile.framework.quinoxless.QuinoxlessApplication;
 import com.alipay.mobile.framework.quinoxless.QuinoxlessFramework;
-import com.alipay.mobile.h5container.api.H5Plugin;
-import com.alipay.mobile.nebula.provider.H5AppCenterPresetProvider;
 import com.alipay.mobile.nebula.provider.H5NebulaFileProvider;
 import com.alipay.mobile.nebula.util.H5Utils;
-import com.alipay.mobile.nebulaappproxy.inside.provider.InsidePresetProviderImpl;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.jiajia.basemodule.BuildConfig;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.webview.H5NebulaFileProviderImpl;
-import com.jiajia.mypractisedemos.module.webview.H5RsaProviderImpl;
 import com.jiajia.mypractisedemos.module.webview.MyJSApiPlugin;
 import com.mpaas.nebula.adapter.api.MPNebula;
 

@@ -38,7 +38,7 @@
         android:textSize="40sp"
         android:layout_margin="13dp"
         android:textColor="@color/AU_COLOR_APP_RED"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
         />
 
@@ -50,8 +50,91 @@
         android:textSize="40sp"
         android:layout_margin="13dp"
         android:textColor="@color/AU_COLOR_APP_GREEN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_start" />
+
+    <TextView
+        android:id="@+id/info_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_start"
-        />
+        android:layout_marginTop="300dp"
+        android:textColor="@color/color_red"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:id="@+id/info_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/info_size"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color_red"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/info_video_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/info_frame"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color_red"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/info_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/info_video_size"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color_red"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/compress_info_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="300dp"
+        android:textColor="@color/AU_COLOR_APP_GREEN"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:id="@+id/compress_info_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/info_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/AU_COLOR_APP_GREEN"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/compress_info_video_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/info_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/AU_COLOR_APP_GREEN"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/compress_info_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/info_video_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/AU_COLOR_APP_GREEN"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/compress_info_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/compress_info_duration"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/AU_COLOR_APP_GREEN"
+        android:layout_margin="10dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
