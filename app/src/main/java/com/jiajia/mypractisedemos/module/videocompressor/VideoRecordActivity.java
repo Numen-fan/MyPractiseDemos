@@ -30,6 +30,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.microshow.rxffmpeg.RxFFmpegCommandList;
+import io.microshow.rxffmpeg.RxFFmpegInvoke;
+
 public class VideoRecordActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
     private static final String TAG = "VideoRecordActivity";
@@ -48,7 +51,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     private int fps = 0;
 
     // /data/user/0/com.jiajia.mypractisedemos/cache
-    String path = "/sdcard/Android/data/com.jiajia.mypractisedemos/cache/video/1712026340317_1280_720.mp4";
+    String path = "/data/data/com.jiajia.mypractisedemos/cache/video/1712066565346.mp4";
     long compressDuration = 0;
 //    String path;
 
@@ -65,10 +68,25 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         surfaceView.getHolder().addCallback(this);
         binding.btnCompress.setOnClickListener((v) -> {
             startCompress();
+//            RxFFmpegComperssor.startRxFFmpegCompress(path);
 //            transBase64();
 //            showVideoInfo();s
 //            showCompressVideoInfo();
         });
+        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_2K)) {
+            LogUtils.error(TAG, "CamcorderProfile.QUALITY_2K");
+        } else {
+            LogUtils.error(TAG, "no CamcorderProfile.QUALITY_2K");
+        }
+        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_1080P)) {
+            LogUtils.error(TAG, "CamcorderProfile.QUALITY_1080P");
+        }
+        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_720P)) {
+            LogUtils.error(TAG, "CamcorderProfile.QUALITY_720P");
+        }
+        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_480P)) {
+            LogUtils.error(TAG, "CamcorderProfile.QUALITY_480P");
+        }
     }
 
 
@@ -87,31 +105,21 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         // 视频音频源
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-//        mRecorder.setAudioChannels(1);
-//        mRecorder.setAudioSamplingRate(44); // 设置音频采样率为44
-//        mRecorder.setAudioEncodingBitRate(64); // 设置音频比特率为64
+
         // 输出文件格式
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         // 编码器 注意，如果使用AMR_NB将会导致IOS无法播放
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         int encoder = MediaRecorder.VideoEncoder.HEVC;
         mRecorder.setVideoEncoder(encoder);
-        CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_720P);
+        CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_1080P);
 
-        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_1080P)) {
-            LogUtils.error(TAG, "CamcorderProfile.QUALITY_1080P");
-        }
-        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_720P)) {
-            LogUtils.error(TAG, "CamcorderProfile.QUALITY_720P");
-        }
-        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_480P)) {
-            LogUtils.error(TAG, "CamcorderProfile.QUALITY_480P");
-        }
         LogUtils.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight + ",videoBitRate = " + mProfile.videoBitRate);
         mRecorder.setVideoSize(mProfile.videoFrameWidth, mProfile.videoFrameHeight);
-        LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate + ", min fps = " + fps);
+        int bitRate = Math.min(mProfile.audioBitRate, mProfile.videoFrameHeight * mProfile.videoFrameWidth);
+        LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate + ", min fps = " + fps + ", bitRate = " + bitRate);
         mRecorder.setVideoFrameRate(mProfile.videoFrameRate); // 帧率
-        mRecorder.setVideoEncodingBitRate(mProfile.videoBitRate); //编码比特率
+        mRecorder.setVideoEncodingBitRate(3 * 1024 * 1024); //编码比特率
         mRecorder.setOrientationHint(90);
         // 设置记录会话的最大持续时间（毫秒）
         int duration = 1 * 30 * 1000;
@@ -134,6 +142,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
             startTimer(duration);
         } catch (Exception e) {
             LogUtils.error(TAG, e.getMessage());
+            ToastUtils.showToast("录制失败");
         }
     }
 
@@ -147,7 +156,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         String dest = path.substring(0, index) + "_compress" + ".mp4";
         LogUtils.error(TAG, "dest = " + dest);
         long startTime = System.currentTimeMillis();
-        VideoCompress.compressVideoMedium(path, dest, new VideoCompress.CompressListener() {
+        VideoCompress.compressVideoLow(path, dest, new VideoCompress.CompressListener() {
             @Override
             public void onStart() {
                 ToastUtils.showToast("开始压缩");
@@ -369,5 +378,11 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
             res = Math.min(fps[0], res);
         }
         return res / 1000;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RxFFmpegInvoke.getInstance().exit();
     }
 }

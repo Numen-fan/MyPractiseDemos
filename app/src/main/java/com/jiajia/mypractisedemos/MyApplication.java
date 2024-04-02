@@ -25,6 +25,8 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Stack;
 
+import io.microshow.rxffmpeg.RxFFmpegInvoke;
+
 public class MyApplication extends Application {
 
     private static final String TAG = "MyApplication";
@@ -70,9 +72,11 @@ public class MyApplication extends Application {
         }
         ARouter.init(this);
         // 是否需要考虑进程问题呢？？？
-        QuinoxlessFramework.init();
+//        QuinoxlessFramework.init();
 
         getCurrentProcess();
+
+        RxFFmpegInvoke.getInstance().setDebug(true);
     }
 
     @Override
