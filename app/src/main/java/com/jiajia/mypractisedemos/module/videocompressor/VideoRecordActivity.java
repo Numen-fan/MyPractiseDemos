@@ -60,7 +60,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     String path = "/storage/sdcard0/DCIM/video/1712118290980_1920_1080_H265.mp4";
     long compressDuration = 0;
 
-    private String BASE_URL = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath() + File.separator + "video";
+    private String BASE_URL = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).getAbsolutePath() + File.separator + "video";
 //    String path;
 
     @Override
@@ -166,9 +166,9 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         int bitRate = mProfile.videoBitRate;
         LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate + ", min fps = " + fps + ", bitRate = " + bitRate);
         mRecorder.setVideoFrameRate(mProfile.videoFrameRate); // 帧率
-        mRecorder.setVideoEncodingBitRate(1024 * 1024); //编码比特率
+        mRecorder.setVideoEncodingBitRate(getBitRate()); //编码比特率
 //        mRecorder.setVideoEncodingBitRate(Math.min(bitRate, 8 * 1920 * 1080));
-        mRecorder.setOrientationHint(90);
+        mRecorder.setOrientationHint(270);
         // 设置记录会话的最大持续时间（毫秒）
         int duration = TextUtils.isEmpty(binding.recordTime.getText().toString()) ? 30 * 1000 : Integer.parseInt(binding.recordTime.getText().toString()) * 1000;
         setSurfaceViewLayoutParams(mProfile.videoFrameHeight, mProfile.videoFrameWidth);

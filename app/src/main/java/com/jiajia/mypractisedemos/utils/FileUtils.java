@@ -32,7 +32,6 @@ public class FileUtils {
         //是否添加到相册
         ContentResolver localContentResolver = context.getContentResolver();
         ContentValues localContentValues = getVideoContentValues(context, file, System.currentTimeMillis());
-//        Uri localUri = FileProvider.getUriForFile(context, context.getPackageName()+".fileprovider", file);
         Uri localUri = localContentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, localContentValues);
         try {
             copyFileAfterQ(context, localContentResolver, file, localUri);

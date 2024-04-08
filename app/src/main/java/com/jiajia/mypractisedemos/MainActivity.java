@@ -53,6 +53,7 @@ import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
 import com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity;
 import com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordActivity;
+import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCamera2Activity;
 import com.jiajia.mypractisedemos.module.webview.WebViewActivity;
 import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     private static final String VIDEO_COMPRESSOR = "VIDEO_COMPRESSOR";
 
+    private static final String VIDEO_COMPRESSOR2 = "video_record2";
 
 
     @Override
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //        funcNames.add(AIDL);
 //        funcNames.add(WEBVIEW);
         funcNames.add(VIDEO_COMPRESSOR);
+        funcNames.add(VIDEO_COMPRESSOR2);
 
     }
 
@@ -270,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 BaseActivity.startActivity(this, WebViewActivity.class);
                 break;
             case VIDEO_COMPRESSOR:
+            case VIDEO_COMPRESSOR2:
                 List<String> permissionList = new ArrayList<>();
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
                         PackageManager.PERMISSION_GRANTED) {
@@ -288,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                     permissionList.add(Manifest.permission.RECORD_AUDIO);
                 }
                 if (permissionList.isEmpty()) {
-                    BaseActivity.startActivity(this, VideoRecordActivity.class);
+                    BaseActivity.startActivity(this, item.equals(VIDEO_COMPRESSOR) ? VideoRecordActivity.class : VideoRecordCamera2Activity.class);
                 } else {
                     ActivityCompat.requestPermissions(this, permissionList.toArray(new String[0]), 50);
                 }
@@ -320,7 +324,6 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     /**
      * 在主界面处理不需要启动相关Activity的点击事件
-     *
      */
     private void handleClickEvent(String func) {
         switch (func) {
