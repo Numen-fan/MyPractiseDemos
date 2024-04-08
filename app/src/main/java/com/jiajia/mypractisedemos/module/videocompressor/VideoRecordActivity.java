@@ -6,18 +6,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecList;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
+import com.jiajia.mypractisedemos.R;
 import com.jiajia.mypractisedemos.databinding.ActivityVideoRecordBinding;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
+import com.jiajia.mypractisedemos.utils.FileUtils;
 import com.vincent.videocompressor.VideoCompress;
 
 import java.io.File;
@@ -30,7 +37,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import io.microshow.rxffmpeg.RxFFmpegCommandList;
 import io.microshow.rxffmpeg.RxFFmpegInvoke;
 
 public class VideoRecordActivity extends AppCompatActivity implements SurfaceHolder.Callback {
@@ -51,8 +57,10 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     private int fps = 0;
 
     // /data/user/0/com.jiajia.mypractisedemos/cache
-    String path = "/data/data/com.jiajia.mypractisedemos/cache/video/1712066565346.mp4";
+    String path = "/storage/sdcard0/DCIM/video/1712118290980_1920_1080_H265.mp4";
     long compressDuration = 0;
+
+    private String BASE_URL = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath() + File.separator + "video";
 //    String path;
 
     @Override
@@ -65,6 +73,10 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         binding.btnStart.setOnClickListener((v) -> {
             startRecord();
         });
+        binding.btnStop.setOnClickListener((v)-> {
+            stopRecord();
+        });
+//        checkSupportedVideoCodecs();
         surfaceView.getHolder().addCallback(this);
         binding.btnCompress.setOnClickListener((v) -> {
             startCompress();
@@ -72,21 +84,52 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
 //            transBase64();
 //            showVideoInfo();s
 //            showCompressVideoInfo();
+//            startLightCompressor();
+//            try {
+//                FileUtils.ZipFolder(path, getCacheDir() + "/video" + "/aaa.zip");
+//            } catch (Exception e) {
+//                ToastUtils.showToast("zip失败");
+//                LogUtils.error(TAG, e.getMessage());
+//            }
         });
-        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_2K)) {
-            LogUtils.error(TAG, "CamcorderProfile.QUALITY_2K");
-        } else {
-            LogUtils.error(TAG, "no CamcorderProfile.QUALITY_2K");
+        initSpinner();
+        File dir = new File(BASE_URL);
+        if (!dir.exists()) {
+            boolean res = dir.mkdir();
+            LogUtils.error(TAG, res + "");
         }
-        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_1080P)) {
-            LogUtils.error(TAG, "CamcorderProfile.QUALITY_1080P");
+
+    }
+
+    private void initSpinner() {
+        // 1 初始化编码器算法
+        ArrayAdapter<String> encoderAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
+        encoderAdapter.add("H264");
+        encoderAdapter.add("H265");
+        encoderAdapter.add("VP8");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            encoderAdapter.add("VP9");
         }
-        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_720P)) {
-            LogUtils.error(TAG, "CamcorderProfile.QUALITY_720P");
-        }
-        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_480P)) {
-            LogUtils.error(TAG, "CamcorderProfile.QUALITY_480P");
-        }
+        binding.encoderMethod.setAdapter(encoderAdapter);
+
+        // 1 初始化编码器算法
+        ArrayAdapter<String> sizeAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
+        sizeAdapter.add("320P");
+        sizeAdapter.add("480P");
+        sizeAdapter.add("720P");
+        sizeAdapter.add("1080P");
+        binding.videoSize.setAdapter(sizeAdapter);
+
+        // 1 初始化编码器算法
+        ArrayAdapter<String> bitAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
+        bitAdapter.add("1024 x 1024");
+        bitAdapter.add("720 x 480");
+        bitAdapter.add("1280 x 720");
+        bitAdapter.add("1920 x 1080");
+        bitAdapter.add("2 x 1024 x 1024");
+        bitAdapter.add("3 x 1024 x 1024");
+        bitAdapter.add("5 x 1024 x 1024");
+        binding.videoBitRate.setAdapter(bitAdapter);
     }
 
 
@@ -107,35 +150,40 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         mRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
 
         // 输出文件格式
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        mRecorder.setOutputFormat(getOutputFormat());
         // 编码器 注意，如果使用AMR_NB将会导致IOS无法播放
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        int encoder = MediaRecorder.VideoEncoder.HEVC;
+        mRecorder.setAudioEncoder(getAudioEncoder());
+        int encoder = getEncoderMethod();
         mRecorder.setVideoEncoder(encoder);
-        CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_1080P);
+        //设置比特率（比特率越高质量越高同样也越大）
+//        mRecorder.setAudioEncodingBitRate(1280);
+//        mRecorder.setAudioSamplingRate(44100);
+
+        CamcorderProfile mProfile = CamcorderProfile.get(getQuality());
 
         LogUtils.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight + ",videoBitRate = " + mProfile.videoBitRate);
         mRecorder.setVideoSize(mProfile.videoFrameWidth, mProfile.videoFrameHeight);
-        int bitRate = Math.min(mProfile.audioBitRate, mProfile.videoFrameHeight * mProfile.videoFrameWidth);
+        int bitRate = mProfile.videoBitRate;
         LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate + ", min fps = " + fps + ", bitRate = " + bitRate);
         mRecorder.setVideoFrameRate(mProfile.videoFrameRate); // 帧率
-        mRecorder.setVideoEncodingBitRate(3 * 1024 * 1024); //编码比特率
+        mRecorder.setVideoEncodingBitRate(1024 * 1024); //编码比特率
+//        mRecorder.setVideoEncodingBitRate(Math.min(bitRate, 8 * 1920 * 1080));
         mRecorder.setOrientationHint(90);
         // 设置记录会话的最大持续时间（毫秒）
-        int duration = 1 * 30 * 1000;
+        int duration = TextUtils.isEmpty(binding.recordTime.getText().toString()) ? 30 * 1000 : Integer.parseInt(binding.recordTime.getText().toString()) * 1000;
         setSurfaceViewLayoutParams(mProfile.videoFrameHeight, mProfile.videoFrameWidth);
         mRecorder.setMaxDuration(duration);
         mRecorder.setPreviewDisplay(surfaceHolder.getSurface());
-        path = getExternalCacheDir() + File.separator + "video";
-        File dir = new File(path);
-        if (!dir.exists()) {
-            boolean res = dir.mkdir();
-            LogUtils.error(TAG, res + "");
-        }
-        path += File.separator + System.currentTimeMillis() + "_" + mProfile.videoFrameWidth + "_" +
-                mProfile.videoFrameHeight + "_" + getEncoderName(encoder) + ".mp4";
+        path = BASE_URL + File.separator + System.currentTimeMillis() + "_" + mProfile.videoFrameWidth + "_" +
+                mProfile.videoFrameHeight + "_" + getEncoderName(encoder) + getOutputFormatFileSub();
         LogUtils.error(TAG, path);
         mRecorder.setOutputFile(path);
+        mRecorder.setOnInfoListener((mr, what, extra) -> {
+            LogUtils.error(TAG, "" + what);
+            if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
+                stopRecord();
+            }
+        });
         try {
             mRecorder.prepare();
             mRecorder.start();
@@ -146,13 +194,31 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         }
     }
 
+    private void stopRecord() {
+        if (timer == null || mRecorder == null) {
+            return;
+        }
+        timer.cancel();
+        timer = null;
+        mRecorder.stop();
+        mRecorder.release();
+        try {
+            showVideoInfo();
+        } catch (Exception e) {
+            ToastUtils.showToast("提前视频信息失败，请前往相册查看");
+        }
+        FileUtils.saveVideo(VideoRecordActivity.this, new File(path));
+    }
+
     private void startCompress() {
+        int index = path.lastIndexOf(".mp4");
+        path = path.substring(0, index) + " (1).mp4";
         File file = new File(path);
         if (!file.exists()) {
             ToastUtils.showToast("媒体文件不存在");
             return;
         }
-        int index = path.lastIndexOf(".mp4");
+        index = path.lastIndexOf(".mp4");
         String dest = path.substring(0, index) + "_compress" + ".mp4";
         LogUtils.error(TAG, "dest = " + dest);
         long startTime = System.currentTimeMillis();
@@ -167,6 +233,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
                 ToastUtils.showToast("压缩成功");
                 compressDuration = (System.currentTimeMillis() - startTime) / 1000;
                 showCompressVideoInfo();
+                FileUtils.saveVideo(VideoRecordActivity.this, new File(dest));
             }
 
             @Override
@@ -259,20 +326,18 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         if (timer == null) {
             timer = new Timer();
         }
-        AtomicInteger time = new AtomicInteger();
+        AtomicInteger time = new AtomicInteger(1);
         timer.schedule(new TimerTask() {
             @SuppressLint("SetTextI18n")
             @Override
             public void run() {
                 runOnUiThread(() -> {
-                    if (time.get() > duration / 1000) {
-                        timer.cancel();
-                        mRecorder.stop();
-                        camera.stopPreview();
-                        showVideoInfo();
+                    binding.time.setText(time + "");
+                    if (time.get() > duration / 1000 && path.endsWith("webm")) {
+                        stopRecord();
+                        return;
                     }
                     time.getAndIncrement();
-                    binding.time.setText(time + "");
                 });
             }
         }, 0, 1000);
@@ -288,10 +353,11 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         String rate_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CAPTURE_FRAMERATE);
         if (TextUtils.isEmpty(rate_s)) {
             String count_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_FRAME_COUNT);
-            long count = Long.valueOf(count_s);
-            //计算帧率
-            long dt = duration / count; // 平均每帧的时间间隔，35ms
-            rate_s = String.valueOf(((int) count / duration)); // 帧率
+            if (!TextUtils.isEmpty(count_s)) {
+                long count = Long.valueOf(count_s);
+                //计算帧率
+                rate_s = String.valueOf(((int) count / duration)); // 帧率
+            }
         }
 
         binding.infoSize.setText("大小：" + String.format("%.2f", new File(path).length() / 1024f / 1024f) + "M");
@@ -384,5 +450,108 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     protected void onDestroy() {
         super.onDestroy();
         RxFFmpegInvoke.getInstance().exit();
+    }
+
+    private int getBitRate() {
+        switch ((String) binding.videoBitRate.getSelectedItem()) {
+            case "720 x 480":
+                return 720 * 480;
+            case "512 x 512":
+                return 512 * 512;
+            case "1024 x 1024":
+                return 1024 * 1024;
+            case "2 x 1024 x 1024":
+                return 2 * 1024 * 1024;
+            case "3 x 1024 x 1024":
+                return 3 * 1024 * 1024;
+            case "4 x 1024 x 1024":
+                return 4 * 1024 * 1024;
+            case "5 x 1024 x 1024":
+                return 5 * 1024 * 1024;
+            case "1280 x 720":
+                return 1280 * 720;
+            case "1920 x 1080":
+                return 1920 * 1080;
+            default:
+                return 1024 * 1024;
+        }
+    }
+
+    private int getEncoderMethod() {
+        switch ((String) binding.encoderMethod.getSelectedItem()) {
+            case "H264":
+                return MediaRecorder.VideoEncoder.H264;
+            case "H265":
+                return MediaRecorder.VideoEncoder.HEVC;
+            case "VP8":
+                return MediaRecorder.VideoEncoder.VP8;
+            case "VP9":
+                return MediaRecorder.VideoEncoder.VP9;
+            default:
+                return MediaRecorder.VideoEncoder.DEFAULT;
+        }
+    }
+
+    private int getQuality() {
+        switch ((String) binding.videoSize.getSelectedItem()) {
+            case "320P":
+                return CamcorderProfile.QUALITY_CIF;
+            case "480P":
+                return CamcorderProfile.QUALITY_480P;
+            case "720P":
+                return CamcorderProfile.QUALITY_720P;
+            case "1080P":
+                return CamcorderProfile.QUALITY_1080P;
+            default:
+                return CamcorderProfile.QUALITY_HIGH;
+        }
+    }
+
+    private int getOutputFormat() {
+        switch ((String) binding.encoderMethod.getSelectedItem()) {
+            case "VP8":
+            case "VP9":
+                return MediaRecorder.OutputFormat.WEBM;
+            default:
+                return MediaRecorder.OutputFormat.MPEG_4;
+        }
+    }
+
+    private int getAudioEncoder() {
+        switch ((String) binding.encoderMethod.getSelectedItem()) {
+            case "VP8":
+            case "VP9":
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    return MediaRecorder.AudioEncoder.OPUS;
+                } else {
+                    return MediaRecorder.AudioEncoder.AAC;
+                }
+            default:
+                return MediaRecorder.AudioEncoder.AAC;
+        }
+    }
+
+    private String getOutputFormatFileSub() {
+        switch ((String) binding.encoderMethod.getSelectedItem()) {
+            case "VP8":
+            case "VP9":
+                return ".webm";
+            default:
+                return ".mp4";
+        }
+    }
+
+    public static void checkSupportedVideoCodecs() {
+        MediaCodecList codecList = new MediaCodecList(MediaCodecList.REGULAR_CODECS);
+        MediaCodecInfo[] codecs = codecList.getCodecInfos();
+        for (MediaCodecInfo codec : codecs) {
+            if (codec.isEncoder()) {
+                LogUtils.error(TAG, "Codec Name: " + codec.getName());
+                String[] supportedTypes = codec.getSupportedTypes();
+                for (String type : supportedTypes) {
+                    LogUtils.error(TAG, "Supported Type: " + type);
+                }
+            }
+        }
     }
 }
