@@ -10,7 +10,6 @@ import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaRecorder;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -18,9 +17,7 @@ import android.util.Base64;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import com.jiajia.mypractisedemos.R;
 import com.jiajia.mypractisedemos.databinding.ActivityVideoRecordBinding;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
@@ -102,34 +99,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     }
 
     private void initSpinner() {
-        // 1 初始化编码器算法
-        ArrayAdapter<String> encoderAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
-        encoderAdapter.add("H264");
-        encoderAdapter.add("H265");
-        encoderAdapter.add("VP8");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            encoderAdapter.add("VP9");
-        }
-        binding.encoderMethod.setAdapter(encoderAdapter);
-
-        // 1 初始化编码器算法
-        ArrayAdapter<String> sizeAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
-        sizeAdapter.add("320P");
-        sizeAdapter.add("480P");
-        sizeAdapter.add("720P");
-        sizeAdapter.add("1080P");
-        binding.videoSize.setAdapter(sizeAdapter);
-
-        // 1 初始化编码器算法
-        ArrayAdapter<String> bitAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
-        bitAdapter.add("1024 x 1024");
-        bitAdapter.add("720 x 480");
-        bitAdapter.add("1280 x 720");
-        bitAdapter.add("1920 x 1080");
-        bitAdapter.add("2 x 1024 x 1024");
-        bitAdapter.add("3 x 1024 x 1024");
-        bitAdapter.add("5 x 1024 x 1024");
-        binding.videoBitRate.setAdapter(bitAdapter);
+        VideoRecorderUtils.initSpinner(this, binding.encoderMethod, binding.videoSize, binding.videoBitRate);
     }
 
 
@@ -142,6 +112,9 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     }
 
     private void startRecord() {
+        String encodeMethod = (String) binding.encoderMethod.getSelectedItem();
+        String resolution = (String) binding.videoSize.getSelectedItem();
+        String bitrate = (String) binding.videoBitRate.getSelectedItem();
         mRecorder = new MediaRecorder();
         mRecorder.reset();
         mRecorder.setCamera(camera);
@@ -150,33 +123,25 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         mRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
 
         // 输出文件格式
-        mRecorder.setOutputFormat(getOutputFormat());
+        mRecorder.setOutputFormat(VideoRecorderUtils.getOutputFormat(encodeMethod));
         // 编码器 注意，如果使用AMR_NB将会导致IOS无法播放
-        mRecorder.setAudioEncoder(getAudioEncoder());
-        int encoder = getEncoderMethod();
+        mRecorder.setAudioEncoder(VideoRecorderUtils.getAudioEncoder(encodeMethod));
+        int encoder = VideoRecorderUtils.getEncoderMethod(encodeMethod);
         mRecorder.setVideoEncoder(encoder);
-        //设置比特率（比特率越高质量越高同样也越大）
-//        mRecorder.setAudioEncodingBitRate(1280);
-//        mRecorder.setAudioSamplingRate(44100);
 
-        CamcorderProfile mProfile = CamcorderProfile.get(getQuality());
-
-        LogUtils.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight + ",videoBitRate = " + mProfile.videoBitRate);
+        CamcorderProfile mProfile = CamcorderProfile.get(VideoRecorderUtils.getQuality(resolution));
         mRecorder.setVideoSize(mProfile.videoFrameWidth, mProfile.videoFrameHeight);
         int bitRate = mProfile.videoBitRate;
-        LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate + ", min fps = " + fps + ", bitRate = " + bitRate);
         mRecorder.setVideoFrameRate(mProfile.videoFrameRate); // 帧率
-        mRecorder.setVideoEncodingBitRate(getBitRate()); //编码比特率
-//        mRecorder.setVideoEncodingBitRate(Math.min(bitRate, 8 * 1920 * 1080));
-        mRecorder.setOrientationHint(270);
+        mRecorder.setVideoEncodingBitRate(VideoRecorderUtils.getBitRate(bitrate)); //编码比特率
+        mRecorder.setOrientationHint(90);
         // 设置记录会话的最大持续时间（毫秒）
         int duration = TextUtils.isEmpty(binding.recordTime.getText().toString()) ? 30 * 1000 : Integer.parseInt(binding.recordTime.getText().toString()) * 1000;
         setSurfaceViewLayoutParams(mProfile.videoFrameHeight, mProfile.videoFrameWidth);
         mRecorder.setMaxDuration(duration);
         mRecorder.setPreviewDisplay(surfaceHolder.getSurface());
         path = BASE_URL + File.separator + System.currentTimeMillis() + "_" + mProfile.videoFrameWidth + "_" +
-                mProfile.videoFrameHeight + "_" + getEncoderName(encoder) + getOutputFormatFileSub();
-        LogUtils.error(TAG, path);
+                mProfile.videoFrameHeight + "_" + getEncoderName(encoder) + VideoRecorderUtils.getOutputFormatFileSub(encoder);
         mRecorder.setOutputFile(path);
         mRecorder.setOnInfoListener((mr, what, extra) -> {
             LogUtils.error(TAG, "" + what);
@@ -192,6 +157,10 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
             LogUtils.error(TAG, e.getMessage());
             ToastUtils.showToast("录制失败");
         }
+
+        LogUtils.error(TAG, path);
+        LogUtils.error(TAG, "width = " + mProfile.videoFrameWidth + ", height = " + mProfile.videoFrameHeight + ",videoBitRate = " + mProfile.videoBitRate);
+        LogUtils.error(TAG, "FrameRate = " + mProfile.videoFrameRate + ", min fps = " + fps + ", bitRate = " + bitRate);
     }
 
     private void stopRecord() {
@@ -450,95 +419,6 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
     protected void onDestroy() {
         super.onDestroy();
         RxFFmpegInvoke.getInstance().exit();
-    }
-
-    private int getBitRate() {
-        switch ((String) binding.videoBitRate.getSelectedItem()) {
-            case "720 x 480":
-                return 720 * 480;
-            case "512 x 512":
-                return 512 * 512;
-            case "1024 x 1024":
-                return 1024 * 1024;
-            case "2 x 1024 x 1024":
-                return 2 * 1024 * 1024;
-            case "3 x 1024 x 1024":
-                return 3 * 1024 * 1024;
-            case "4 x 1024 x 1024":
-                return 4 * 1024 * 1024;
-            case "5 x 1024 x 1024":
-                return 5 * 1024 * 1024;
-            case "1280 x 720":
-                return 1280 * 720;
-            case "1920 x 1080":
-                return 1920 * 1080;
-            default:
-                return 1024 * 1024;
-        }
-    }
-
-    private int getEncoderMethod() {
-        switch ((String) binding.encoderMethod.getSelectedItem()) {
-            case "H264":
-                return MediaRecorder.VideoEncoder.H264;
-            case "H265":
-                return MediaRecorder.VideoEncoder.HEVC;
-            case "VP8":
-                return MediaRecorder.VideoEncoder.VP8;
-            case "VP9":
-                return MediaRecorder.VideoEncoder.VP9;
-            default:
-                return MediaRecorder.VideoEncoder.DEFAULT;
-        }
-    }
-
-    private int getQuality() {
-        switch ((String) binding.videoSize.getSelectedItem()) {
-            case "320P":
-                return CamcorderProfile.QUALITY_CIF;
-            case "480P":
-                return CamcorderProfile.QUALITY_480P;
-            case "720P":
-                return CamcorderProfile.QUALITY_720P;
-            case "1080P":
-                return CamcorderProfile.QUALITY_1080P;
-            default:
-                return CamcorderProfile.QUALITY_HIGH;
-        }
-    }
-
-    private int getOutputFormat() {
-        switch ((String) binding.encoderMethod.getSelectedItem()) {
-            case "VP8":
-            case "VP9":
-                return MediaRecorder.OutputFormat.WEBM;
-            default:
-                return MediaRecorder.OutputFormat.MPEG_4;
-        }
-    }
-
-    private int getAudioEncoder() {
-        switch ((String) binding.encoderMethod.getSelectedItem()) {
-            case "VP8":
-            case "VP9":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    return MediaRecorder.AudioEncoder.OPUS;
-                } else {
-                    return MediaRecorder.AudioEncoder.AAC;
-                }
-            default:
-                return MediaRecorder.AudioEncoder.AAC;
-        }
-    }
-
-    private String getOutputFormatFileSub() {
-        switch ((String) binding.encoderMethod.getSelectedItem()) {
-            case "VP8":
-            case "VP9":
-                return ".webm";
-            default:
-                return ".mp4";
-        }
     }
 
     public static void checkSupportedVideoCodecs() {

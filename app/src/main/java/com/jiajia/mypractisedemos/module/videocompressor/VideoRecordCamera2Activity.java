@@ -18,6 +18,7 @@ import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.CamcorderProfile;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,6 +33,7 @@ import android.view.TextureView;
 import com.jiajia.mypractisedemos.databinding.ActivityVideoRecordCamera2Binding;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils;
+import com.jiajia.mypractisedemos.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,6 +74,7 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityVideoRecordCamera2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        VideoRecorderUtils.initSpinner(this, binding.encoderMethod, binding.videoSize, binding.videoBitRate);
         initTextureViewStateListener();
         initClickListener();
         initChildHandler();
@@ -151,14 +154,17 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
      * 配置录制视频相关数据
      */
     private void configMediaRecorder() {
-        CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_1080P);
+        String encodeMethod = (String) binding.encoderMethod.getSelectedItem();
+        String resolution = (String) binding.videoSize.getSelectedItem();
+        String bitrate = (String) binding.videoBitRate.getSelectedItem();
+        CamcorderProfile mProfile = CamcorderProfile.get(VideoRecorderUtils.getQuality(resolution));
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);// 设置音频来源
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);// 设置视频来源
-        mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);// 设置输出格式
-        mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);// 设置音频编码格式，请注意这里使用默认，实际app项目需要考虑兼容问题，应该选择AAC
-        int encoder = MediaRecorder.VideoEncoder.HEVC;
+        mMediaRecorder.setOutputFormat(VideoRecorderUtils.getOutputFormat(encodeMethod));// 设置输出格式
+        mMediaRecorder.setAudioEncoder(VideoRecorderUtils.getAudioEncoder(encodeMethod));// 设置音频编码格式，请注意这里使用默认，实际app项目需要考虑兼容问题，应该选择AAC
+        int encoder = VideoRecorderUtils.getEncoderMethod(encodeMethod);
         mMediaRecorder.setVideoEncoder(encoder); // 设置视频编码格式，请注意这里使用默认，实际app项目需要考虑兼容问题，应该选择H264
-        mMediaRecorder.setVideoEncodingBitRate(1024 * 1024);// 设置比特率 一般是 1*分辨率 到 10*分辨率 之间波动。比特率越大视频越清晰但是视频文件也越大。
+        mMediaRecorder.setVideoEncodingBitRate(VideoRecorderUtils.getBitRate(bitrate));// 设置比特率 一般是 1*分辨率 到 10*分辨率 之间波动。比特率越大视频越清晰但是视频文件也越大。
         mMediaRecorder.setVideoFrameRate(mProfile.videoFrameRate);// 设置帧数 选择 30即可， 过大帧数也会让视频文件更大当然也会更流畅，但是没有多少实际提升。人眼极限也就30帧了。
         duration = TextUtils.isEmpty(binding.recordTime.getText().toString()) ? 30 * 1000 : Integer.parseInt(binding.recordTime.getText().toString()) * 1000;
         mMediaRecorder.setMaxDuration(duration);
@@ -199,7 +205,7 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
         SurfaceTexture surfaceTexture = binding.textureview.getSurfaceTexture();
         surfaceTexture.setDefaultBufferSize(cameraSize.getWidth(), cameraSize.getHeight());
         Surface previewSurface = new Surface(surfaceTexture);
-        Surface recorderSurface = mMediaRecorder.getSurface();//从获取录制视频需要的Surface
+        Surface recorderSurface = mMediaRecorder.getSurface();// 从获取录制视频需要的Surface
         try {
             mPreviewCaptureRequest = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             mPreviewCaptureRequest.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
@@ -231,6 +237,12 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
         timer = null;
         mMediaRecorder.stop();
         mMediaRecorder.reset();
+        try {
+            showVideoInfo();
+        } catch (Exception e) {
+            LogUtils.error(TAG, e.getMessage());
+        }
+        FileUtils.saveVideo(this, new File(path));
     }
 
     /**
@@ -428,5 +440,28 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
         LogUtils.error(TAG, "getMatchingSize2: 选择的分辨率宽度=" + selectSize.getWidth());
         LogUtils.error(TAG, "getMatchingSize2: 选择的分辨率高度=" + selectSize.getHeight());
         return selectSize;
+    }
+
+    private void showVideoInfo() {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(path);
+        String width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
+        String height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
+        int bitRate = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE));
+        long duration = Long.parseLong(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
+        String rate_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CAPTURE_FRAMERATE);
+        if (TextUtils.isEmpty(rate_s)) {
+            String count_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_FRAME_COUNT);
+            if (!TextUtils.isEmpty(count_s)) {
+                long count = Long.valueOf(count_s);
+                //计算帧率
+                rate_s = String.valueOf(((int) count / duration)); // 帧率
+            }
+        }
+
+        binding.infoSize.setText("大小：" + String.format("%.2f", new File(path).length() / 1024f / 1024f) + "M");
+        binding.infoVideoSize.setText("分辨率：" + width + "x" + height);
+        binding.infoFrame.setText("帧率:" + rate_s);
+        binding.infoDuration.setText("时长：" + duration + "s");
     }
 }

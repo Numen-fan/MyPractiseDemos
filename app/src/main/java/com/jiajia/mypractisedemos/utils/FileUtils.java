@@ -57,7 +57,7 @@ public class FileUtils {
         localContentValues.put(MediaStore.Video.Media.RELATIVE_PATH, "DCIM/video");
         localContentValues.put(MediaStore.Video.Media.TITLE, paramFile.getName());
         localContentValues.put(MediaStore.Video.Media.DISPLAY_NAME, paramFile.getName());
-        localContentValues.put("mime_type", "video/mp4");
+        localContentValues.put(MediaStore.Video.Media.MIME_TYPE, paramFile.getName().endsWith(".webm") ? "video/webm" : "video/mp4");
 //        localContentValues.put("datetaken", Long.valueOf(paramLong));
 //        localContentValues.put("date_modified", Long.valueOf(paramLong));
 //        localContentValues.put("date_added", Long.valueOf(paramLong));
