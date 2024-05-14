@@ -54,6 +54,7 @@ import com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity;
 import com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordActivity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCamera2Activity;
+import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCameraXActivity;
 import com.jiajia.mypractisedemos.module.webview.WebViewActivity;
 import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
@@ -116,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     private static final String VIDEO_COMPRESSOR2 = "video_record2";
 
+    private static final String VIDEO_CAMERAX = "video_camerax";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,40 +140,41 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
 
     public void getFuncNames() {
-//        funcNames.add(FLOAT_GROUP);
-//        funcNames.add(DECORATION);
-//        funcNames.add(START);
-//        funcNames.add(TRAIN);
-//        funcNames.add(CITY_CHANGE);
-//        funcNames.add(PICTURE_SCALE);
-//        funcNames.add(MVP);
-//        funcNames.add(MANY_FUNC);
-//        funcNames.add(EXPANDABLE);
-//        funcNames.add(POPUP_WIND);
-//        funcNames.add(DIALOG);
-//        funcNames.add(JETPACK);
-//        funcNames.add(LINEARLAYOUT);
-//        funcNames.add(SEEKBAR);
-//        funcNames.add(DEMO);
-//        funcNames.add(AUDIO);
-//        funcNames.add(LIVE_REPLAY);
-//        funcNames.add(WIDGET);
-//        funcNames.add(KOTLIN);
-//        funcNames.add(EDITTEXT);
-//        funcNames.add(FLOAT_WIND);
-//        funcNames.add(COMPOSE);
-//        funcNames.add(TIPS);
-//        funcNames.add(MOTION);
-//        funcNames.add(FLUTTER);
-//        funcNames.add(NDK);
-//        funcNames.add(AROUTER);
-//        funcNames.add(ORIENTATION);
-//        funcNames.add(NAVIGATION);
-//        funcNames.add(HOOK_AT);
-//        funcNames.add(AIDL);
-//        funcNames.add(WEBVIEW);
+        funcNames.add(FLOAT_GROUP);
+        funcNames.add(DECORATION);
+        funcNames.add(START);
+        funcNames.add(TRAIN);
+        funcNames.add(CITY_CHANGE);
+        funcNames.add(PICTURE_SCALE);
+        funcNames.add(MVP);
+        funcNames.add(MANY_FUNC);
+        funcNames.add(EXPANDABLE);
+        funcNames.add(POPUP_WIND);
+        funcNames.add(DIALOG);
+        funcNames.add(JETPACK);
+        funcNames.add(LINEARLAYOUT);
+        funcNames.add(SEEKBAR);
+        funcNames.add(DEMO);
+        funcNames.add(AUDIO);
+        funcNames.add(LIVE_REPLAY);
+        funcNames.add(WIDGET);
+        funcNames.add(KOTLIN);
+        funcNames.add(EDITTEXT);
+        funcNames.add(FLOAT_WIND);
+        funcNames.add(COMPOSE);
+        funcNames.add(TIPS);
+        funcNames.add(MOTION);
+        funcNames.add(FLUTTER);
+        funcNames.add(NDK);
+        funcNames.add(AROUTER);
+        funcNames.add(ORIENTATION);
+        funcNames.add(NAVIGATION);
+        funcNames.add(HOOK_AT);
+        funcNames.add(AIDL);
+        funcNames.add(WEBVIEW);
         funcNames.add(VIDEO_COMPRESSOR);
         funcNames.add(VIDEO_COMPRESSOR2);
+        funcNames.add(VIDEO_CAMERAX);
 
     }
 
@@ -274,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 break;
             case VIDEO_COMPRESSOR:
             case VIDEO_COMPRESSOR2:
+            case VIDEO_CAMERAX:
                 List<String> permissionList = new ArrayList<>();
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
                         PackageManager.PERMISSION_GRANTED) {
@@ -292,11 +297,14 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                     permissionList.add(Manifest.permission.RECORD_AUDIO);
                 }
                 if (permissionList.isEmpty()) {
-                    BaseActivity.startActivity(this, item.equals(VIDEO_COMPRESSOR) ? VideoRecordActivity.class : VideoRecordCamera2Activity.class);
+                    BaseActivity.startActivity(this, item.equals(VIDEO_COMPRESSOR)
+                            ? VideoRecordActivity.class :  item.equals(VIDEO_COMPRESSOR2)
+                            ? VideoRecordCamera2Activity.class : VideoRecordCameraXActivity.class);
                 } else {
                     ActivityCompat.requestPermissions(this, permissionList.toArray(new String[0]), 50);
                 }
                 break;
+
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");
                 break;
