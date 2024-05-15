@@ -10,7 +10,7 @@ import androidx.camera.video.Quality;
 import androidx.camera.video.QualitySelector;
 import androidx.camera.video.Recorder;
 import androidx.camera.video.Recording;
-import androidx.camera.core.VideoCapture;
+import androidx.camera.video.VideoCapture;
 import androidx.camera.video.VideoRecordEvent;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -118,11 +118,7 @@ public class VideoRecordCameraXActivity extends AppCompatActivity {
 
     @SuppressLint("RestrictedApi")
     private void initVideoCapture() {
-        videoCapture = new VideoCapture.Builder()
-                .setVideoFrameRate(30)
-                .setBitRate(1024 * 1024)
-                .setTargetRotation(Surface.ROTATION_90)
-                .build();
+        videoCapture = VideoCapture.withOutput(recorder);
 //        videoCapture.setVideoFrameRate(30); // 设置视频帧率
 //        videoCapture.setBitRate(1024 * 1024); // 设置比特率
 //        videoCapture.setTargetRotation(90); // 设置旋转角度
