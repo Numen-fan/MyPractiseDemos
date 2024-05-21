@@ -52,6 +52,7 @@ import com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity;
 import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
 import com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity;
 import com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview;
+import com.jiajia.mypractisedemos.module.videocompressor.MediaCodecVideoActivity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordActivity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCamera2Activity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCameraXActivity;
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private static final String VIDEO_COMPRESSOR2 = "video_record2";
 
     private static final String VIDEO_CAMERAX = "video_camerax";
+    private static final String VIDEO_MEDIACODEC = "video_mediacodec";
 
 
     @Override
@@ -175,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         funcNames.add(VIDEO_COMPRESSOR);
         funcNames.add(VIDEO_COMPRESSOR2);
         funcNames.add(VIDEO_CAMERAX);
+        funcNames.add(VIDEO_MEDIACODEC);
 
     }
 
@@ -304,7 +307,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                     ActivityCompat.requestPermissions(this, permissionList.toArray(new String[0]), 50);
                 }
                 break;
-
+            case VIDEO_MEDIACODEC:
+                BaseActivity.startActivity(this, MediaCodecVideoActivity.class);
+                break;
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");
                 break;
