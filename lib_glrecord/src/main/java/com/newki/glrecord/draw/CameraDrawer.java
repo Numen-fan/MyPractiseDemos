@@ -218,8 +218,8 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
                     videoEncoder = new TextureMovieEncoder();
                     videoEncoder.setPreviewSize(mPreviewWidth, mPreviewHeight);
                     videoEncoder.startRecording(new TextureMovieEncoder.EncoderConfig(
-                            savePath, mPreviewWidth, mPreviewHeight,
-                            3500000, EGL14.eglGetCurrentContext()));
+                            savePath, 480, 640,
+                            1024 * 1024, EGL14.eglGetCurrentContext()));
                     recordingStatus = RECORDING_ON;
                     break;
                 case RECORDING_RESUMED:

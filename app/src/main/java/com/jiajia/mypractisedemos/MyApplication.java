@@ -20,6 +20,7 @@ import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
 import com.jiajia.mypractisedemos.module.webview.H5NebulaFileProviderImpl;
 import com.jiajia.mypractisedemos.module.webview.MyJSApiPlugin;
 import com.mpaas.nebula.adapter.api.MPNebula;
+import com.newki.glrecord.utils.GLCamera1Utils;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -77,6 +78,8 @@ public class MyApplication extends Application {
         getCurrentProcess();
 
         RxFFmpegInvoke.getInstance().setDebug(true);
+
+        GLCamera1Utils.Companion.init(this);
     }
 
     @Override

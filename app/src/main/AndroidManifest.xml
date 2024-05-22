@@ -45,6 +45,10 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:name">
         <activity
+            android:name=".module.videocompressor.RecoderVideoAudio6Activity"
+            android:exported="false"
+            android:label="@string/title_activity_recoder_video_audio6" />
+        <activity
             android:name=".module.videocompressor.MediaCodecVideoActivity"
             android:exported="false" />
 

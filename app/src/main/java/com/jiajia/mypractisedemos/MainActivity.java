@@ -53,6 +53,7 @@ import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
 import com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity;
 import com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview;
 import com.jiajia.mypractisedemos.module.videocompressor.MediaCodecVideoActivity;
+import com.jiajia.mypractisedemos.module.videocompressor.RecoderVideoAudio6Activity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordActivity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCamera2Activity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCameraXActivity;
@@ -308,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 }
                 break;
             case VIDEO_MEDIACODEC:
-                BaseActivity.startActivity(this, MediaCodecVideoActivity.class);
+                BaseActivity.startActivity(this, RecoderVideoAudio6Activity.class);
                 break;
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");
