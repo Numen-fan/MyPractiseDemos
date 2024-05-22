@@ -28,6 +28,7 @@ public class VideoRecorderUtils {
 
         // 1 初始化编码器算法
         ArrayAdapter<String> sizeAdapter = new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item);
+//        sizeAdapter.add("320P");
         sizeAdapter.add("480P");
         sizeAdapter.add("720P");
         sizeAdapter.add("1080P");

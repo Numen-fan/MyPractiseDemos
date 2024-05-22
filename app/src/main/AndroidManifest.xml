@@ -45,6 +45,23 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:name">
         <activity
+            android:name=".module.videocompressor.MediaCodecVideoActivity"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".module.videocompressor.VideoRecordCameraXActivity"
+            android:exported="false" />
+        <activity
             android:name=".module.videocompressor.VideoRecordCamera2Activity"
             android:exported="false" />
         <activity

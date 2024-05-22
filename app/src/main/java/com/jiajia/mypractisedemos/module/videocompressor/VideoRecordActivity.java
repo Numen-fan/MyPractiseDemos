@@ -123,6 +123,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         int bitRate = mProfile.videoBitRate;
         mRecorder.setVideoFrameRate(mProfile.videoFrameRate); // 帧率
         mRecorder.setVideoEncodingBitRate(VideoRecorderUtils.getBitRate(bitrate)); //编码比特率
+
         mRecorder.setOrientationHint(90);
         // 设置记录会话的最大持续时间（毫秒）
         int duration = TextUtils.isEmpty(binding.recordTime.getText().toString()) ? 30 * 1000 : Integer.parseInt(binding.recordTime.getText().toString()) * 1000;
@@ -309,6 +310,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         int bitRate = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE));
         long duration = Long.parseLong(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
         String rate_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CAPTURE_FRAMERATE);
+        String rotation = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
         if (TextUtils.isEmpty(rate_s)) {
             String count_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_FRAME_COUNT);
             if (!TextUtils.isEmpty(count_s)) {
@@ -320,8 +322,11 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
 
         binding.infoSize.setText("大小：" + String.format("%.2f", new File(path).length() / 1024f / 1024f) + "M");
         binding.infoVideoSize.setText("分辨率：" + width + "x" + height);
-        binding.infoFrame.setText("帧率:" + rate_s);
+        binding.infoFrame.setText("帧率:" + rate_s + ", rotation = " + rotation);
         binding.infoDuration.setText("时长：" + duration + "s");
+
+        // 视频旋转
+//        VideoRotationUtil.rotateVideo(path, BASE_URL + File.separator + "rotation.webm");
     }
 
     @Override
