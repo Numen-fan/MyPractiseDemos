@@ -277,9 +277,9 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
      * 选择一颗我们需要使用的摄像头，主要是选择使用前摄还是后摄或者是外接摄像头
      */
     private void selectCamera() {
-        if (mCameraManager != null) {
+        if (mCameraManager == null) {
             LogUtils.error(TAG, "selectCamera: CameraManager is null");
-
+            throw new RuntimeException("mCameraManager is null");
         }
         try {
             String[] cameraIdList = mCameraManager.getCameraIdList();   //获取当前设备的全部摄像头id集合

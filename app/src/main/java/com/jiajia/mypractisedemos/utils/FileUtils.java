@@ -58,11 +58,6 @@ public class FileUtils {
         localContentValues.put(MediaStore.Video.Media.TITLE, paramFile.getName());
         localContentValues.put(MediaStore.Video.Media.DISPLAY_NAME, paramFile.getName());
         localContentValues.put(MediaStore.Video.Media.MIME_TYPE, paramFile.getName().endsWith(".webm") ? "video/webm" : "video/mp4");
-//        localContentValues.put("datetaken", Long.valueOf(paramLong));
-//        localContentValues.put("date_modified", Long.valueOf(paramLong));
-//        localContentValues.put("date_added", Long.valueOf(paramLong));
-//        localContentValues.put("_data", paramFile.getAbsolutePath());
-//        localContentValues.put("_size", paramFile.length());
         return localContentValues;
     }
 

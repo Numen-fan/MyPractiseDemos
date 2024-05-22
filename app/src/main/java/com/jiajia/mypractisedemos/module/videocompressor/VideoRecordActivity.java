@@ -77,17 +77,6 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         surfaceView.getHolder().addCallback(this);
         binding.btnCompress.setOnClickListener((v) -> {
             startCompress();
-//            RxFFmpegComperssor.startRxFFmpegCompress(path);
-//            transBase64();
-//            showVideoInfo();s
-//            showCompressVideoInfo();
-//            startLightCompressor();
-//            try {
-//                FileUtils.ZipFolder(path, getCacheDir() + "/video" + "/aaa.zip");
-//            } catch (Exception e) {
-//                ToastUtils.showToast("zip失败");
-//                LogUtils.error(TAG, e.getMessage());
-//            }
         });
         initSpinner();
         File dir = new File(BASE_URL);

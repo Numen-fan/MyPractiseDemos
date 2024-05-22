@@ -18,9 +18,9 @@ public class VideoRecorderUtils {
     public static void initSpinner(Context context, Spinner encoder, Spinner resolution, Spinner bitrate) {
         // 1 初始化编码器算法
         ArrayAdapter<String> encoderAdapter = new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item);
+        encoderAdapter.add("VP8");
         encoderAdapter.add("H264");
         encoderAdapter.add("H265");
-        encoderAdapter.add("VP8");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             encoderAdapter.add("VP9");
         }
@@ -28,7 +28,6 @@ public class VideoRecorderUtils {
 
         // 1 初始化编码器算法
         ArrayAdapter<String> sizeAdapter = new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item);
-        sizeAdapter.add("320P");
         sizeAdapter.add("480P");
         sizeAdapter.add("720P");
         sizeAdapter.add("1080P");

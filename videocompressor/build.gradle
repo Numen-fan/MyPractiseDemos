@@ -18,15 +18,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        flatDir {
+            dir 'libs'
+        }
+    }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    implementation fileTree(include: ['*.jar, *.aar'], dir: 'libs')
+
+    
     implementation 'androidx.appcompat:appcompat:1.4.1'
     testImplementation 'junit:junit:4.13.2'
 //    compile files('libs/isoparser-1.0.6.jar')
 //    compile files('libs/aspectjrt-1.7.3.jar')
+
+//    api(name: 'videorecorderlibrary-release', ext: 'aar')
 }
