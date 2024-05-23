@@ -79,7 +79,7 @@ public class MyApplication extends Application {
 
         RxFFmpegInvoke.getInstance().setDebug(true);
 
-        GLCamera1Utils.Companion.init(this);
+        GLCamera1Utils.init(this);
     }
 
     @Override

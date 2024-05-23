@@ -434,7 +434,7 @@ public class TextureMovieEncoder implements Runnable {
         }
     }
 
-    private BaseFilter mShowFilter = new NoneFilter(GLCamera1Utils.getApplicationContext().getResources());
+    private final BaseFilter mShowFilter = new NoneFilter(GLCamera1Utils.getApplicationContext().getResources());
 
     private int mPreviewWidth = -1;
     private int mPreviewHeight = -1;
