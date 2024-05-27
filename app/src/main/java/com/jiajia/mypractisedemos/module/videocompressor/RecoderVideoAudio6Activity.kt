@@ -7,13 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
-import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.jiajia.mypractisedemos.R
 import com.jiajia.mypractisedemos.databinding.ActivityRecoderVideoAudio6Binding
 import com.jiajia.mypractisedemos.module.kotlin.util.ToastUtils

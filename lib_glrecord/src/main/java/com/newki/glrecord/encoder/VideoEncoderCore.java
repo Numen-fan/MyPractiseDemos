@@ -31,11 +31,11 @@ public class VideoEncoderCore {
     private static final int IFRAME_INTERVAL = 5;           // 1 seconds between I-frames
 
     //音频配置
-    private String audioMime = MediaFormat.MIMETYPE_AUDIO_OPUS;   //音频编码的Mime
+    private final String audioMime = MediaFormat.MIMETYPE_AUDIO_OPUS;   //音频编码的Mime
     private AudioRecord mRecorder;   //录音器
     private MediaCodec mAudioEnc;   //编码器，用于音频编码
-    private int audioRate = 128000;   //音频编码的密钥比特率
-    private int sampleRate = 48000;   //音频采样率
+    private int audioRate = 96000;   //音频编码的密钥比特率
+    private int sampleRate = 44100;   //音频采样率
     private int channelCount = 2;     //音频编码通道数
     private int channelConfig = AudioFormat.CHANNEL_IN_STEREO;   //音频录制通道,默认为立体声
     private int audioFormat = AudioFormat.ENCODING_PCM_16BIT; //音频录制格式，默认为PCM16Bit
