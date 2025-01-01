@@ -12,7 +12,7 @@ public class AndroidJS {
 
     @JavascriptInterface
     public void hello(String str) {
-        ToastUtils.INSTANCE.showToast(str);
+        ToastUtils.showToast(str);
     }
 
 }

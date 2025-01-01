@@ -53,7 +53,6 @@ import com.jiajia.mypractisedemos.module.popwindow.PopwindowActivity;
 import com.jiajia.mypractisedemos.module.recycgroup1.RecycGroup1Activity;
 import com.jiajia.mypractisedemos.module.seekbar.SeekBarActivity;
 import com.jiajia.mypractisedemos.module.trainrecyclerview.Trainrecyclerview;
-import com.jiajia.mypractisedemos.module.videocompressor.MediaCodecVideoActivity;
 import com.jiajia.mypractisedemos.module.videocompressor.RecoderVideoAudio6Activity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordActivity;
 import com.jiajia.mypractisedemos.module.videocompressor.VideoRecordCamera2Activity;
@@ -64,7 +63,6 @@ import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
 import com.jiajia.mypractisedemos.utils.Utils;
 //import com.jiajia.playermodule.PlayerActivity;
-import com.mpaas.mas.adapter.api.MPLogger;
 
 import java.lang.reflect.Method;
 import java.net.Inet4Address;
@@ -415,7 +413,6 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                         InetAddress inetAddress = enumIpAddr.nextElement();
                         if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
                             ip = inetAddress.getHostAddress();
-                            MPLogger.warn("FJJJ", ip);
                         }
                     }
                 }

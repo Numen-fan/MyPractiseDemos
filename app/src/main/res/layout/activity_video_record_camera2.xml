@@ -40,7 +40,6 @@
         android:text="0"
         android:textSize="40sp"
         android:layout_margin="13dp"
-        android:textColor="@color/AU_COLOR_APP_RED"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
         />
@@ -52,7 +51,6 @@
         android:text="0"
         android:textSize="40sp"
         android:layout_margin="13dp"
-        android:textColor="@color/AU_COLOR_APP_GREEN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_start" />
 
@@ -100,7 +98,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="300dp"
-        android:textColor="@color/AU_COLOR_APP_GREEN"
         android:layout_marginStart="10dp" />
 
     <TextView
@@ -109,7 +106,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/info_size"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/AU_COLOR_APP_GREEN"
         android:layout_margin="10dp" />
 
     <TextView
@@ -118,7 +114,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/info_frame"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/AU_COLOR_APP_GREEN"
         android:layout_margin="10dp" />
 
     <TextView
@@ -127,7 +122,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/info_video_size"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/AU_COLOR_APP_GREEN"
         android:layout_margin="10dp" />
 
     <TextView
@@ -136,7 +130,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/compress_info_duration"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/AU_COLOR_APP_GREEN"
         android:layout_margin="10dp" />
 
     <Spinner

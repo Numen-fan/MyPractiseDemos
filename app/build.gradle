@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.alibaba.arouter'
-apply plugin: 'com.alipay.apollo.baseline.config'
 
 android {
     compileSdkVersion 33
@@ -118,7 +117,6 @@ android {
 }
 
 dependencies {
-    implementation platform("com.mpaas.android:$mpaas_artifact:$mpaas_baseline")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
@@ -136,7 +134,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.4.1'
     implementation project(path: ':ButterKnifeAnnotationLib')
     implementation project(path: ':ButterKnife')
-    implementation 'com.mpaas.android:nebula'
     implementation project(path: ':videocompressor')
     implementation project(path: ':rxffmpeg')
     implementation project(path: ':lib_glrecord')
