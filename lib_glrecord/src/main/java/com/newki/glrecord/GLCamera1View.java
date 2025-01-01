@@ -198,4 +198,8 @@ public class GLCamera1View extends GLSurfaceView implements GLSurfaceView.Render
     public void nextFilter() {
         mCameraDrawer.nextFilter();
     }
+
+    public String getSavePath() {
+        return mCameraDrawer.getSavePath();
+    }
 }

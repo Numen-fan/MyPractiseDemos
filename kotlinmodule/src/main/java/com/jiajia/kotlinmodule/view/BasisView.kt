@@ -18,7 +18,7 @@ class BasisView(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
 
     private val paint: Paint = Paint()
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         paint.color = Color.RED
         paint.style = Paint.Style.STROKE

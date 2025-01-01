@@ -18,7 +18,11 @@ import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.CamcorderProfile;
+import android.media.MediaCodec;
+import android.media.MediaExtractor;
+import android.media.MediaFormat;
 import android.media.MediaMetadataRetriever;
+import android.media.MediaMuxer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,6 +30,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
@@ -37,6 +42,7 @@ import com.jiajia.mypractisedemos.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Timer;
@@ -450,6 +456,7 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
         int bitRate = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE));
         long duration = Long.parseLong(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
         String rate_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CAPTURE_FRAMERATE);
+        String rotation = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
         if (TextUtils.isEmpty(rate_s)) {
             String count_s = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_FRAME_COUNT);
             if (!TextUtils.isEmpty(count_s)) {
@@ -462,6 +469,59 @@ public class VideoRecordCamera2Activity extends AppCompatActivity {
         binding.infoSize.setText("大小：" + String.format("%.2f", new File(path).length() / 1024f / 1024f) + "M");
         binding.infoVideoSize.setText("分辨率：" + width + "x" + height);
         binding.infoFrame.setText("帧率:" + rate_s);
-        binding.infoDuration.setText("时长：" + duration + "s");
+        binding.infoDuration.setText("时长：" + duration + "s" + ", rotation=" + rotation);
+
+        try {
+            setRotation(path, BASE_URL + File.separator + System.currentTimeMillis() + ".webm", 90);
+        } catch (IOException e) {
+            LogUtils.error(TAG, e.getMessage());
+        }
+    }
+
+    public static void setRotation(String inputPath, String outputPath, int rotationDegrees) throws IOException {
+        MediaExtractor extractor = new MediaExtractor();
+        extractor.setDataSource(inputPath);
+
+        MediaMuxer muxer = new MediaMuxer(outputPath, MediaMuxer.OutputFormat.MUXER_OUTPUT_WEBM);
+
+        int videoTrackIndex = -1;
+        int numTracks = extractor.getTrackCount();
+
+        for (int i = 0; i < numTracks; i++) {
+            MediaFormat format = extractor.getTrackFormat(i);
+            String mime = format.getString(MediaFormat.KEY_MIME);
+
+            if (mime.startsWith("video/")) {
+                videoTrackIndex = muxer.addTrack(format);
+                muxer.setOrientationHint(rotationDegrees);
+            } else {
+                muxer.addTrack(format);
+            }
+        }
+
+        muxer.start();
+
+        if (videoTrackIndex != -1) {
+            extractor.selectTrack(videoTrackIndex);
+            MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
+            ByteBuffer buffer = ByteBuffer.allocate(1024 * 1024);
+
+            while (true) {
+                int sampleSize = extractor.readSampleData(buffer, 0);
+                if (sampleSize < 0) {
+                    break;
+                }
+                bufferInfo.offset = 0;
+                bufferInfo.size = sampleSize;
+                bufferInfo.flags = extractor.getSampleFlags();
+                bufferInfo.presentationTimeUs = extractor.getSampleTime();
+                muxer.writeSampleData(videoTrackIndex, buffer, bufferInfo);
+                extractor.advance();
+            }
+        }
+
+        muxer.stop();
+        muxer.release();
+        extractor.release();
     }
 }

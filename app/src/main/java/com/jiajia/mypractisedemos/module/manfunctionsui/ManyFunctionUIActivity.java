@@ -13,7 +13,7 @@ import com.jiajia.mypractisedemos.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import q.rorbin.badgeview.QBadgeView;
+//import q.rorbin.badgeview.QBadgeView;
 
 public class ManyFunctionUIActivity extends AppCompatActivity {
 
@@ -30,20 +30,20 @@ public class ManyFunctionUIActivity extends AppCompatActivity {
         setContentView(R.layout.activity_many_function_ui);
 
         ButterKnife.bind(this);
-        final QBadgeView view = new QBadgeView(this);
+//        final QBadgeView view = new QBadgeView(this);
 
         rl_zflhp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ManyFunctionUIActivity.this, "直放理货票", Toast.LENGTH_SHORT).show();
-                view.hide(true);
+//                view.hide(true);
 
             }
         });
         tv_dsh.setText("     ");
-        view.bindTarget(tv_dsh);
-        view.setBadgeGravity(Gravity.CENTER);
-        view.setShowShadow(true);
-        view.setBadgeNumber(5);
+//        view.bindTarget(tv_dsh);
+//        view.setBadgeGravity(Gravity.CENTER);
+//        view.setShowShadow(true);
+//        view.setBadgeNumber(5);
     }
 }

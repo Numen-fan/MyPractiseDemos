@@ -122,7 +122,7 @@ public class VideoRecordActivity extends AppCompatActivity implements SurfaceHol
         mRecorder.setVideoSize(mProfile.videoFrameWidth, mProfile.videoFrameHeight);
         int bitRate = mProfile.videoBitRate;
         mRecorder.setVideoFrameRate(mProfile.videoFrameRate); // 帧率
-        mRecorder.setVideoEncodingBitRate(VideoRecorderUtils.getBitRate(bitrate)); //编码比特率
+        mRecorder.setVideoEncodingBitRate(1); //编码比特率
 
         mRecorder.setOrientationHint(90);
         // 设置记录会话的最大持续时间（毫秒）

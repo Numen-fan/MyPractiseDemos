@@ -128,7 +128,7 @@ class TaggedSeekBar @JvmOverloads constructor(
         setMeasuredDimension(width, height)
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas?.apply {
             val maxAdditionWidth = if (tagWidth / 2 > (thumbRadius + thumbStrokeWidth)) {

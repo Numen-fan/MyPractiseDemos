@@ -26,12 +26,12 @@ public class VideoEncoderCore {
     private static final String TAG = "VideoEncoderCore";
     private static final boolean VERBOSE = false;
 
-    private static final String MIME_TYPE = MediaFormat.MIMETYPE_VIDEO_VP8;    // H.264 Advanced Video Coding
+    private static final String MIME_TYPE = MediaFormat.MIMETYPE_VIDEO_AVC;    // H.264 Advanced Video Coding
     private static final int FRAME_RATE = 30;               // 30fps
     private static final int IFRAME_INTERVAL = 5;           // 1 seconds between I-frames
 
     //音频配置
-    private final String audioMime = MediaFormat.MIMETYPE_AUDIO_OPUS;   //音频编码的Mime
+    private final String audioMime = MediaFormat.MIMETYPE_AUDIO_AAC;   //音频编码的Mime
     private AudioRecord mRecorder;   //录音器
     private MediaCodec mAudioEnc;   //编码器，用于音频编码
     private int audioRate = 96000;   //音频编码的密钥比特率
@@ -98,7 +98,7 @@ public class VideoEncoderCore {
         // We're not actually interested in multiplexing audio.  We just want to convert
         // the raw H.264 elementary stream we get from MediaCodec into a .mp4 file.
         mMuxer = new MediaMuxer(path,
-                MediaMuxer.OutputFormat.MUXER_OUTPUT_WEBM);
+                MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
 
         mVideoTrackIndex = -1;
         mAudioTrackIndex = -1;

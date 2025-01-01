@@ -1,5 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Demos尝鲜版</string>
+    <string name="h5_app_name" tools:ignore="ExtraTranslation">h5_app_name</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_seek_bar">SeekBarActivity</string>

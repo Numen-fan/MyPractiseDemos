@@ -23,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Range;
 import android.view.Surface;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -47,7 +48,7 @@ public class VideoRecordCameraXActivity extends AppCompatActivity {
 
     Camera camera;
 
-    VideoCapture videoCapture;
+    VideoCapture<Recorder> videoCapture;
 
     Recording recording;
 
@@ -112,6 +113,7 @@ public class VideoRecordCameraXActivity extends AppCompatActivity {
         // 方法3
         recorder = new Recorder.Builder()
                 .setExecutor(Executors.newFixedThreadPool(2))
+//                .setTargetVideoEncodingBitRate(1)
                 .setQualitySelector(qualitySelector)
                 .build();
     }

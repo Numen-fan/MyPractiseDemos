@@ -48,7 +48,7 @@ class RecoderVideoAudio6Activity : AppCompatActivity(), SlideGpuFilterGroup.OnFi
         screenWidth = mDisplayMetrics.widthPixels
         screenHeight = mDisplayMetrics.heightPixels
 
-        outFile = File(cacheDir, "${System.currentTimeMillis()}-record.webm")
+        outFile = File(cacheDir, "${System.currentTimeMillis()}-record.mp4")
         if (!outFile.exists()) {
             outFile.createNewFile()
         }
@@ -101,7 +101,7 @@ class RecoderVideoAudio6Activity : AppCompatActivity(), SlideGpuFilterGroup.OnFi
     private fun stopRecording() {
         isRecording = false
         mRecordCameraView.stopRecord()
-
+        mRecordCameraView.postDelayed({ VideoRecorderUtils.saveVideo(this, File(mRecordCameraView.savePath)) }, 500);
     }
 
     override fun onFilterChange(type: MagicFilterType?) {

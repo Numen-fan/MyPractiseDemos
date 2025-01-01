@@ -218,7 +218,7 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
                     videoEncoder = new TextureMovieEncoder();
                     videoEncoder.setPreviewSize(mPreviewWidth, mPreviewHeight);
                     videoEncoder.startRecording(new TextureMovieEncoder.EncoderConfig(
-                            savePath, 480, 640,
+                            savePath, 480, 720,
                             1024 * 1024, EGL14.eglGetCurrentContext()));
                     recordingStatus = RECORDING_ON;
                     break;
@@ -364,5 +364,9 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
     // 选中指定索引的滤镜
     public void setFilterByIndex(int index) {
         mSlideFilterGroup.setFilter(index);
+    }
+
+    public String getSavePath() {
+        return savePath;
     }
 }

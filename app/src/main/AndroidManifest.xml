@@ -20,6 +20,8 @@
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -44,6 +46,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:name">
+<!--        ca-app-pub-7121523255118995~9273630108-->
+<!--        ca-app-pub-7121523255118995/6771618090-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
+        <activity
+            android:name=".module.ad.AdActivity"
+            android:exported="false" />
         <activity
             android:name=".module.videocompressor.RecoderVideoAudio6Activity"
             android:exported="false"

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.jiajia.mypractisedemos.R;
-import com.wx.wheelview.widget.WheelViewDialog;
+//import com.wx.wheelview.widget.WheelViewDialog;
 
 import java.util.ArrayList;
 
@@ -38,13 +38,13 @@ public class WheelActivity extends AppCompatActivity {
 
     }
     public void showDialog(View view) {
-        WheelViewDialog dialog = new WheelViewDialog(this);
-        dialog.setTitle("wheelview dialog")
-                .setItems(createArrays())
-                .setButtonText("确定")
-                .setDialogStyle(Color.parseColor("#6699ff"))
-                .setCount(5)
-                .show();
+//        WheelViewDialog dialog = new WheelViewDialog(this);
+//        dialog.setTitle("wheelview dialog")
+//                .setItems(createArrays())
+//                .setButtonText("确定")
+//                .setDialogStyle(Color.parseColor("#6699ff"))
+//                .setCount(5)
+//                .show();
     }
 
     private ArrayList<String> createArrays() {

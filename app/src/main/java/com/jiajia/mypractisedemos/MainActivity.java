@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiajia.basemodule.config.RouteConfig;
 import com.jiajia.mypractisedemos.module.TipsActivity;
+import com.jiajia.mypractisedemos.module.ad.AdActivity;
 import com.jiajia.mypractisedemos.module.aidl.AIDLActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
@@ -62,7 +63,7 @@ import com.jiajia.mypractisedemos.module.wheeldialog.WheelActivity;
 import com.jiajia.mypractisedemos.module.widgetdemo.WidgetDemoActivity;
 import com.jiajia.mypractisedemos.utils.PermissionUtil;
 import com.jiajia.mypractisedemos.utils.Utils;
-import com.jiajia.playermodule.PlayerActivity;
+//import com.jiajia.playermodule.PlayerActivity;
 import com.mpaas.mas.adapter.api.MPLogger;
 
 import java.lang.reflect.Method;
@@ -122,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private static final String VIDEO_CAMERAX = "video_camerax";
     private static final String VIDEO_MEDIACODEC = "video_mediacodec";
 
+    private static final String AD = "AD";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         funcNames.add(VIDEO_COMPRESSOR2);
         funcNames.add(VIDEO_CAMERAX);
         funcNames.add(VIDEO_MEDIACODEC);
+        funcNames.add(AD);
 
     }
 
@@ -311,6 +315,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             case VIDEO_MEDIACODEC:
                 BaseActivity.startActivity(this, RecoderVideoAudio6Activity.class);
                 break;
+            case AD:
+                BaseActivity.startActivity(this, AdActivity.class);
+                break;
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");
                 break;
@@ -390,7 +397,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
 //                Utils.getBatteryState();
 
-                PlayerActivity.startActivity(this);
+//                PlayerActivity.startActivity(this);
 
                 break;
             default:
