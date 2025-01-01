@@ -137,6 +137,7 @@ dependencies {
     implementation project(path: ':videocompressor')
     implementation project(path: ':rxffmpeg')
     implementation project(path: ':lib_glrecord')
+    implementation project(path: ':ComposeModule')
     implementation "androidx.camera:camera-core:$camerax_version"
     implementation "androidx.camera:camera-camera2:$camerax_version"
     implementation "androidx.camera:camera-view:$camerax_version"
