@@ -25,12 +25,12 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiajia.basemodule.config.RouteConfig;
+import com.jiajia.composemodule.ComposeMainActivity;
 import com.jiajia.mypractisedemos.module.TipsActivity;
 import com.jiajia.mypractisedemos.module.ad.AdActivity;
 import com.jiajia.mypractisedemos.module.aidl.AIDLActivity;
 import com.jiajia.mypractisedemos.module.audio.AudioActivity;
 import com.jiajia.mypractisedemos.module.citychange.CityChangeActivity;
-import com.jiajia.mypractisedemos.module.compose.ComposeMainActivity;
 import com.jiajia.mypractisedemos.module.decoration.DecorationActivity;
 import com.jiajia.mypractisedemos.module.demo.DemoActivity;
 import com.jiajia.mypractisedemos.module.demo.MotionLayoutActivity;
