@@ -38,6 +38,7 @@ import com.jiajia.mypractisedemos.module.dialog.DialogActivity;
 import com.jiajia.mypractisedemos.module.edittextview.EditTextActivity;
 import com.jiajia.mypractisedemos.module.expendablelayout.ExpendableLayoutActivity;
 import com.jiajia.mypractisedemos.module.floatwindow.FloatView;
+import com.jiajia.mypractisedemos.module.ip.IpAddressActivity;
 import com.jiajia.mypractisedemos.module.jetpack.JetpackActivity;
 import com.jiajia.mypractisedemos.module.kotlin.activity.KotlinActivity;
 import com.jiajia.mypractisedemos.module.kotlin.util.LogUtils;
@@ -123,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     private static final String AD = "AD";
 
+    private static final String IP_ADDRESS = "获取IP";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         funcNames.add(VIDEO_CAMERAX);
         funcNames.add(VIDEO_MEDIACODEC);
         funcNames.add(AD);
+        funcNames.add(IP_ADDRESS);
 
     }
 
@@ -315,6 +319,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 break;
             case AD:
                 BaseActivity.startActivity(this, AdActivity.class);
+                break;
+            case IP_ADDRESS:
+                BaseActivity.startActivity(this, IpAddressActivity.class);
                 break;
             default:
                 ToastUtils.INSTANCE.showToast("丫的，没实现方法");

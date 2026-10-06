@@ -201,6 +201,7 @@
         <activity android:name=".module.popwindow.PopwindowActivity" />
         <activity android:name=".module.dialog.DialogActivity" />
         <activity android:name=".module.jetpack.JetpackActivity" />
+        <activity android:name=".module.ip.IpAddressActivity" />
         <activity
             android:name=".module.demo.WidthTestActivity"
             android:configChanges="orientation|screenSize|locale|keyboardHidden"
